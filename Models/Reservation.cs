@@ -1,22 +1,27 @@
 using System;
-using System.Linq;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
+using System.Windows.Forms;
+using System.Text.RegularExpressions;
 using Repository;
 
 
 
-namespace Model {
-    public  class Reservation {
-       
-       [Key]
-        public int ReservationId { get; set; } 
+
+namespace Model
+{
+    public class Reservation
+    {
+
+        [Key]
+        public int ReservationId { get; set; }
         public virtual Guest Guest { get; set; }
-        [ForeignKey("guests")] 
+        [ForeignKey("guests")]
         public int GuestId { get; set; }
         public virtual Room Room { get; set; }
-        [ForeignKey("rooms")] 
+        [ForeignKey("rooms")]
         [Required]
         public int RoomId { get; set; }
 
@@ -27,7 +32,8 @@ namespace Model {
         public double Total { get; set; }
         public List<Room> rooms = new();
 
-        public Reservation() {
+        public Reservation()
+        {
 
         }
         public Reservation(
@@ -54,7 +60,58 @@ namespace Model {
             db.SaveChanges();
         }
 
+        public static Reservation GetReservation(int reservationId)
+        {
+            var db = new Context();
+            return (from reservation in db.Reservations
+                    where reservation.ReservationId == reservationId
+                    select reservation).First();
+        }
 
+        public static List<Reservation> GetReservations()
+        {
+            var db = new Context();
+            return db.Reservations.ToList();
+        }
 
+        public static void UpdateReservation(
+                int reservationId,
+                DateTime reservationDate,
+                int daysOfStay,
+                DateTime checkIn,
+                DateTime checkOut,
+                double total
+            )
+        {
+            var db = new Context();
+            try
+            {
+                Reservation reservation = db.Reservations.First(reservation => reservation.ReservationId == reservationId);
+                reservation.ReservationDate = reservationDate;
+                reservation.DaysOfStay = daysOfStay;
+                reservation.CheckIn = checkIn;
+                reservation.CheckOut = checkOut;
+                reservation.Total = total;
+            }
+            catch (Exception error)
+            {
+                MessageBox.Show(error.Message, "Erro ao Atualizar!");
+            }
+        }
+        public static void DeleteReservation(int reservationId)
+        {
+            var db = new Context();
+            try
+            {
+                Reservation reservation = db.Reservations.First(reservation => reservation.ReservationId == reservationId);
+                db.Remove(reservation);
+                db.SaveChanges();
+            }
+            catch (Exception error)
+            {
+                MessageBox.Show(error.Message, "Erro ao deletar!");
+            }
+
+        }
     }
 }

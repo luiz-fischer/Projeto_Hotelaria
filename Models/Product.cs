@@ -30,6 +30,13 @@ namespace Model
             db.SaveChanges();
         }
 
+        public static Product GetProduct(int productID)
+        {
+            var db = new Context();
+            return (from product in db.Products
+                    where product.ProductId == productID
+                    select product).First();
+        }
         public static List<Product> GetProducts()
         {
             var db = new Context();
@@ -65,6 +72,6 @@ namespace Model
             Product product = db.Products.First(product => product.ProductId == productId);
             db.Remove(product);
             db.SaveChanges();
-        }       
+        }
     }
 }

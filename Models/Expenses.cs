@@ -15,10 +15,10 @@ namespace Model
         [Key]
         public int ExpenseId { get; set; }
         public virtual Product Product { get; set; }
-        [ForeignKey("products")] 
+        [ForeignKey("products")]
         public int ProductId { get; set; }
         public virtual Reservation Reservation { get; set; }
-        [ForeignKey("reservations")] 
+        [ForeignKey("reservations")]
         public int ReservationId { get; set; }
         public DateTime Date { get; set; }
         public double Value { get; set; }
@@ -57,6 +57,58 @@ namespace Model
         public override int GetHashCode()
         {
             return HashCode.Combine(ExpenseId, ProductId, ReservationId, Date, Value);
+        }
+
+        public static Expense GetExpense(int expenseId)
+        {
+            var db = new Context();
+            return (from expense in db.Expenses
+                    where expense.ExpenseId == expenseId
+                    select expense).First();
+        }
+
+        public static List<Expense> GetExpenses()
+        {
+            var db = new Context();
+            return db.Expenses.ToList();
+        }
+
+        public static void UpdateExpense(
+            int expenseId,
+            int productId,
+            int reservationId,
+            DateTime date,
+            double value
+        )
+        {
+            var db = new Context();
+            try
+            {
+                Expense expense = db.Expenses.First(expense => expense.ExpenseId == expenseId);
+                expense.ExpenseId = expenseId;
+                expense.ProductId = productId;
+                expense.ReservationId = reservationId;
+                expense.Date = date;
+                expense.Value = value;
+            }
+            catch (Exception error)
+            {
+                MessageBox.Show(error.Message, "Erro ao Atualizar!");
+            }
+        }
+        public static void DeleteExpense(int expenseId)
+        {
+            var db = new Context();
+            try
+            {
+                Expense expense = db.Expenses.First(expense => expense.ExpenseId == expenseId);
+                db.Remove(expense);
+                db.SaveChanges();
+            }
+            catch (Exception error)
+            {
+                MessageBox.Show(error.Message, "Erro ao deletar!");
+            }
         }
     }
 }
