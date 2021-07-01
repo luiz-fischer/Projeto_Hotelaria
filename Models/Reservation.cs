@@ -7,9 +7,6 @@ using System.Windows.Forms;
 using System.Text.RegularExpressions;
 using Repository;
 
-
-
-
 namespace Model
 {
     public class Reservation
