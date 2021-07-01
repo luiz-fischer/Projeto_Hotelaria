@@ -25,7 +25,12 @@ namespace Controller {
             double roomValue
         )
         {
-            Model.Room.UpdateRoom(roomId, roomFloor, roomNumber, roomDescription, roomValue);
+            Model.Room.UpdateRoom(
+                roomId,
+                roomFloor,
+                roomNumber,
+                roomDescription,
+                roomValue);
         }
 
         public static void DeleteRoom(int RoomId)

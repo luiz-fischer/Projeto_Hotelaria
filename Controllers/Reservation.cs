@@ -6,7 +6,10 @@ namespace Controller
 {
     public class Reservation
     {
-        public static Model.Reservation AddReservation(int guestId, DateTime date, int daysOfStay)
+        public static Model.Reservation AddReservation(
+            int guestId,
+            DateTime date,
+            int daysOfStay)
         {
             try
             {
@@ -68,6 +71,14 @@ namespace Controller
             }
 
 
+        }
+        public static List<Model.Reservation> GetReservationByIdGuest(int guestId)
+        {
+            return Model.Reservation.GetReservationByIdGuest(guestId);
+        }
+        public static List<Model.ReservationRoom> GetReservationsByIdRoom(int IdVeiculo)
+        {
+            return Model.ReservationRoom.GetReservationsByIdRoom(IdVeiculo);
         }
 
         public static void CheckOut(int reservationId)

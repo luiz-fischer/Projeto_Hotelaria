@@ -64,6 +64,13 @@ namespace Model
             var db = new Context();
             return db.Reservations.ToList();
         }
+        public static List<Model.Reservation> GetReservationByIdGuest(int guestId)
+        {
+            var db = new Context();
+            return (from reservation in db.Reservations
+                    where reservation.GuestId == guestId
+                    select reservation).ToList();
+        }
 
         public static void InsertCheckIn(int reservationId)
         {
@@ -131,11 +138,11 @@ namespace Model
             }
             if (TotalDays < reservation.DaysOfStay)
             {
-                reservation.Total = (reservation.DaysOfStay * room.Value) + (AdditionalDays * 1.2 * room.Value) + TotalExpenses;
+                reservation.Total = (reservation.DaysOfStay * room.RoomValue) + (AdditionalDays * 1.2 * room.RoomValue) + TotalExpenses;
             }
             else if (TotalDays >= reservation.DaysOfStay)
             {
-                reservation.Total = (reservation.DaysOfStay * room.Value) + (AdditionalDays * 1.2 * room.Value) + TotalExpenses;
+                reservation.Total = (reservation.DaysOfStay * room.RoomValue) + (AdditionalDays * 1.2 * room.RoomValue) + TotalExpenses;
             }
             db.SaveChanges();
         }

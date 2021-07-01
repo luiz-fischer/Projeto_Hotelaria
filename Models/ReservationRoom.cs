@@ -15,7 +15,7 @@ namespace Model {
         public int IdRoom { get; set; }
         public virtual Room Room { get; set; }
 
-        public static List<ReservationRoom> GetReservationsByRoom(int IdRoom)
+        public static List<ReservationRoom> GetReservationsByIdRoom(int IdRoom)
         {
             var db = new Context();
             return (from reservation in db.ReservationRooms
