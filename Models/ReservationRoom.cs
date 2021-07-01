@@ -3,16 +3,15 @@ using System.Linq;
 using Repository;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using Repository;
 
 namespace Model {
     public partial class ReservationRoom {
-        [Key] // Data Annotations - Main key
+        [Key] 
         public int ReservationRoomId { get; set; }
-        [ForeignKey("reservations")] // Data Annotations - Foreign Key
+        [ForeignKey("reservations")] 
         public int IdReservation { get; set; }
         public virtual Reservation Reservation { get; set; }
-        [ForeignKey("rooms")] // Data Annotations - Foreign Key
+        [ForeignKey("rooms")] 
         public int IdRoom { get; set; }
         public virtual Room Room { get; set; }
 

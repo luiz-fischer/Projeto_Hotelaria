@@ -31,7 +31,8 @@ namespace Model
             DateTime guestBirth,
             double payment,
             string guestIdentification,
-            string mothersName)
+            string mothersName
+        )
         {
             GuestName = guestName;
             GuestBirth = guestBirth;
@@ -60,6 +61,65 @@ namespace Model
         public override int GetHashCode()
         {
             return HashCode.Combine(GuestId, GuestName, GuestBirth, Payment, GuestIdentification, MothersName, reservations);
+        }
+
+        public void AddReservation(Reservation reservation)
+        {
+            reservations.Add(reservation);
+        }
+
+        public static Guest GetGuest(int guestId)
+        {
+            var db = new Context();
+            return (from guest in db.Guests
+                    where guest.GuestId == guestId
+                    select guest).First();
+        }
+
+        public static List<Guest> GetGuests()
+        {
+            var db = new Context();
+            return db.Guests.ToList();
+        }
+
+        public static void UpdateGuest(
+            int guestId,
+            string guestName,
+            DateTime guestBirth,
+            double payment,
+            string guestIdentification,
+            string mothersName
+        )
+        {
+            var db = new Context();
+            try
+            {
+                Guest guest = db.Guests.First(guest => guest.GuestId == guestId);
+                guest.GuestName = guestName;
+                guest.GuestBirth = guestBirth;
+                guest.Payment = payment;
+                guest.GuestIdentification = guestIdentification;
+                guest.MothersName = mothersName;
+            }
+            catch (Exception error)
+            {
+                MessageBox.Show(error.Message, "Erro ao Atualizar!");
+            }
+        }
+
+        public static void DeleteGuest(int guestId)
+        {
+            var db = new Context();
+            try
+            {
+                Guest guest = db.Guests.First(guest => guest.GuestId == guestId);
+                db.Remove(guest);
+                db.SaveChanges();
+            }
+            catch (Exception error)
+            {
+                MessageBox.Show(error.Message, "Erro ao deletar!");
+            }
         }
     }
 

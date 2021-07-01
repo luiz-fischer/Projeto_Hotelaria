@@ -25,26 +25,29 @@ namespace Model {
         public DateTime CheckIn { get; set; }
         public DateTime CheckOut { get; set; }
         public double Total { get; set; }
+        public List<Room> rooms = new();
 
         public Reservation() {
 
         }
         public Reservation(
-            int guestId,
-            int roomId,
+            Model.Guest guest,
+            // Model.Room room,
             DateTime reservationDate,
             int daysOfStay,
             DateTime checkIn,
             DateTime checkOut,
             double total)
         {
-            GuestId = guestId;
-            RoomId = roomId;
+            GuestId = guest.GuestId;
+            // RoomId = room.RoomId;
             ReservationDate = reservationDate;
             DaysOfStay = daysOfStay;
             CheckIn = checkIn;
             CheckOut = checkOut;
             Total = total;
+            rooms = new List<Room>();
+            guest.AddReservation(this);
 
             var db = new Context();
             db.Reservations.Add(this);
