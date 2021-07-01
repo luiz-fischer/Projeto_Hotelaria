@@ -7,7 +7,7 @@ namespace Library
 {
     public class Button : System.Windows.Forms.Button
     {
-        public Button(string caseSwitch)
+        public Button(string caseSwitch) 
         {
             this.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.FlatAppearance.BorderSize = 3;

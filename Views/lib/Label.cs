@@ -11,5 +11,5 @@ namespace Library
             this.Font = new Font(FontFamily.GenericSansSerif, 12F, FontStyle.Bold);
             this.ForeColor = Color.Black;
         }
-    }
+     }
 }

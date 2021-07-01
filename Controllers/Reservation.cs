@@ -69,8 +69,6 @@ namespace Controller
             {
                 MessageBox.Show("Não foi possível Realizar o CheckIN");
             }
-
-
         }
         public static List<Model.Reservation> GetReservationByIdGuest(int guestId)
         {

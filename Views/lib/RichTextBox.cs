@@ -5,7 +5,7 @@ namespace Library
 {
     public class RichTextBox : System.Windows.Forms.RichTextBox
     {
-        public RichTextBox()
+        public RichTextBox() 
         {           
             this.ForeColor = Color.DarkBlue;
             this.Font = new Font(FontFamily.GenericSansSerif, 8f, FontStyle.Bold);

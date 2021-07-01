@@ -25,7 +25,7 @@ namespace Library
                     this.Name = "imagemTitle";
                     break;
 
-                case "imagemLogo":
+                case "imagemLogo": 
                     // ImagemLogo
                     // this.Load("C:\\LocaCar\\Imagens\\imagemLogo.jpg");
                     this.Location = new Point(12, 550);
