@@ -1,23 +1,42 @@
 using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
+using System.Windows.Forms;
+using System.Text.RegularExpressions;
+using Repository;
 
 namespace Model {
     public partial class Clean {
-        private int CleanId { get; set; }
-        private int RoomId { get; set; }
-        private int EmployeeId { get; set; }
-        private DateTime Date { get; set; }
+        [Key]
+        public int CleanId { get; set; }
+        [ForeignKey("guests")] 
+        public int RoomId { get; set; }
 
+        [ForeignKey("employees")] 
+        public int EmployeeId { get; set; }
+        [Required]
+        public DateTime Date { get; set; }
+
+        public Clean() {
+
+        }
         public Clean(
-            int cleanId,
             int roomId,
             int employeeId,
             DateTime date
         )
         {
-            CleanId = cleanId;
             RoomId = roomId;
             EmployeeId = employeeId;
             Date = date;
+
+            var db = new Context();
+            db.Cleans.Add(this);
+            db.SaveChanges();
+            
+            
         }
 
         public override bool Equals(object obj)

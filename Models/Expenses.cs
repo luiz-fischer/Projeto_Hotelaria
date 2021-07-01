@@ -1,32 +1,45 @@
 using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
+using System.Windows.Forms;
+using System.Text.RegularExpressions;
+using Repository;
+
 
 namespace Model
 {
     public partial class Expense
     {
-        private int ExpenseId { get; set; }
-        private int ProductId { get; set; }
-        private int ReservationId { get; set; }
-        private DateTime Date { get; set; }
-        private double Value { get; set; }
+        [Key]
+        public int ExpenseId { get; set; }
+        [ForeignKey("products")] 
+        public int ProductId { get; set; }
+        [ForeignKey("reservations")] 
+        public int ReservationId { get; set; }
+        public DateTime Date { get; set; }
+        public double Value { get; set; }
 
         public Expense()
         {
 
         }
         public Expense(
-            int expenseId,
             int productId,
             int reservationId,
             DateTime date,
             double value
         )
         {
-            ExpenseId = expenseId;
             ProductId = productId;
             ReservationId = reservationId;
             Date = date;
             Value = value;
+
+            var db = new Context();
+            db.Expenses.Add(this);
+            db.SaveChanges();
         }
 
         public override bool Equals(object obj)

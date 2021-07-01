@@ -1,26 +1,37 @@
 using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
+using System.Windows.Forms;
+using System.Text.RegularExpressions;
+using Repository;
+
 
 namespace Model {
     public partial class Room {
-        private int RoomId { get; set; }
-        private int Floor { get; set; }
-        private string RoomNumber { get; set; }
-        private string Description { get; set; }
-        private double Value { get; set; }
+        [Key]
+        public int RoomId { get; set; }
+        public int Floor { get; set; }
+        public string RoomNumber { get; set; }
+        public string Description { get; set; }
+        public double Value { get; set; }
 
         public Room(
-            int roomId,
             int floor,
             string roomNumber,
             string description,
             double value
         )
         {
-            RoomId = roomId;
             Floor = floor;
             RoomNumber = roomNumber;
             Description = description;
             Value = value;
+
+            var db = new Context();
+            db.Rooms.Add(this);
+            db.SaveChanges();
         }
 
         public override bool Equals(object obj)

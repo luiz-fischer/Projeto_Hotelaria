@@ -4,41 +4,44 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Windows.Forms;
 using System.Text.RegularExpressions;
+using Repository;
 
 
-namespace  Model
+
+namespace Model
 {
-    public class Guest {
+    public class Guest
+    {
         [Key]
-        private int GuestId { get; set; }
-        private string GuestName { get; set; }
-        private DateTime GuestBirth { get; set; }
-        private double Payment { get; set; }
-        private string GuestIdentification { get; set; }
-        private string MothersName { get; set; }
+        public int GuestId { get; set; }
+        public string GuestName { get; set; }
+        public DateTime GuestBirth { get; set; }
+        public double Payment { get; set; }
+        public string GuestIdentification { get; set; }
+        public string MothersName { get; set; }
         public List<Reservation> reservations = new();
 
-        public Guest(){
-            
+        public Guest()
+        {
+
         }
 
         public Guest(
-            int guestId,
             string guestName,
             DateTime guestBirth,
             double payment,
             string guestIdentification,
             string mothersName)
         {
-            GuestId = guestId;
             GuestName = guestName;
             GuestBirth = guestBirth;
             Payment = payment;
             GuestIdentification = guestIdentification;
             MothersName = mothersName;
 
-            // Context db = new(); // BD
-            // db.SaveChanges();   // BD
+            var db = new Context();
+            db.Guests.Add(this);
+            db.SaveChanges();
 
         }
 
@@ -59,5 +62,5 @@ namespace  Model
             return HashCode.Combine(GuestId, GuestName, GuestBirth, Payment, GuestIdentification, MothersName, reservations);
         }
     }
-    
+
 }
