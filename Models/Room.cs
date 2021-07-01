@@ -14,22 +14,22 @@ namespace Model
     {
         [Key]
         public int RoomId { get; set; }
-        public int Floor { get; set; }
+        public int RoomFloor { get; set; }
         public string RoomNumber { get; set; }
-        public string Description { get; set; }
-        public double Value { get; set; }
+        public string RoomDescription { get; set; }
+        public double RoomValue { get; set; }
 
         public Room(
-            int floor,
+            int roomFloor,
             string roomNumber,
-            string description,
-            double value
+            string roomRoomDescription,
+            double roomRoomValue
         )
         {
-            Floor = floor;
+            RoomFloor = roomFloor;
             RoomNumber = roomNumber;
-            Description = description;
-            Value = value;
+            RoomDescription = roomRoomDescription;
+            RoomValue = roomRoomValue;
 
             var db = new Context();
             db.Rooms.Add(this);
@@ -40,15 +40,15 @@ namespace Model
         {
             return obj is Room room &&
                    RoomId == room.RoomId &&
-                   Floor == room.Floor &&
+                   RoomFloor == room.RoomFloor &&
                    RoomNumber == room.RoomNumber &&
-                   Description == room.Description &&
-                   Value == room.Value;
+                   RoomDescription == room.RoomDescription &&
+                   RoomValue == room.RoomValue;
         }
 
         public override int GetHashCode()
         {
-            return HashCode.Combine(RoomId, Floor, RoomNumber, Description, Value);
+            return HashCode.Combine(RoomId, RoomFloor, RoomNumber, RoomDescription, RoomValue);
         }
         public static Room GetRoom(int roomId)
         {
@@ -72,20 +72,20 @@ namespace Model
 
         public static void UpdateRoom(
             int roomId,
-            int floor,
+            int roomFloor,
             string roomNumber,
-            string description,
-            double value
+            string roomRoomDescription,
+            double roomRoomValue
             )
         {
             var db = new Context();
             try
             {
                 Room room = db.Rooms.First(room => room.RoomId == roomId);
-                room.Floor = floor;
+                room.RoomFloor = roomFloor;
                 room.RoomNumber = roomNumber;
-                room.Description = description;
-                room.Value = value;
+                room.RoomDescription = roomRoomDescription;
+                room.RoomValue = roomRoomValue;
             }
             catch (Exception error)
             {

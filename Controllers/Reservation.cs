@@ -15,7 +15,7 @@ namespace Controller
             catch (Exception error)
             {
                 MessageBox.Show(error.Message, "Hóspede não cadastrado!");
-                if (date == null)
+                if (string.IsNullOrEmpty(date.ToString()))
                 {
                     MessageBox.Show(error.Message, "A data em Branco!");
                 }
@@ -31,7 +31,7 @@ namespace Controller
         public static void DeleteReservation(int reservationId)
         {
             Model.Reservation reservation = Model.Reservation.GetReservation(reservationId);
-            if (reservation.CheckIn == null)
+            if (string.IsNullOrEmpty(reservation.CheckIn.ToString()))
             {
                 Model.Reservation.DeleteReservation(reservationId);
             }

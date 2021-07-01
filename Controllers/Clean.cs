@@ -50,7 +50,7 @@ namespace Controller
                 MessageBox.Show(error.Message, "Funcionário não encontrado!");
             }
 
-            if (clean.Date == null)
+            if (clean.Date.ToString() == null)
             {
                 Model.Clean.SetCleanDone(cleanId, employeeId);
             }
