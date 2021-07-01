@@ -138,11 +138,11 @@ namespace Model
             }
             if (TotalDays < reservation.DaysOfStay)
             {
-                reservation.Total = (reservation.DaysOfStay * room.RoomValue) + (AdditionalDays * 1.2 * room.RoomValue) + TotalExpenses;
+                reservation.Total = (reservation.DaysOfStay * room.RoomValue) + (AdditionalDays * 1.5 * room.RoomValue) + TotalExpenses;
             }
             else if (TotalDays >= reservation.DaysOfStay)
             {
-                reservation.Total = (reservation.DaysOfStay * room.RoomValue) + (AdditionalDays * 1.2 * room.RoomValue) + TotalExpenses;
+                reservation.Total = (reservation.DaysOfStay * room.RoomValue) + (AdditionalDays * 1.5 * room.RoomValue) + TotalExpenses;
             }
             db.SaveChanges();
         }
