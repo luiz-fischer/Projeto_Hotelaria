@@ -34,25 +34,19 @@ namespace Model
 
         }
         public Reservation(
-            Model.Guest guest,
+            int guestId,
             // Model.Room room,
             DateTime reservationDate,
-            int daysOfStay,
-            DateTime checkIn,
-            DateTime checkOut,
-            double total)
+            int daysOfStay
+        )
         {
-            GuestId = guest.GuestId;
+            GuestId = guestId;
             // RoomId = room.RoomId;
             ReservationDate = reservationDate;
             DaysOfStay = daysOfStay;
-            CheckIn = checkIn;
-            CheckOut = checkOut;
-            Total = total;
             rooms = new List<Room>();
-            guest.AddReservation(this);
-
             var db = new Context();
+
             db.Reservations.Add(this);
             db.SaveChanges();
         }

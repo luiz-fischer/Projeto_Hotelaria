@@ -76,6 +76,11 @@ namespace Model
                     select guest).First();
         }
 
+        public static Guest GetGuestId(int guestId)
+        {
+            var db = new Context();
+            return db.Guests.Find(guestId);
+        }
         public static List<Guest> GetGuests()
         {
             var db = new Context();
@@ -100,6 +105,7 @@ namespace Model
                 guest.Payment = payment;
                 guest.GuestIdentification = guestIdentification;
                 guest.MothersName = mothersName;
+                db.SaveChanges();
             }
             catch (Exception error)
             {
