@@ -34,6 +34,10 @@ namespace Projeto_Hotelaria.Migrations
 
                     b.HasKey("CleanId");
 
+                    b.HasIndex("EmployeeId");
+
+                    b.HasIndex("RoomId");
+
                     b.ToTable("Cleans");
                 });
 
@@ -70,6 +74,10 @@ namespace Projeto_Hotelaria.Migrations
                         .HasColumnType("double");
 
                     b.HasKey("ExpenseId");
+
+                    b.HasIndex("ProductId");
+
+                    b.HasIndex("ReservationId");
 
                     b.ToTable("Expenses");
                 });
@@ -148,6 +156,8 @@ namespace Projeto_Hotelaria.Migrations
 
                     b.HasIndex("GuestId");
 
+                    b.HasIndex("RoomId");
+
                     b.ToTable("Reservations");
                 });
 
@@ -201,6 +211,44 @@ namespace Projeto_Hotelaria.Migrations
                     b.ToTable("Rooms");
                 });
 
+            modelBuilder.Entity("Model.Clean", b =>
+                {
+                    b.HasOne("Model.Employee", "Employee")
+                        .WithMany()
+                        .HasForeignKey("EmployeeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Model.Room", "Room")
+                        .WithMany()
+                        .HasForeignKey("RoomId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Employee");
+
+                    b.Navigation("Room");
+                });
+
+            modelBuilder.Entity("Model.Expense", b =>
+                {
+                    b.HasOne("Model.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Model.Reservation", "Reservation")
+                        .WithMany()
+                        .HasForeignKey("ReservationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Product");
+
+                    b.Navigation("Reservation");
+                });
+
             modelBuilder.Entity("Model.Reservation", b =>
                 {
                     b.HasOne("Model.Guest", "Guest")
@@ -209,7 +257,15 @@ namespace Projeto_Hotelaria.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Model.Room", "Room")
+                        .WithMany()
+                        .HasForeignKey("RoomId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Guest");
+
+                    b.Navigation("Room");
                 });
 
             modelBuilder.Entity("Model.ReservationRoom", b =>

@@ -15,6 +15,8 @@ namespace Model {
         public virtual Guest Guest { get; set; }
         [ForeignKey("guests")] 
         public int GuestId { get; set; }
+        public virtual Room Room { get; set; }
+        [ForeignKey("rooms")] 
         [Required]
         public int RoomId { get; set; }
 

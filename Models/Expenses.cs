@@ -14,8 +14,10 @@ namespace Model
     {
         [Key]
         public int ExpenseId { get; set; }
+        public virtual Product Product { get; set; }
         [ForeignKey("products")] 
         public int ProductId { get; set; }
+        public virtual Reservation Reservation { get; set; }
         [ForeignKey("reservations")] 
         public int ReservationId { get; set; }
         public DateTime Date { get; set; }

@@ -11,12 +11,13 @@ namespace Model {
     public partial class Clean {
         [Key]
         public int CleanId { get; set; }
-        [ForeignKey("guests")] 
+        public virtual Room Room { get; set; }
+        [ForeignKey("rooms")] 
         public int RoomId { get; set; }
-
+        public virtual Employee Employee { get; set; }
         [ForeignKey("employees")] 
+
         public int EmployeeId { get; set; }
-        [Required]
         public DateTime Date { get; set; }
 
         public Clean() {
