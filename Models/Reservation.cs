@@ -74,6 +74,33 @@ namespace Model
             return db.Reservations.ToList();
         }
 
+        public static void InsertCheckIn(int reservationId)
+        {
+            var db = new Context();
+
+            Reservation reservation = GetReservation(reservationId);
+            reservation.CheckIn = DateTime.Now;
+            db.SaveChanges();
+        }
+
+        public static void SetRoom(int reservationId, int roomId)
+        {
+            var db = new Context();
+
+            Reservation reservation = GetReservation(reservationId);
+            reservation.RoomId = roomId;
+            db.SaveChanges();
+        }
+
+        public static void InsertCheckOut(int reservationId)
+        {
+            var db = new Context();
+
+            Reservation reservation = GetReservation(reservationId);
+            reservation.CheckOut = DateTime.Now;
+            db.SaveChanges();
+        }
+
         public static void UpdateReservation(
                 int reservationId,
                 DateTime reservationDate,
@@ -98,6 +125,30 @@ namespace Model
                 MessageBox.Show(error.Message, "Erro ao Atualizar!");
             }
         }
+
+        public static void UpdateTotal(int reservationId)
+        {
+            var db = new Context();
+            Reservation reservation = GetReservation(reservationId);
+            Room room = Room.GetRoomId(reservation.RoomId);
+            Double TotalExpenses = 0;
+            Double TotalDays = reservation.CheckOut.Subtract(reservation.CheckIn).TotalDays;
+            Double AdditionalDays = TotalDays - reservation.DaysOfStay;
+            foreach (Expense expense in Expense.GetExpenseByReservation(reservationId))
+            {
+                TotalExpenses += expense.Value;
+            }
+            if (TotalDays < reservation.DaysOfStay)
+            {
+                reservation.Total = (reservation.DaysOfStay * room.Value) + (AdditionalDays * 1.2 * room.Value) + TotalExpenses;
+            }
+            else if (TotalDays >= reservation.DaysOfStay)
+            {
+                reservation.Total = (reservation.DaysOfStay * room.Value) + (AdditionalDays * 1.2 * room.Value) + TotalExpenses;
+            }
+            db.SaveChanges();
+        }
+
         public static void DeleteReservation(int reservationId)
         {
             var db = new Context();

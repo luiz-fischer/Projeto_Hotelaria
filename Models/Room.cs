@@ -63,6 +63,12 @@ namespace Model
             var db = new Context();
             return db.Rooms.ToList();
         }
+        
+        public static Room GetRoomId(int roomId)
+        {
+            var db = new Context();
+            return db.Rooms.Find(roomId);
+        }
 
         public static void UpdateRoom(
             int roomId,

@@ -73,6 +73,13 @@ namespace Model
             return db.Expenses.ToList();
         }
 
+         public static List<Expense> GetExpenseByReservation(int reservationId)
+        {
+            var db = new Context();
+            IEnumerable<Expense> Expense = from expense in db.Expenses where expense.ReservationId == reservationId select expense;
+            return Expense.ToList();
+        }
+
         public static void UpdateExpense(
             int expenseId,
             int productId,
