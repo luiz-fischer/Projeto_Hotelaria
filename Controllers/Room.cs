@@ -1,9 +1,4 @@
-using System;
-using System.Linq;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using Repository;
 
 namespace Controller {
     public class Room {
@@ -14,7 +9,12 @@ namespace Controller {
             double roomValue
         )
         {
-            return new Model.Room(number, roomFloor, roomDescription, roomValue);
+            return new Model.Room(
+                number,
+                roomFloor,
+                roomDescription,
+                roomValue
+            );
         }
 
         public static void UpdateRoom(
@@ -35,21 +35,17 @@ namespace Controller {
 
         public static void DeleteRoom(int RoomId)
         {
-            Room.DeleteRoom(RoomId);
+            Model.Room.DeleteRoom(RoomId);
         }
-
-        public static List<Model.Room> Rooms => Model.Room.GetRooms();
 
         public static Model.Room GetRoomsById(int roomsId)
         {
             return Model.Room.GetRoomId(roomsId);
         }
 
-        public static List<Room> GetRooms()
+        public static List<Model.Room> GetRooms()
         {
-            var db = new Context();
-            IQueryable<Room> rooms = (IQueryable<Room>)(from room in db.Rooms select room);
-            return rooms.ToList();
+            return Model.Room.GetRooms();
         }
     }
 }

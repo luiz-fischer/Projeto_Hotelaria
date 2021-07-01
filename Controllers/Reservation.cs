@@ -33,13 +33,14 @@ namespace Controller
         public static void DeleteReservation(int reservationId)
         {
             Model.Reservation reservation = Model.Reservation.GetReservation(reservationId);
+
             if (string.IsNullOrEmpty(reservation.CheckIn.ToString()))
             {
                 Model.Reservation.DeleteReservation(reservationId);
             }
             else
             {
-                MessageBox.Show("Não é possível remover uma reserva que já tenha tido o CheckIn feito.");
+                MessageBox.Show("Não é possível remover.");
             }
         }
 

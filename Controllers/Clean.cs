@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 namespace Controller
-{
+{  
     public class Clean
     {
         public static Model.Clean AddClean(int roomId)
