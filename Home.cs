@@ -9,7 +9,6 @@ namespace View
     {
         public Home()
         {
-            this.IsMdiContainer = true;
 
             MenuStrip ms = new MenuStrip();
             //
@@ -109,7 +108,6 @@ namespace View
             ms.Items.Add(pesquisarMenuPrincipal);
             ms.Items.Add(listarMenuPrincipal);
             ms.Items.Add(windowsMenuPrincipal);
-
             ms.Dock = DockStyle.Top;
             this.MainMenuStrip = ms;
 
@@ -119,17 +117,32 @@ namespace View
                 Screen.PrimaryScreen.WorkingArea.Width,
                 Screen.PrimaryScreen.WorkingArea.Height
             );
+            ms.BackColor = System.Drawing.ColorTranslator.FromHtml("#3C4858");
             this.WindowState = FormWindowState.Maximized;
             this.AutoScaleMode = AutoScaleMode.Font;
             ms.Font = new Font(FontFamily.GenericSansSerif, 8F, FontStyle.Bold);
             ms.Renderer = new MyRenderer();
             this.Controls.Add(ms);
 
-        }
+            this.IsMdiContainer = true;
+            // Call the method that changes the background color.
+            this.SetBackGroundColorOfMDIForm();
 
+
+        }
+        private void SetBackGroundColorOfMDIForm()
+        {
+            foreach (Control ctl in this.Controls)
+            {
+                if ((ctl) is MdiClient)
+                {
+                    ctl.BackColor = Color.FromArgb(40, 105, 85);
+                }
+            }
+        }
         private void homeMenuPrincipal_Click(object sender, EventArgs e)
         {
-            Home home = new Home();
+            Home home = new();
             home.Show();
         }
         private void sairMenuPrincipal_Click(object sender, EventArgs e)
@@ -210,18 +223,21 @@ namespace View
                 }
                 else
                 {
-                    Pen pen = new Pen(Color.FromArgb(75, 75, 75));
-                    SolidBrush solidBrush = new SolidBrush(Color.FromArgb(75, 75, 75));
-                    e.Item.Font = new Font(FontFamily.GenericSansSerif, 8.5F, FontStyle.Bold);
-                    e.Item.ForeColor = Color.FromArgb(26, 157, 196);
-                    Rectangle rectangle = new Rectangle(Point.Empty, e.Item.Size);
+                    Pen pen = new(System.Drawing.ColorTranslator.FromHtml("#FFFFFF"));
+                    SolidBrush solidBrush = new(System.Drawing.ColorTranslator.FromHtml("#3C4858"));//
+                    e.Item.Font = new Font(FontFamily.GenericSansSerif, 9F, FontStyle.Bold);
+                    e.Item.ForeColor = System.Drawing.ColorTranslator.FromHtml("#8492A6");
+                    Rectangle rectangle = new(Point.Empty, e.Item.Size);
                     e.Graphics.FillRectangle(solidBrush, rectangle);
                     e.Graphics.DrawRectangle(pen, 0, 0, rectangle.Width, rectangle.Height);
+
 
                     pen.Dispose();
                     solidBrush.Dispose();
                 }
+
             }
+
         }
     }
 }

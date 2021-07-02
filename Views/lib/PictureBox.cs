@@ -17,29 +17,20 @@ namespace Library
 
             switch (caseSwitch)
             {
-                case "imagemSide1":
-                    // imagemSide1
-                    this.Load("C:\\Projeto_Hotelaria\\Views\\Assets\\imagemSide1.jpg");
-                    this.Location = new Point(200, 10);
-                    this.Size = new Size(300, 121);
-                    this.Name = "imagemTitle";
+                case "logo_size_full":
+                    // logo_size_full
+                    this.Load("C:\\Projeto_Hotelaria\\Views\\Assets\\menu_side.png");
+                    this.Location = new Point(10, 10);
+                    this.Size = new Size(200, 800);
+                    this.Name = "logo_size_full";
                     break;
 
-                case "imagemSide2": 
-                    // imagemSide2
-                    this.Load("C:\\Projeto_Hotelaria\\Views\\Assets\\imagemSide3.jpg");
-                    this.Location = new Point(520, 10);
-                    this.Size = new Size(300, 121);
-                    this.Name = "imagemLogo";
-                    break;
-
-                case "imagemSide3": 
-                    // imagemSide3
-                    
-                    this.Load("C:\\Projeto_Hotelaria\\Views\\Assets\\imagemSide2.jpg");
-                    this.Location = new Point(840, 10);
-                    this.Size = new Size(300, 121);
-                    this.Name = "imagemLogo";
+                case "logo_image": 
+                    // logo_image
+                    // this.Load("C:\\Projeto_Hotelaria\\Views\\Assets\\logo_image.png");
+                    this.Location = new Point(900, 475);
+                    this.Size = new Size(350, 350);
+                    this.Name = "logo_image";
                     break;
 
                 default:
