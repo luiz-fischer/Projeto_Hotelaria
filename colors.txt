@@ -1,0 +1,7 @@
+Listagem de cores: 
+Backgroud: #E0E6ED
+Barra de Menu Lateral (verde): #286955
+Fonte de Título (Cinza): #3C4858
+Fonte texto dentro caixa de texto: #8492A6
+Botão Cancelar: #FE4A49
+Botão Salvar: #009FB7

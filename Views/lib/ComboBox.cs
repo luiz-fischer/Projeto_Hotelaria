@@ -1,7 +1,7 @@
 using System;
 using System.Drawing;
 using System.Windows.Forms;
- 
+
 namespace Library
 {
     public class ComboBox : System.Windows.Forms.ComboBox
@@ -9,19 +9,22 @@ namespace Library
 
         public ComboBox(string caseSwitch)
         {
+            this.Font = new Font("Roboto", 20F, GraphicsUnit.Point);
+            this.AutoCompleteMode = AutoCompleteMode.Append;
+            this.ForeColor = ColorTranslator.FromHtml("#8492A6");
 
             switch (caseSwitch)
             {
-                case "cbDiasDevolucao":
-                    // cbDiasDevolucao
-                    this.Items.Add("1 Dia");
-                    this.Items.Add("5 Dias");
-                    this.Items.Add("10 Dias");
-                    this.Items.Add("15 Dias");
-                    this.Items.Add("20 Dias");
-                    this.AutoCompleteMode = AutoCompleteMode.Append;
-                    this.Location = new Point(955, 300);
-                    this.Size = new Size(170, 20);
+                case "cbPayment":
+                    // cbPayment
+                    this.Items.Add("Em dinheiro");
+                    this.Items.Add("Débito");
+                    this.Items.Add("Crédito - 1x");
+                    this.Items.Add("Crédito - 2x");
+                    this.Items.Add("Crédito - 3x");
+                    this.Location = new Point(600, 345);
+                    this.Size = new Size(330, 35);
+                    this.Text = "    Pagamento";
                     break;
 
                 case "cbPreco":
@@ -31,7 +34,6 @@ namespace Library
                     this.Items.Add("R$ 150,00");
                     this.Items.Add("R$ 200,00");
                     this.Items.Add("R$ 250,00");
-                    this.AutoCompleteMode = AutoCompleteMode.Append;
                     this.Location = new Point(955, 380);
                     this.Size = new Size(170, 20);
                     break;

@@ -10,103 +10,103 @@ namespace View
         public Home()
         {
 
-            MenuStrip ms = new MenuStrip();
+            MenuStrip ms = new();
             //
             // Homes
-            ToolStripMenuItem homeMenuPrincipal = new ToolStripMenuItem("Home");
+            ToolStripMenuItem homeMenuPrincipal = new("Home");
 
-            ToolStripMenuItem homeMenuDropItem = new ToolStripMenuItem(
+            ToolStripMenuItem homeMenuDropItem = new(
                 "Home",
                 null,
                 new EventHandler(this.homeMenuPrincipal_Click)
                 );
-            ToolStripMenuItem exitMenuDropItem = new ToolStripMenuItem(
-                "Exit",
+            ToolStripMenuItem exitMenuDropItem = new(
+                "Sair",
                 null,
                 new EventHandler(this.exitMenuPrincipal_Click)
                 );
             //
-            // Create
-            ToolStripMenuItem createMenuPrincipal = new ToolStripMenuItem("Create");
-            ToolStripMenuItem createGuestMenuPrincipal = new ToolStripMenuItem(
-                "Guest",
+            // Cadastrar
+            ToolStripMenuItem cadastrarMenuPrincipal = new("Cadastrar");
+            ToolStripMenuItem cadastrarHospedeMenuPrincipal = new(
+                "Hospede",
                 null,
-                new EventHandler(this.guestCreateMenuPrincipal_Click)
+                new EventHandler(this.hospedeCadastrarMenuPrincipal_Click)
                 );
 
-            ToolStripMenuItem createLocacaoMenuPrincipal = new ToolStripMenuItem(
-                "Reservation",
+            ToolStripMenuItem cadastrarReservasMenuPrincipal = new(
+                "Reservas",
                 null,
-                new EventHandler(this.locacaoCreateMenuPrincipal_Click)
+                new EventHandler(this.reservasCadastrarMenuPrincipal_Click)
                 );
-            ToolStripMenuItem createVeiculoMenuPrincipal = new ToolStripMenuItem(
-                "Room",
+            ToolStripMenuItem cadastrarQuartoMenuPrincipal = new(
+                "Quarto",
                 null,
-                new EventHandler(this.veiculoCreateMenuPrincipal_Click)
-                );
-            //
-            // Search
-            ToolStripMenuItem searchMenuPrincipal = new ToolStripMenuItem("Search");
-            ToolStripMenuItem searchGuestMenuPrincipal = new ToolStripMenuItem(
-                "Guest",
-                null,
-                new EventHandler(this.guestSearchMenuPrincipal_Click)
-                );
-            ToolStripMenuItem searchLocacaoMenuPrincipal = new ToolStripMenuItem(
-                "Reservation",
-                null,
-                new EventHandler(this.locacaoSearchMenuPrincipal_Click)
-                );
-            ToolStripMenuItem searchVeiculoMenuPrincipal = new ToolStripMenuItem(
-                "Room",
-                null,
-                new EventHandler(this.veiculoSearchMenuPrincipal_Click)
+                new EventHandler(this.veiculoCadastrarMenuPrincipal_Click)
                 );
             //
-            // List
-            ToolStripMenuItem listMenuPrincipal = new ToolStripMenuItem("List");
-            ToolStripMenuItem listGuestMenuPrincipal = new ToolStripMenuItem(
-                "Guests",
+            // Pesquisar
+            ToolStripMenuItem pesquisarMenuPrincipal = new("Pesquisar");
+            ToolStripMenuItem pesquisarHospedeMenuPrincipal = new(
+                "Hospede",
                 null,
-                new EventHandler(this.guestListMenuPrincipal_Click)
+                new EventHandler(this.hospedePesquisarMenuPrincipal_Click)
+                );
+            ToolStripMenuItem pesquisarReservasMenuPrincipal = new(
+                "Reservas",
+                null,
+                new EventHandler(this.reservasPesquisarMenuPrincipal_Click)
+                );
+            ToolStripMenuItem pesquisarQuartoMenuPrincipal = new(
+                "Quarto",
+                null,
+                new EventHandler(this.veiculoPesquisarMenuPrincipal_Click)
+                );
+            //
+            // Listar
+            ToolStripMenuItem listarMenuPrincipal = new("Listar");
+            ToolStripMenuItem listarHospedeMenuPrincipal = new(
+                "Hospedes",
+                null,
+                new EventHandler(this.hospedeListarMenuPrincipal_Click)
                 );
 
-            ToolStripMenuItem listLocacaoMenuPrincipal = new ToolStripMenuItem(
+            ToolStripMenuItem listarReservasMenuPrincipal = new(
                 "Locações",
                 null,
-                new EventHandler(this.locacaoListMenuPrincipal_Click)
+                new EventHandler(this.reservasListarMenuPrincipal_Click)
                 );
 
-            ToolStripMenuItem listVeiculoMenuPrincipal = new ToolStripMenuItem(
-                "Rooms",
+            ToolStripMenuItem listarQuartoMenuPrincipal = new(
+                "Quartos",
                 null,
-                new EventHandler(this.veiculoListMenuPrincipal_Click)
+                new EventHandler(this.veiculoListarMenuPrincipal_Click)
                 );
             //
             // Windows
-            ToolStripMenuItem windowsMenuPrincipal = new ToolStripMenuItem("Windows");
+            ToolStripMenuItem windowsMenuPrincipal = new("Windows");
             // Home
             homeMenuPrincipal.DropDownItems.Add(homeMenuDropItem);
             homeMenuPrincipal.DropDownItems.Add(exitMenuDropItem);
-            // Create
-            createMenuPrincipal.DropDownItems.Add(createGuestMenuPrincipal);
-            createMenuPrincipal.DropDownItems.Add(createLocacaoMenuPrincipal);
-            createMenuPrincipal.DropDownItems.Add(createVeiculoMenuPrincipal);
-            // Search
-            searchMenuPrincipal.DropDownItems.Add(searchGuestMenuPrincipal);
-            searchMenuPrincipal.DropDownItems.Add(searchLocacaoMenuPrincipal);
-            searchMenuPrincipal.DropDownItems.Add(searchVeiculoMenuPrincipal);
-            // List
-            listMenuPrincipal.DropDownItems.Add(listGuestMenuPrincipal);
-            listMenuPrincipal.DropDownItems.Add(listLocacaoMenuPrincipal);
-            listMenuPrincipal.DropDownItems.Add(listVeiculoMenuPrincipal);
+            // Cadastrar
+            cadastrarMenuPrincipal.DropDownItems.Add(cadastrarHospedeMenuPrincipal);
+            cadastrarMenuPrincipal.DropDownItems.Add(cadastrarReservasMenuPrincipal);
+            cadastrarMenuPrincipal.DropDownItems.Add(cadastrarQuartoMenuPrincipal);
+            // Pesquisar
+            pesquisarMenuPrincipal.DropDownItems.Add(pesquisarHospedeMenuPrincipal);
+            pesquisarMenuPrincipal.DropDownItems.Add(pesquisarReservasMenuPrincipal);
+            pesquisarMenuPrincipal.DropDownItems.Add(pesquisarQuartoMenuPrincipal);
+            // Listar
+            listarMenuPrincipal.DropDownItems.Add(listarHospedeMenuPrincipal);
+            listarMenuPrincipal.DropDownItems.Add(listarReservasMenuPrincipal);
+            listarMenuPrincipal.DropDownItems.Add(listarQuartoMenuPrincipal);
 
             ms.MdiWindowListItem = windowsMenuPrincipal;
 
             ms.Items.Add(homeMenuPrincipal);
-            ms.Items.Add(createMenuPrincipal);
-            ms.Items.Add(searchMenuPrincipal);
-            ms.Items.Add(listMenuPrincipal);
+            ms.Items.Add(cadastrarMenuPrincipal);
+            ms.Items.Add(pesquisarMenuPrincipal);
+            ms.Items.Add(listarMenuPrincipal);
             ms.Items.Add(windowsMenuPrincipal);
             ms.Dock = DockStyle.Top;
             this.MainMenuStrip = ms;
@@ -124,7 +124,6 @@ namespace View
             ms.Renderer = new MyRenderer();
             this.Controls.Add(ms);
             this.IsMdiContainer = true;
-            // Call the method that changes the background color.
             this.SetBackGroundColorOfMDIForm();
 
 
@@ -135,7 +134,7 @@ namespace View
             {
                 if ((ctl) is MdiClient)
                 {
-                    ctl.BackColor = ColorTranslator.FromHtml("#748E83");
+                    ctl.BackColor = ColorTranslator.FromHtml("#E0E6ED");
                 }
             }
         }
@@ -148,68 +147,68 @@ namespace View
         {
             Application.Exit();
         }
-        private void guestCreateMenuPrincipal_Click(object sender, EventArgs e)
+        private void hospedeCadastrarMenuPrincipal_Click(object sender, EventArgs e)
         {
-            CreateClean createClean = new CreateClean();
-            createClean.MdiParent = this;
-            createClean.Text = "CADASTRAR LIMPEZA DE QUARTO" + this.MdiChildren.Length.ToString();
-            createClean.Show();
+            CreateClean cadastrarClean = new();
+            cadastrarClean.MdiParent = this;
+            cadastrarClean.Text = "CADASTRAR LIMPEZA DE QUARTO" + this.MdiChildren.Length.ToString();
+            cadastrarClean.Show();
         }
-        private void locacaoCreateMenuPrincipal_Click(object sender, EventArgs e)
+        private void reservasCadastrarMenuPrincipal_Click(object sender, EventArgs e)
         {
-            // CriarLocacao criarLocacao = new CriarLocacao();
-            // criarLocacao.MdiParent = this;
-            // criarLocacao.Text = "CADASTRAR LOCAÇÃO " + this.MdiChildren.Length.ToString();
-            // criarLocacao.Show();
+            // CriarReservas criarReservas = new CriarReservas();
+            // criarReservas.MdiParent = this;
+            // criarReservas.Text = "CADASTRAR LOCAÇÃO " + this.MdiChildren.Length.ToString();
+            // criarReservas.Show();
         }
-        private void veiculoCreateMenuPrincipal_Click(object sender, EventArgs e)
+        private void veiculoCadastrarMenuPrincipal_Click(object sender, EventArgs e)
         {
-            // CriarVeiculo criarVeiculo = new CriarVeiculo();
-            // criarVeiculo.MdiParent = this;
-            // criarVeiculo.Text = "CADASTRAR VEÍCULO " + this.MdiChildren.Length.ToString();
-            // criarVeiculo.Show();
+            // CriarQuarto criarQuarto = new CriarQuarto();
+            // criarQuarto.MdiParent = this;
+            // criarQuarto.Text = "CADASTRAR VEÍCULO " + this.MdiChildren.Length.ToString();
+            // criarQuarto.Show();
         }
-        private void guestSearchMenuPrincipal_Click(object sender, EventArgs e)
+        private void hospedePesquisarMenuPrincipal_Click(object sender, EventArgs e)
         {
-            // ConsultarGuest consultarGuest = new ConsultarGuest();
-            // consultarGuest.MdiParent = this;
-            // consultarGuest.Text = "PESQUISAR CLIENTE " + this.MdiChildren.Length.ToString();
-            // consultarGuest.Show();
+            // ConsultarHospede consultarHospede = new ConsultarHospede();
+            // consultarHospede.MdiParent = this;
+            // consultarHospede.Text = "PESQUISAR CLIENTE " + this.MdiChildren.Length.ToString();
+            // consultarHospede.Show();
         }
-        private void locacaoSearchMenuPrincipal_Click(object sender, EventArgs e)
+        private void reservasPesquisarMenuPrincipal_Click(object sender, EventArgs e)
         {
-            // ConsultarLocacao consultarLocacao = new ConsultarLocacao();
-            // consultarLocacao.MdiParent = this;
-            // consultarLocacao.Text = "PESQUISAR LOCAÇÃO " + this.MdiChildren.Length.ToString();
-            // consultarLocacao.Show();
+            // ConsultarReservas consultarReservas = new ConsultarReservas();
+            // consultarReservas.MdiParent = this;
+            // consultarReservas.Text = "PESQUISAR LOCAÇÃO " + this.MdiChildren.Length.ToString();
+            // consultarReservas.Show();
         }
-        private void veiculoSearchMenuPrincipal_Click(object sender, EventArgs e)
+        private void veiculoPesquisarMenuPrincipal_Click(object sender, EventArgs e)
         {
-            // ConsultarVeiculo consultarVeiculo = new ConsultarVeiculo();
-            // consultarVeiculo.MdiParent = this;
-            // consultarVeiculo.Text = "PESQUISAR VEÍCULO " + this.MdiChildren.Length.ToString();
-            // consultarVeiculo.Show();
+            // ConsultarQuarto consultarQuarto = new ConsultarQuarto();
+            // consultarQuarto.MdiParent = this;
+            // consultarQuarto.Text = "PESQUISAR VEÍCULO " + this.MdiChildren.Length.ToString();
+            // consultarQuarto.Show();
         }
-        private void guestListMenuPrincipal_Click(object sender, EventArgs e)
+        private void hospedeListarMenuPrincipal_Click(object sender, EventArgs e)
         {
-            // ListGuest listaGuest = new ListGuest();
-            // listaGuest.MdiParent = this;
-            // listaGuest.Text = "LISTAR CLIENTE " + this.MdiChildren.Length.ToString();
-            // listaGuest.Show();
+            // ListarHospede listaraHospede = new ListarHospede();
+            // listaraHospede.MdiParent = this;
+            // listaraHospede.Text = "LISTAR CLIENTE " + this.MdiChildren.Length.ToString();
+            // listaraHospede.Show();
         }
-        private void locacaoListMenuPrincipal_Click(object sender, EventArgs e)
+        private void reservasListarMenuPrincipal_Click(object sender, EventArgs e)
         {
-            // ListLocacoes listaLocacao = new ListLocacoes();
-            // listaLocacao.MdiParent = this;
-            // listaLocacao.Text = "LISTAR LOCAÇÃO " + this.MdiChildren.Length.ToString();
-            // listaLocacao.Show();
+            // ListarLocacoes listaraReservas = new ListarLocacoes();
+            // listaraReservas.MdiParent = this;
+            // listaraReservas.Text = "LISTAR LOCAÇÃO " + this.MdiChildren.Length.ToString();
+            // listaraReservas.Show();
         }
-        private void veiculoListMenuPrincipal_Click(object sender, EventArgs e)
+        private void veiculoListarMenuPrincipal_Click(object sender, EventArgs e)
         {
-            // ListVeiculo listaVeiculo = new ListVeiculo();
-            // listaVeiculo.MdiParent = this;
-            // listaVeiculo.Text = "LISTAR VEÍCULOS " + this.MdiChildren.Length.ToString();
-            // listaVeiculo.Show();
+            // ListarQuarto listaraQuarto = new ListarQuarto();
+            // listaraQuarto.MdiParent = this;
+            // listaraQuarto.Text = "LISTAR VEÍCULOS " + this.MdiChildren.Length.ToString();
+            // listaraQuarto.Show();
         }
         private class MyRenderer : ToolStripProfessionalRenderer
         {
@@ -229,8 +228,6 @@ namespace View
                     Rectangle rectangle = new(Point.Empty, e.Item.Size);
                     e.Graphics.FillRectangle(solidBrush, rectangle);
                     e.Graphics.DrawRectangle(pen, 0, 0, rectangle.Width, rectangle.Height);
-
-
                     pen.Dispose();
                     solidBrush.Dispose();
                 }
