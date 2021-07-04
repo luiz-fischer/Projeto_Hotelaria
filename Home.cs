@@ -214,10 +214,10 @@ namespace View
         }
          private void quartoCadastrarMenuPrincipal_Click(object sender, EventArgs e)
         {
-            // CriarQuarto criarQuarto = new CriarQuarto();
-            // criarQuarto.MdiParent = this;
-            // criarQuarto.Text = "CADASTRAR VEÍCULO " + this.MdiChildren.Length.ToString();
-            // criarQuarto.Show();
+            CreateRoom createRoom = new();
+            createRoom.MdiParent = this;
+            createRoom.Text = "CADASTRAR QUARTO " + this.MdiChildren.Length.ToString();
+            createRoom.Show();
         }
         
         private void hospedePesquisarMenuPrincipal_Click(object sender, EventArgs e)

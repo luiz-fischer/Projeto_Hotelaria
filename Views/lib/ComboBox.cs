@@ -10,7 +10,6 @@ namespace Library
         public ComboBox(string caseSwitch)
         {
             this.Font = new Font("Roboto", 20F, GraphicsUnit.Point);
-            this.AutoCompleteMode = AutoCompleteMode.Append;
             this.ForeColor = ColorTranslator.FromHtml("#8492A6");
 
             switch (caseSwitch)
@@ -22,20 +21,23 @@ namespace Library
                     this.Items.Add("Crédito - 1x");
                     this.Items.Add("Crédito - 2x");
                     this.Items.Add("Crédito - 3x");
+                    this.AutoCompleteMode = AutoCompleteMode.Append;
                     this.Location = new Point(600, 345);
                     this.Size = new Size(330, 35);
                     this.Text = "    Pagamento";
                     break;
 
-                case "cbPreco":
+                case "cbRoomFloor":
                     // cbPreco
-                    this.Items.Add("R$ 50,00");
-                    this.Items.Add("R$ 100,00");
-                    this.Items.Add("R$ 150,00");
-                    this.Items.Add("R$ 200,00");
-                    this.Items.Add("R$ 250,00");
-                    this.Location = new Point(955, 380);
-                    this.Size = new Size(170, 20);
+                    this.Items.Add("1º Andar");
+                    this.Items.Add("2º Andar");
+                    this.Items.Add("3º Andar");
+                    this.Items.Add("4º Andar");
+                    this.Items.Add("5º Andar");
+                    this.AutoCompleteMode = AutoCompleteMode.Append;
+                    this.Location = new Point(600, 150);
+                    this.Size = new Size(330, 35);
+                    this.Text = "    Numero do Andar";
                     break;
 
                 default:

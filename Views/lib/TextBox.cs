@@ -17,6 +17,9 @@ namespace Library
 
             switch (caseSwitch)
             {
+                case "":
+                    break;
+                    
                 case "txtBxName":
                     this.Location = new Point(600, 150);
                     this.Name = "txtBxName";
