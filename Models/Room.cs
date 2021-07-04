@@ -8,7 +8,7 @@ using Repository;
 
 namespace Model
 {
-    public partial class Room
+    public  class Room
     {
         [Key]
         public int RoomId { get; set; }
@@ -16,18 +16,19 @@ namespace Model
         public string RoomNumber { get; set; }
         public string RoomDescription { get; set; }
         public double RoomValue { get; set; }
+        public List<Model.Clean> cleans = new List<Model.Clean>();
 
         public Room(
             int roomFloor,
             string roomNumber,
-            string roomRoomDescription,
-            double roomRoomValue
+            string roomDescription,
+            double roomValue
         )
         {
             RoomFloor = roomFloor;
             RoomNumber = roomNumber;
-            RoomDescription = roomRoomDescription;
-            RoomValue = roomRoomValue;
+            RoomDescription = roomDescription;
+            RoomValue = roomValue;
 
             var db = new Context();
             db.Rooms.Add(this);
@@ -72,8 +73,8 @@ namespace Model
             int roomId,
             int roomFloor,
             string roomNumber,
-            string roomRoomDescription,
-            double roomRoomValue
+            string roomDescription,
+            double roomValue
             )
         {
             var db = new Context();
@@ -82,8 +83,8 @@ namespace Model
                 Room room = db.Rooms.First(room => room.RoomId == roomId);
                 room.RoomFloor = roomFloor;
                 room.RoomNumber = roomNumber;
-                room.RoomDescription = roomRoomDescription;
-                room.RoomValue = roomRoomValue;
+                room.RoomDescription = roomDescription;
+                room.RoomValue = roomValue;
             }
             catch (Exception error)
             {

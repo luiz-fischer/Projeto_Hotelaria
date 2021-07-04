@@ -36,8 +36,6 @@ namespace Projeto_Hotelaria.Migrations
 
                     b.HasIndex("EmployeeId");
 
-                    b.HasIndex("RoomId");
-
                     b.ToTable("Cleans");
                 });
 
@@ -194,16 +192,16 @@ namespace Projeto_Hotelaria.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<string>("Description")
+                    b.Property<string>("RoomDescription")
                         .HasColumnType("longtext");
 
-                    b.Property<int>("Floor")
+                    b.Property<int>("RoomFloor")
                         .HasColumnType("int");
 
                     b.Property<string>("RoomNumber")
                         .HasColumnType("longtext");
 
-                    b.Property<double>("Value")
+                    b.Property<double>("RoomValue")
                         .HasColumnType("double");
 
                     b.HasKey("RoomId");
@@ -219,15 +217,7 @@ namespace Projeto_Hotelaria.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Model.Room", "Room")
-                        .WithMany()
-                        .HasForeignKey("RoomId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("Employee");
-
-                    b.Navigation("Room");
                 });
 
             modelBuilder.Entity("Model.Expense", b =>

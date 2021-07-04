@@ -5,26 +5,26 @@ namespace Controller
     public class Guest
     {
 
-        public static Model.Guest AddGuest(
+        public static void AddGuest(
             string guestName,
-            DateTime guestBirth,
+            string guestBirth,
             int payment,
             string guestIdentification,
             string mothersName
         )
         {
+            DateTime birthDate;
             try
             {
-                DateTime birthDate;
                 birthDate = Convert.ToDateTime(guestBirth);
             }
             catch
             {
                 Console.WriteLine("FORMATO INVÁLIDO!");
-                guestBirth = DateTime.Now;
+                birthDate = DateTime.Now;
             }
 
-            return new Model.Guest(
+            new Model.Guest(
                 guestName,
                 guestBirth,
                 payment,
@@ -36,7 +36,7 @@ namespace Controller
         public static void UpdateGuest(
             int guestId,
             string guestName,
-            DateTime guestBirth,
+            string guestBirth,
             double payment,
             string guestIdentification,
             string mothersName

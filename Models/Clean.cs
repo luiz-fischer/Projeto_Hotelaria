@@ -9,32 +9,36 @@ using Repository;
 
 namespace Model
 {
-    public class Clean
+    public class Clean 
     {
         [Key]
         public int CleanId { get; set; }
-        public virtual Room Room { get; set; }
-        [ForeignKey("rooms")]
+        // public virtual Room Room { get; set; }
+        // [ForeignKey("rooms")]
         public int RoomId { get; set; }
         public virtual Employee Employee { get; set; }
         [ForeignKey("employees")]
 
         public int EmployeeId { get; set; }
         public DateTime Date { get; set; }
+        public List<Model.Room> rooms = new List<Model.Room>();
+
 
         public Clean()
         {
 
         }
         public Clean(
-            int roomId,
-            int employeeId,
+            // int roomId,
+            Model.Employee employee,
             DateTime date
         )
         {
-            RoomId = roomId;
-            EmployeeId = employeeId;
+            // RoomId = roomId;
+            EmployeeId = employee.EmployeeId;
             Date = date;
+            rooms = new List<Model.Room>();
+            employee.AdicionarLocacao(this);
 
             var db = new Context();
             db.Cleans.Add(this);

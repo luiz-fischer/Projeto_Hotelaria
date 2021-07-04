@@ -1,4 +1,3 @@
-using System.ComponentModel;
 using System.Drawing;
 
 namespace System.Windows.Forms
@@ -87,7 +86,6 @@ namespace System.Windows.Forms
 
         public PlaceholderTextBox()
         {
-            // Through this line the default placeholder gets displayed in designer
             base.Text = PlaceholderText;
             TextColor = SystemColors.WindowText;
             PlaceholderTextColor = SystemColors.InactiveCaption;

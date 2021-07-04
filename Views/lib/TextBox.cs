@@ -8,7 +8,7 @@ namespace Library
     public class TextBox : System.Windows.Forms.TextBox
     {
         public TextBox(string caseSwitch)
-        {
+        { 
             this.Font = new Font("Roboto", 20F, GraphicsUnit.Point);
             this.BorderStyle = BorderStyle.None;
             this.AutoSize = false;
@@ -41,10 +41,16 @@ namespace Library
                     this.PlaceholderText = "    Pagamento";
                     break;
 
-                case "txtBxNameMotherName":
+                case "txtBxMotherName":
                     this.Location = new Point(600, 410);
-                    this.Name = "txtBxNameMotherName";
+                    this.Name = "txtBxMotherName";
                     this.PlaceholderText = "    Nome da Mãe";
+                    break;
+                
+                 case "txtBxValue":
+                    this.Location = new Point(600, 215);
+                    this.Name = "txtBxValue";
+                    this.PlaceholderText = "    Valor do Produto";
                     break;
 
                 default:

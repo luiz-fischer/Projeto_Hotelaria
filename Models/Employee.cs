@@ -1,12 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Windows.Forms;
-using System.Text.RegularExpressions;
 using Repository;
-
 
 namespace Model
 {
@@ -15,12 +12,14 @@ namespace Model
         [Key]
         public int EmployeeId { get; set; }
         public string EmployeeName { get; set; }
+        public List<Model.Clean> cleans = new List<Model.Clean>();
 
         public Employee(
             string employeeName
         )
         {
             EmployeeName = employeeName;
+            cleans = new List<Model.Clean>();
 
             var db = new Context();
             db.Employees.Add(this);
@@ -35,7 +34,13 @@ namespace Model
                     select employee).First();
         }
 
-        public static List<Employee> GetEmployees()
+        public void AdicionarLocacao(Model.Clean clean)
+        {
+            cleans.Add(clean);
+
+        }
+
+        public static List<Model.Employee> GetEmployees()
         {
             var db = new Context();
             return db.Employees.ToList();

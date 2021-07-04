@@ -15,7 +15,7 @@ namespace Model
         [Key]
         public int GuestId { get; set; }
         public string GuestName { get; set; }
-        public DateTime GuestBirth { get; set; }
+        public string GuestBirth { get; set; }
         public double Payment { get; set; }
         public string GuestIdentification { get; set; }
         public string MothersName { get; set; }
@@ -28,7 +28,7 @@ namespace Model
 
         public Guest(
             string guestName,
-            DateTime guestBirth,
+            string guestBirth,
             double payment,
             string guestIdentification,
             string mothersName
@@ -90,7 +90,7 @@ namespace Model
         public static void UpdateGuest(
             int guestId,
             string guestName,
-            DateTime guestBirth,
+            string guestBirth,
             double payment,
             string guestIdentification,
             string mothersName

@@ -5,9 +5,13 @@ namespace Library
 {
     public class MaskedTextBox : System.Windows.Forms.MaskedTextBox
     {
-        public MaskedTextBox() 
+        public MaskedTextBox()
         {
-            this.Size = new Size(90, 20);
+            this.Font = new Font("Roboto", 20F, GraphicsUnit.Point);
+            this.BorderStyle = BorderStyle.None;
+            this.AutoSize = false;
+            this.Size = new Size(330, 35);
+            this.ForeColor = ColorTranslator.FromHtml("#8492A6");
             this.TextAlign = HorizontalAlignment.Center;
         }
     }
