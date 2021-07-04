@@ -1,5 +1,7 @@
+using System;
 using System.Windows.Forms;
 using System.Drawing;
+using System.Text.RegularExpressions;
 namespace View
 {
     public partial class CreateEmployee : Form
@@ -9,6 +11,8 @@ namespace View
         private Library.Button btnCancelar;
         private Library.TextBox txtBxName;
         private Library.Label lblTitle;
+        private ErrorProvider TextErrorName;
+        Model.Employee employee;
 
 
         public CreateEmployee()
@@ -28,6 +32,14 @@ namespace View
             // lblTitle
             this.lblTitle.Text = "Cadastro de Empregados";
             this.lblTitle.Location = new Point(600, 10);
+            //
+            // btnConfirmar
+            this.btnConfirmar.Click += new EventHandler(this.btn_ConfirmarClick);
+            //
+            // btnCancelar
+            this.btnCancelar.Click += new EventHandler(this.btnCancelar_Click);
+
+            this.TextErrorName = new ErrorProvider();
 
             this.WindowState = FormWindowState.Maximized;
             this.BackColor = ColorTranslator.FromHtml("#E0E6ED");
@@ -37,6 +49,52 @@ namespace View
             this.Controls.Add(this.txtBxName);
             this.Controls.Add(this.lblTitle);
 
+
+        }
+        private void btn_ConfirmarClick(object sender, EventArgs e)
+        {
+            try
+            {
+                Regex employeeName = new(@"^[a-zA-Z\s]");
+                if ((!employeeName.IsMatch(this.txtBxName.Text)))
+                {
+                    this.TextErrorName.SetError(this.txtBxName, "Apenas letras!");
+                }
+                
+                else if ((txtBxName.Text != string.Empty))
+                {
+                    if (employee == null)
+                    {
+                        Controller.Employee.AddEmployee(
+                        txtBxName.Text
+                        );
+                        this.TextErrorName.SetError(this.txtBxName, String.Empty);
+                        MessageBox.Show("Cadastrado Com Sucesso!");
+
+                    }
+                    else
+                    {
+                        Controller.Employee.UpdateEmployee(
+                        employee.EmployeeId,
+                        txtBxName.Text
+                        );
+                        MessageBox.Show("Alteração Feita!");
+                    }
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Preencha Todos Os Campos!");
+                }
+            }
+            catch (Exception error)
+            {
+                MessageBox.Show(error.Message, "Preencha Todos Os Campos!");
+            }
+        }
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            this.Close();
 
         }
        
