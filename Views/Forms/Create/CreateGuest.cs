@@ -16,7 +16,7 @@ namespace View
         private Library.ComboBox cbPayment;
         private Library.TextBox txtBxMotherName;
         private Library.Label lblTitle;
-         private ErrorProvider TextErrorName;
+        private ErrorProvider TextErrorName;
         private ErrorProvider TextErrorBirth;
         private ErrorProvider TextErrorIdentification;
         private ErrorProvider TextErrorPayment;
@@ -88,7 +88,7 @@ namespace View
 
 
         }
-         private void btn_ConfirmarClick(object sender, EventArgs e)
+        private void btn_ConfirmarClick(object sender, EventArgs e)
         {
             try
             {
