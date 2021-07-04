@@ -39,7 +39,7 @@ namespace Model
             EmployeeId = employee.EmployeeId;
             Date = date;
             rooms = new List<Model.Room>();
-            employee.AdicionarLocacao(this);
+            employee.AddClean(this);
 
             var db = new Context();
             db.Cleans.Add(this);

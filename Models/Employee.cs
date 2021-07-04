@@ -34,7 +34,7 @@ namespace Model
                     select employee).First();
         }
 
-        public void AdicionarLocacao(Model.Clean clean)
+        public void AddClean(Model.Clean clean)
         {
             cleans.Add(clean);
 
