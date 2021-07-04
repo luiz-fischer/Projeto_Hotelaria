@@ -1,6 +1,6 @@
-using System.Windows.Forms;
-using System.Drawing;
 using System;
+using System.Drawing;
+using System.Windows.Forms;
 using System.Text.RegularExpressions;
 namespace View
 {
@@ -145,7 +145,7 @@ namespace View
 
                     }
                     else
-                    {
+                    { 
                         Controller.Guest.UpdateGuest(
                         guest.GuestId,
                         txtBxName.Text,

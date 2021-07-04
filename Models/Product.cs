@@ -53,7 +53,7 @@ namespace Model
         public static void UpdateProduct(
             int productId,
             string productName,
-            int productValue
+            double productValue
         )
         {
             Product Product = GetProductId(productId);
