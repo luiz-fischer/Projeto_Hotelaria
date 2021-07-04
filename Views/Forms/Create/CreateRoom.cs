@@ -15,7 +15,7 @@ namespace View
         private Library.TextBox txtBxRoomValue;
         private Library.Label lblTitle;
         private ErrorProvider TextErrorRoomFloor;
-        // private ErrorProvider TextErrorRoomNumber;
+        private ErrorProvider TextErrorRoomNumber;
         private ErrorProvider TextErrorRoomDescription;
         private ErrorProvider TextErrorRoomValue;
         Model.Room room;
@@ -70,7 +70,7 @@ namespace View
             //
             // Erros
             this.TextErrorRoomFloor = new ErrorProvider();
-            // this.TextErrorRoomNumber = new ErrorProvider();
+            this.TextErrorRoomNumber = new ErrorProvider();
             this.TextErrorRoomDescription = new ErrorProvider();
             this.TextErrorRoomValue = new ErrorProvider();
             //
@@ -91,26 +91,37 @@ namespace View
         {
             try
             {
+                double convertDoubleNumber;
 
-                if ((txtBxRoomNumber.Text != string.Empty)
+                convertDoubleNumber = Convert.ToDouble(txtBxRoomValue.Text);
+                Regex roomNumber = new(@"^[a-zA-Z\s]");
+                Regex roomDescription = new(@"^(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]s|1[012])[- /.](19|20)\d\d$");
+                Regex roomValue = new(@"^\d{3}\.\d{3}\.\d{3}\-\d{2}$");
+
+                if ((!roomNumber.IsMatch(this.txtBxRoomNumber.Text)))
+                {
+                    this.TextErrorRoomNumber.SetError(this.txtBxRoomNumber, "Apenas letras!");
+                }
+                else if (!roomDescription.IsMatch(this.txtBxRoomDescription.Text))
+                {
+                    this.TextErrorRoomDescription.SetError(this.txtBxRoomDescription, "Formato Inválido!");
+                }
+                else if (!roomValue.IsMatch(this.txtBxRoomValue.Text))
+                {
+                    this.TextErrorRoomValue.SetError(this.txtBxRoomValue, "CPF Inválido!");
+                } else if (cbRoomFloor.SelectedItem == null)
+                {
+                    this.TextErrorRoomFloor.SetError(this.cbRoomFloor, "Quantidade Inválida!");
+                }
+                
+                else if ((txtBxRoomNumber.Text != string.Empty)
                 && (txtBxRoomDescription.Text != string.Empty)
                 && (txtBxRoomValue.Text != string.Empty)
                 && (cbRoomFloor.Text != string.Empty))
                 {
-                    double convertDoubleNumber;
 
                     if (room == null)
                     {
-
-                        try
-                        {
-                            convertDoubleNumber = Convert.ToDouble(txtBxRoomValue.Text);
-                        }
-                        catch (FormatException ex)
-                        {
-                            MessageBox.Show("ERRO" + ex);
-                            throw;
-                        }
                         Controller.Room.AddRoom(
                         cbRoomFloor.Text == "1º Andar" ? 1 :
                         cbRoomFloor.Text == "2º Andar" ? 2 :
@@ -120,25 +131,17 @@ namespace View
                         txtBxRoomDescription.Text,
                         convertDoubleNumber
                         );
-                        // this.TextErrorRoomFloor.SetError(this.cbRoomFloor, String.Empty);
-                        // this.TextErrorRoomFloor.SetError(this.txtBxRoomNumber, String.Empty);
-                        // this.TextErrorRoomFloor.SetError(this.txtBxRoomDescription, String.Empty);
-                        // this.TextErrorRoomFloor.SetError(this.txtBxRoomValue, String.Empty);
+                        this.TextErrorRoomFloor.SetError(this.cbRoomFloor, String.Empty);
+                        this.TextErrorRoomNumber.SetError(this.txtBxRoomNumber, String.Empty);
+                        this.TextErrorRoomDescription.SetError(this.txtBxRoomDescription, String.Empty);
+                        this.TextErrorRoomValue.SetError(this.txtBxRoomValue, String.Empty);
                         MessageBox.Show("Cadastrado Com Sucesso!");
 
                     }
                     else
                     {
-                        try
-                        {
-                            convertDoubleNumber = Convert.ToDouble(txtBxRoomValue.Text);
-                        }
-                        catch (FormatException ex)
-                        {
-                            MessageBox.Show("ERRO" + ex);
-                            throw;
-                        }
 
+                        convertDoubleNumber = Convert.ToDouble(txtBxRoomValue.Text);
                         Controller.Room.UpdateRoom(
                         room.IdRoom,
                         cbRoomFloor.Text == "1º Andar" ? 1 :

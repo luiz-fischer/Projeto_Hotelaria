@@ -33,6 +33,9 @@ namespace Model
             db.Rooms.Add(this);
             db.SaveChanges();
         }
+        public Room()
+        {
+        }
 
         public static Model.Room GetRoom(int roomId)
         {
@@ -43,21 +46,13 @@ namespace Model
         }
         public void AddReservation(Model.Reservation reservation)
         {
-            reservations.Add(reservation); 
+            reservations.Add(reservation);
         }
 
         public static List<Room> GetRooms()
         {
-            var db = new Context();
+            Context db = new();
             return db.Rooms.ToList();
-        }
-        
-        public static Room GetRoomId(int roomId)
-        {
-            var db = new Context();
-            return (from room in db.Rooms
-                    where room.IdRoom == roomId
-                    select room).First();
         }
 
         public static void UpdateRoom(
@@ -66,9 +61,9 @@ namespace Model
             string roomNumber,
             string roomDescription,
             double roomValue
-            )
+        )
         {
-            var db = new Context();
+            Context db = new();
             try
             {
                 Model.Room room = db.Rooms.First(room => room.IdRoom == roomId);
@@ -76,6 +71,7 @@ namespace Model
                 room.RoomNumber = roomNumber;
                 room.RoomDescription = roomDescription;
                 room.RoomValue = roomValue;
+                db.SaveChanges();
             }
             catch (Exception error)
             {

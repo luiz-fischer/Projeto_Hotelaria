@@ -46,7 +46,7 @@ namespace View
                 lvListRoom.SubItems.Add(room.RoomValue.ToString("C2"));
                 lvlRoom.Items.Add(lvListRoom);
             }
-            
+
             this.lvlRoom.MultiSelect = false;
             this.lvlRoom.Columns.Add("ID Room", -2, HorizontalAlignment.Center);
             this.lvlRoom.Columns.Add("Andar", -2, HorizontalAlignment.Center);
@@ -64,20 +64,17 @@ namespace View
             // btnCancelar
             this.btnCancelar.Click += new EventHandler(this.btnCancelar_Click);
 
-
             this.WindowState = FormWindowState.Maximized;
             this.BackColor = ColorTranslator.FromHtml("#E0E6ED");
             this.Controls.Add(this.logo_size_invert);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.lblTitle);
 
-
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             this.Close();
-
         }
 
     }

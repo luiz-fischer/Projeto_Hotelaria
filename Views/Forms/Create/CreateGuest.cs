@@ -92,13 +92,13 @@ namespace View
         {
             try
             {
-                Regex guestName = new Regex(@"^[a-zA-Z\s]");
-                Regex guestBirth = new Regex(@"^(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]s|1[012])[- /.](19|20)\d\d$");
-                Regex guestIdentification = new Regex(@"^\d{3}\.\d{3}\.\d{3}\-\d{2}$");
-                Regex guestMotherName = new Regex(@"^[a-zA-Z\s]");
+                Regex guestName = new(@"^[0-9]+$");
+                Regex guestBirth = new(@"^(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]s|1[012])[- /.]\d\d$");
+                Regex guestIdentification = new(@"^\d{3}\.\d{3}\.\d{3}\-\d{2}$");
+                Regex guestMotherName = new(@"^[a-zA-Z\s]");
                 if ((!guestName.IsMatch(this.txtBxName.Text)))
                 {
-                    this.TextErrorName.SetError(this.txtBxName, "Apenas letras!");
+                    this.TextErrorName.SetError(this.txtBxName, "Apenas Números!");
                 }
                 else if (!guestBirth.IsMatch(this.mskBxBirth.Text))
                 {
@@ -110,7 +110,7 @@ namespace View
                 }
                 else if (cbPayment.SelectedItem == null)
                 {
-                    this.TextErrorPayment.SetError(this.cbPayment, "Quantidade de dias para devolução!");
+                    this.TextErrorPayment.SetError(this.cbPayment, "Quantidade Inválida!");
                 } else  if ((!guestMotherName.IsMatch(this.txtBxMotherName.Text)))
                 {
                     this.TextErrorName.SetError(this.txtBxMotherName, "Apenas letras!");
