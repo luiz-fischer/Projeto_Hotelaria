@@ -17,13 +17,21 @@ namespace View
         Model.Product product;
 
 
-        public CreateProduct()
+        public CreateProduct(int id = 0)
         {
 
-            InitializeComponent();
+            try
+            {
+                product = Controller.Product.GetProductById(id);
+            }
+            catch
+            {
+
+            }
+            InitializeComponent(id > 0);
         }
 
-        public void InitializeComponent()
+        public void InitializeComponent(bool isUpdate)
         {
             this.logo_size_invert = new Library.PictureBox("logo_size_full");
             this.btnConfirmar = new Library.Button("btnConfirmar");
@@ -87,7 +95,7 @@ namespace View
                         }
                         catch (FormatException ex)
                         {
-                            //failed, not a valid number in string
+                            MessageBox.Show("ERRO" + ex);
                             throw;
                         }
 

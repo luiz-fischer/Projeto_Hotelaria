@@ -29,9 +29,6 @@ namespace Projeto_Hotelaria.Migrations
                     b.Property<int>("EmployeeId")
                         .HasColumnType("int");
 
-                    b.Property<int>("RoomId")
-                        .HasColumnType("int");
-
                     b.HasKey("CleanId");
 
                     b.HasIndex("EmployeeId");
@@ -82,12 +79,12 @@ namespace Projeto_Hotelaria.Migrations
 
             modelBuilder.Entity("Model.Guest", b =>
                 {
-                    b.Property<int>("GuestId")
+                    b.Property<int>("IdGuest")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("GuestBirth")
-                        .HasColumnType("datetime(6)");
+                    b.Property<string>("GuestBirth")
+                        .HasColumnType("longtext");
 
                     b.Property<string>("GuestIdentification")
                         .HasColumnType("longtext");
@@ -101,7 +98,7 @@ namespace Projeto_Hotelaria.Migrations
                     b.Property<double>("Payment")
                         .HasColumnType("double");
 
-                    b.HasKey("GuestId");
+                    b.HasKey("IdGuest");
 
                     b.ToTable("Guests");
                 });
@@ -125,7 +122,7 @@ namespace Projeto_Hotelaria.Migrations
 
             modelBuilder.Entity("Model.Reservation", b =>
                 {
-                    b.Property<int>("ReservationId")
+                    b.Property<int>("IdReservation")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
@@ -135,33 +132,22 @@ namespace Projeto_Hotelaria.Migrations
                     b.Property<DateTime>("CheckOut")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<int>("DaysOfStay")
+                    b.Property<int?>("GuestIdGuest")
                         .HasColumnType("int");
 
-                    b.Property<int>("GuestId")
+                    b.Property<int>("IdGuest")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("ReservationDate")
-                        .HasColumnType("datetime(6)");
+                    b.HasKey("IdReservation");
 
-                    b.Property<int>("RoomId")
-                        .HasColumnType("int");
-
-                    b.Property<double>("Total")
-                        .HasColumnType("double");
-
-                    b.HasKey("ReservationId");
-
-                    b.HasIndex("GuestId");
-
-                    b.HasIndex("RoomId");
+                    b.HasIndex("GuestIdGuest");
 
                     b.ToTable("Reservations");
                 });
 
             modelBuilder.Entity("Model.ReservationRoom", b =>
                 {
-                    b.Property<int>("ReservationRoomId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
@@ -171,24 +157,24 @@ namespace Projeto_Hotelaria.Migrations
                     b.Property<int>("IdRoom")
                         .HasColumnType("int");
 
-                    b.Property<int?>("ReservationId")
+                    b.Property<int?>("ReservationIdReservation")
                         .HasColumnType("int");
 
-                    b.Property<int?>("RoomId")
+                    b.Property<int?>("RoomIdRoom")
                         .HasColumnType("int");
 
-                    b.HasKey("ReservationRoomId");
+                    b.HasKey("Id");
 
-                    b.HasIndex("ReservationId");
+                    b.HasIndex("ReservationIdReservation");
 
-                    b.HasIndex("RoomId");
+                    b.HasIndex("RoomIdRoom");
 
                     b.ToTable("ReservationRooms");
                 });
 
             modelBuilder.Entity("Model.Room", b =>
                 {
-                    b.Property<int>("RoomId")
+                    b.Property<int>("IdRoom")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
@@ -204,7 +190,7 @@ namespace Projeto_Hotelaria.Migrations
                     b.Property<double>("RoomValue")
                         .HasColumnType("double");
 
-                    b.HasKey("RoomId");
+                    b.HasKey("IdRoom");
 
                     b.ToTable("Rooms");
                 });
@@ -243,30 +229,20 @@ namespace Projeto_Hotelaria.Migrations
                 {
                     b.HasOne("Model.Guest", "Guest")
                         .WithMany()
-                        .HasForeignKey("GuestId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Model.Room", "Room")
-                        .WithMany()
-                        .HasForeignKey("RoomId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("GuestIdGuest");
 
                     b.Navigation("Guest");
-
-                    b.Navigation("Room");
                 });
 
             modelBuilder.Entity("Model.ReservationRoom", b =>
                 {
                     b.HasOne("Model.Reservation", "Reservation")
                         .WithMany()
-                        .HasForeignKey("ReservationId");
+                        .HasForeignKey("ReservationIdReservation");
 
                     b.HasOne("Model.Room", "Room")
                         .WithMany()
-                        .HasForeignKey("RoomId");
+                        .HasForeignKey("RoomIdRoom");
 
                     b.Navigation("Reservation");
 

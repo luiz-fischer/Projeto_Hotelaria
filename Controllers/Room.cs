@@ -2,14 +2,14 @@ using System.Collections.Generic;
 
 namespace Controller {
     public class Room {
-        public static void AddRoom(
+        public static Model.Room AddRoom(
             int roomFloor,
             string roomNumber,
             string roomDescription,
             double roomValue
         )
         {
-             new Model.Room(
+            return new Model.Room(
                 roomFloor,
                 roomNumber,
                 roomDescription,
@@ -38,9 +38,9 @@ namespace Controller {
             Model.Room.DeleteRoom(RoomId);
         }
 
-        public static Model.Room GetRoomsById(int roomsId)
+        public static Model.Room GetRoom(int roomsId)
         {
-            return Model.Room.GetRoomId(roomsId);
+            return Model.Room.GetRoom(roomsId);
         }
 
         public static List<Model.Room> GetRooms()

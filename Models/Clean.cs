@@ -15,14 +15,15 @@ namespace Model
         public int CleanId { get; set; }
         // public virtual Room Room { get; set; }
         // [ForeignKey("rooms")]
-        public int RoomId { get; set; }
+        // public int IdRoom { get; set; }
         public virtual Employee Employee { get; set; }
         [ForeignKey("employees")]
 
         public int EmployeeId { get; set; }
+        [Required]
         public DateTime Date { get; set; }
-        public List<Model.Room> rooms = new List<Model.Room>();
-
+        public List<Model.Room> rooms = new();
+        Model.Room room;
 
         public Clean()
         {
@@ -34,7 +35,7 @@ namespace Model
             DateTime date
         )
         {
-            // RoomId = roomId;
+            // IdRoom = roomId;
             EmployeeId = employee.EmployeeId;
             Date = date;
             rooms = new List<Model.Room>();
@@ -48,7 +49,7 @@ namespace Model
 
         public Clean(int roomId)
         {
-            RoomId = roomId;
+            room.IdRoom = roomId;
             var db = new Context();
             try
             {
@@ -65,42 +66,43 @@ namespace Model
         {
             return obj is Clean clean &&
                    CleanId == clean.CleanId &&
-                   RoomId == clean.RoomId &&
                    EmployeeId == clean.EmployeeId &&
                    Date == clean.Date;
         }
 
         public override int GetHashCode()
         {
-            return HashCode.Combine(CleanId, RoomId, EmployeeId, Date);
+            return HashCode.Combine(CleanId, EmployeeId, Date);
         }
 
-        public static Clean GetClean(int cleanId)
+        public static Model.Clean GetClean(int cleanId)
         {
             var db = new Context();
-            return db.Cleans.Find(cleanId);
+            return (from clean in db.Cleans
+                    where clean.CleanId == cleanId
+                    select clean).First();
         }
         public static List<Clean> GetCleans()
         {
             var db = new Context();
             return db.Cleans.ToList();
         }
-        public static Clean GetCleanByRoom(int roomId)
-        {
-            var db = new Context();
-            IEnumerable<Clean> query =
-                        from clean in db.Cleans
-                        where clean.RoomId == roomId
-                        select clean;
-            return query.Last();
-        }
+        // public static Clean GetCleanByRoom(int roomId)
+        // {
+        //     var db = new Context();
+        //     IEnumerable<Clean> query =
+        //                 from clean in db.Cleans
+        //                 where clean.R == roomId
+        //                 select clean;
+        //     return query.Last();
+        // }
 
-        public static Clean VerifyClean(int reservationId)
-        {
-            Reservation reservation = Reservation.GetReservation(reservationId);
-            Clean clean = GetCleanByRoom(reservation.RoomId);
-            return clean;
-        }
+        // public static Clean VerifyClean(int reservationId)
+        // {
+        //     Reservation reservation = Reservation.GetReservation(reservationId);
+        //     Clean clean = GetCleanByRoom(reservation.IdRoom);
+        //     return clean;
+        // }
 
         public static void SetCleanDone(int cleanId, int employeeId)
         {
@@ -114,7 +116,6 @@ namespace Model
 
         public static void UpdateClean(
             int cleanId,
-            int roomId,
             int employeeId,
             DateTime date
         )
@@ -123,7 +124,6 @@ namespace Model
             try
             {
                 Clean clean = db.Cleans.First(clean => clean.CleanId == cleanId);
-                clean.RoomId = roomId;
                 clean.EmployeeId = employeeId;
                 clean.Date = date;
             }

@@ -17,12 +17,12 @@ namespace Library
 
             switch (caseSwitch)
             {
-                case "logo_size_full":
-                    // logo_size_full
+                case "menu_side":
+                    // menu_side
                     this.Load("C:\\Projeto_Hotelaria\\Views\\Assets\\menu_side.png");
                     this.Location = new Point(10, 10);
                     this.Size = new Size(200, 800);
-                    this.Name = "logo_size_full";
+                    this.Name = "menu_side";
                     break;
 
                 case "logo_image": 

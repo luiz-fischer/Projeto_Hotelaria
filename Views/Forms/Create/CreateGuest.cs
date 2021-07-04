@@ -27,9 +27,9 @@ namespace View
         public CreateGuest(int id = 0)
         {
 
-             try
+            try
             {
-                guest = Controller.Guest.GetGuestId(id);
+                guest = Controller.Guest.GetGuest(id);
             }
             catch
             {
@@ -147,7 +147,7 @@ namespace View
                     else
                     { 
                         Controller.Guest.UpdateGuest(
-                        guest.GuestId,
+                        guest.IdGuest,
                         txtBxName.Text,
                         mskBxBirth.Text,
                         cbPayment.Text == "1 Dia" ? 1 :

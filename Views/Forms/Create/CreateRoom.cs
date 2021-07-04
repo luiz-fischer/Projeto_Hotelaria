@@ -4,7 +4,7 @@ using System.Windows.Forms;
 using System.Text.RegularExpressions;
 namespace View
 {
-    public partial class CreateRoom : Form
+    partial class CreateRoom : Form
     {
         private Library.PictureBox logo_size_invert;
         private Library.Button btnConfirmar;
@@ -15,19 +15,27 @@ namespace View
         private Library.TextBox txtBxRoomValue;
         private Library.Label lblTitle;
         private ErrorProvider TextErrorRoomFloor;
-        private ErrorProvider TextErrorRoomNumber;
+        // private ErrorProvider TextErrorRoomNumber;
         private ErrorProvider TextErrorRoomDescription;
         private ErrorProvider TextErrorRoomValue;
         Model.Room room;
 
 
-        public CreateRoom()
+        public CreateRoom(int id = 0)
         {
 
-            InitializeComponent();
+            try
+            {
+                room = Controller.Room.GetRoom(id);
+            }
+            catch
+            {
+
+            }
+            InitializeComponent(id > 0);
         }
 
-        public void InitializeComponent()
+        public void InitializeComponent(bool isUpdate)
         {
             this.logo_size_invert = new Library.PictureBox("logo_size_full");
             this.btnConfirmar = new Library.Button("btnConfirmar");
@@ -41,9 +49,6 @@ namespace View
             // lblTitle
             this.lblTitle.Text = "Cadastro de Quarto";
             this.lblTitle.Location = new Point(600, 10);
-            //
-            // cbRoomFloor
-            // this.cbRoomFloor.Location = new Point();
             //
             // txtBxRoomNumber
             this.txtBxRoomNumber.Location = new Point(600, 215);
@@ -65,7 +70,7 @@ namespace View
             //
             // Erros
             this.TextErrorRoomFloor = new ErrorProvider();
-            this.TextErrorRoomNumber = new ErrorProvider();
+            // this.TextErrorRoomNumber = new ErrorProvider();
             this.TextErrorRoomDescription = new ErrorProvider();
             this.TextErrorRoomValue = new ErrorProvider();
             //
@@ -86,27 +91,8 @@ namespace View
         {
             try
             {
-                Regex roomNumber = new(@"^?[0-9][0-9,\.]");
-                Regex roomDescription = new(@"^[a-zA-Z\s]");
-                Regex roomValue = new(@"^?[0-9][0-9,\.]+$");
-                if ((!roomNumber.IsMatch(this.txtBxRoomNumber.Text)))
-                {
-                    this.TextErrorRoomFloor.SetError(this.txtBxRoomNumber, "Apenas Numeros!");
-                }
-                else if (cbRoomFloor.SelectedItem == null)
-                {
-                    this.TextErrorRoomFloor.SetError(this.cbRoomFloor, "Formato Inválido!");
-                }
-                else if (!roomDescription.IsMatch(this.txtBxRoomDescription.Text))
-                {
-                    this.TextErrorRoomDescription.SetError(this.txtBxRoomDescription, "Formato Inválido!");
-                }
-                else if (!roomValue.IsMatch(this.txtBxRoomValue.Text))
-                {
-                    this.TextErrorRoomValue.SetError(this.txtBxRoomValue, "Formato Inválido!");
-                }
 
-                else if ((txtBxRoomNumber.Text != string.Empty)
+                if ((txtBxRoomNumber.Text != string.Empty)
                 && (txtBxRoomDescription.Text != string.Empty)
                 && (txtBxRoomValue.Text != string.Empty)
                 && (cbRoomFloor.Text != string.Empty))
@@ -134,10 +120,10 @@ namespace View
                         txtBxRoomDescription.Text,
                         convertDoubleNumber
                         );
-                        this.TextErrorRoomFloor.SetError(this.cbRoomFloor, String.Empty);
-                        this.TextErrorRoomFloor.SetError(this.txtBxRoomNumber, String.Empty);
-                        this.TextErrorRoomFloor.SetError(this.txtBxRoomDescription, String.Empty);
-                        this.TextErrorRoomFloor.SetError(this.txtBxRoomValue, String.Empty);
+                        // this.TextErrorRoomFloor.SetError(this.cbRoomFloor, String.Empty);
+                        // this.TextErrorRoomFloor.SetError(this.txtBxRoomNumber, String.Empty);
+                        // this.TextErrorRoomFloor.SetError(this.txtBxRoomDescription, String.Empty);
+                        // this.TextErrorRoomFloor.SetError(this.txtBxRoomValue, String.Empty);
                         MessageBox.Show("Cadastrado Com Sucesso!");
 
                     }
@@ -154,7 +140,7 @@ namespace View
                         }
 
                         Controller.Room.UpdateRoom(
-                        room.RoomId,
+                        room.IdRoom,
                         cbRoomFloor.Text == "1º Andar" ? 1 :
                         cbRoomFloor.Text == "2º Andar" ? 2 :
                         cbRoomFloor.Text == "3º Andar" ? 3 :

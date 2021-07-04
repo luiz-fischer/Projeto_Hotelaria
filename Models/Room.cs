@@ -5,18 +5,17 @@ using System.Linq;
 using System.Windows.Forms;
 using Repository;
 
-
 namespace Model
 {
-    public  class Room
+    public class Room
     {
         [Key]
-        public int RoomId { get; set; }
+        public int IdRoom { get; set; }
         public int RoomFloor { get; set; }
         public string RoomNumber { get; set; }
         public string RoomDescription { get; set; }
         public double RoomValue { get; set; }
-        public List<Model.Clean> cleans = new List<Model.Clean>();
+        public List<Model.Reservation> reservations = new();
 
         public Room(
             int roomFloor,
@@ -25,36 +24,26 @@ namespace Model
             double roomValue
         )
         {
-            RoomFloor = roomFloor;
-            RoomNumber = roomNumber;
-            RoomDescription = roomDescription;
-            RoomValue = roomValue;
+            this.RoomFloor = roomFloor;
+            this.RoomNumber = roomNumber;
+            this.RoomDescription = roomDescription;
+            this.RoomValue = roomValue;
 
             var db = new Context();
             db.Rooms.Add(this);
             db.SaveChanges();
         }
 
-        public override bool Equals(object obj)
-        {
-            return obj is Room room &&
-                   RoomId == room.RoomId &&
-                   RoomFloor == room.RoomFloor &&
-                   RoomNumber == room.RoomNumber &&
-                   RoomDescription == room.RoomDescription &&
-                   RoomValue == room.RoomValue;
-        }
-
-        public override int GetHashCode()
-        {
-            return HashCode.Combine(RoomId, RoomFloor, RoomNumber, RoomDescription, RoomValue);
-        }
-        public static Room GetRoom(int roomId)
+        public static Model.Room GetRoom(int roomId)
         {
             var db = new Context();
             return (from room in db.Rooms
-                    where room.RoomId == roomId
+                    where room.IdRoom == roomId
                     select room).First();
+        }
+        public void AddReservation(Model.Reservation reservation)
+        {
+            reservations.Add(reservation); 
         }
 
         public static List<Room> GetRooms()
@@ -66,7 +55,9 @@ namespace Model
         public static Room GetRoomId(int roomId)
         {
             var db = new Context();
-            return db.Rooms.Find(roomId);
+            return (from room in db.Rooms
+                    where room.IdRoom == roomId
+                    select room).First();
         }
 
         public static void UpdateRoom(
@@ -80,7 +71,7 @@ namespace Model
             var db = new Context();
             try
             {
-                Room room = db.Rooms.First(room => room.RoomId == roomId);
+                Model.Room room = db.Rooms.First(room => room.IdRoom == roomId);
                 room.RoomFloor = roomFloor;
                 room.RoomNumber = roomNumber;
                 room.RoomDescription = roomDescription;
@@ -96,7 +87,7 @@ namespace Model
             var db = new Context();
             try
             {
-                Room room = db.Rooms.First(room => room.RoomId == roomId);
+                Room room = db.Rooms.First(room => room.IdRoom == roomId);
                 db.Remove(room);
                 db.SaveChanges();
             }

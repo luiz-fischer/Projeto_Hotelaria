@@ -4,16 +4,18 @@ using Repository;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Model {
-    public partial class ReservationRoom {
-        [Key] 
-        public int ReservationRoomId { get; set; }
-        [ForeignKey("reservations")] 
+namespace Model
+{
+    public class ReservationRoom
+    {
+        [Key]
+        public int Id { get; set; }
+        [ForeignKey("reservations")]
         public int IdReservation { get; set; }
-        public virtual Reservation Reservation { get; set; }
-        [ForeignKey("rooms")] 
+        public virtual Model.Reservation Reservation { get; set; }
+        [ForeignKey("rooms")]
         public int IdRoom { get; set; }
-        public virtual Room Room { get; set; }
+        public virtual Model.Room Room { get; set; }
 
         public static List<ReservationRoom> GetReservationsByIdRoom(int IdRoom)
         {

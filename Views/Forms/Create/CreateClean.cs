@@ -1,12 +1,11 @@
 using System.Windows.Forms;
 using System.Drawing;
 using System;
-using Model;
 using System.Collections.Generic;
 
 namespace View
 {
-    public partial class CreateClean : Form
+    public class CreateClean : Form
     {
         private Library.PictureBox logo_size_invert;
         private Library.Button btnConfirmar;
@@ -16,15 +15,24 @@ namespace View
         private Library.Label lblRoom;
         private Library.ListView lvEmployee;
         private Library.ListView lvRoom;
+        Model.Clean clean;
 
 
-        public CreateClean()
+        public CreateClean(int id = 0)
         {
 
-            InitializeComponent();
+            try
+            {
+                clean = Controller.Clean.GetClean(id);
+            }
+            catch
+            {
+
+            }
+            InitializeComponent(id > 0);
         }
 
-        public void InitializeComponent()
+        public void InitializeComponent(bool isUpdate)
         {
             this.logo_size_invert = new Library.PictureBox("logo_size_full");
             this.btnConfirmar = new Library.Button("btnConfirmar");
@@ -77,7 +85,7 @@ namespace View
             List<Model.Room> listRooms = Controller.Room.GetRooms();
             foreach (Model.Room room in listRooms)
             {
-                ListViewItem lvListRoom = new(room.RoomId.ToString());
+                ListViewItem lvListRoom = new(room.IdRoom.ToString());
                 lvListRoom.SubItems.Add(room.RoomFloor.ToString());
                 lvListRoom.SubItems.Add(room.RoomNumber.ToString());
                 lvListRoom.SubItems.Add(room.RoomValue.ToString("C2"));
@@ -106,9 +114,38 @@ namespace View
 
 
         }
+        private void btn_ConfirmarClick(object sender, EventArgs e)
+        {
+            try
+            {
+                if ((lvEmployee.SelectedItems.Count > 0) && (lvRoom.CheckedItems.Count > 0))
+                {
+                    string EmployeeId = this.lvEmployee.SelectedItems[0].Text;
+                    Model.Employee employee = Controller.Employee.GetEmployee(Int32.Parse(EmployeeId));
+                    Model.Clean clean = Controller.Clean.Add(employee);
+
+                    foreach (ListViewItem Room in this.lvRoom.CheckedItems)
+                    {
+                        Model.Room room = Controller.Room.GetRoom(Int32.Parse(Room.Text));
+                        // clean.AddRoom(room);
+                    }
+                    MessageBox.Show("Locação Realizada!");
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Selecione o Cliente e Pelo Menos Um Veiculo!");
+                }
+            }
+            catch (Exception error)
+            {
+                MessageBox.Show(error.Message, "Selecione o Cliente e Pelo Menos Um Veiculo!");
+            }
+        }
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             this.Close();
+
         }
 
     }

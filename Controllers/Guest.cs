@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 namespace Controller
 {
-    public class Guest
+    public static class Guest
     {
 
         public static void AddGuest(
@@ -62,9 +62,9 @@ namespace Controller
             return Model.Guest.GetGuests();
         }
 
-        public static Model.Guest GetGuestId(int guestsId)
+        public static Model.Guest GetGuest(int guestsId)
         {
-            return Model.Guest.GetGuestId(guestsId);
+            return Model.Guest.GetGuest(guestsId);
         }
     }
 }

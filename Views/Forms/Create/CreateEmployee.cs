@@ -15,13 +15,21 @@ namespace View
         Model.Employee employee;
 
 
-        public CreateEmployee()
+        public CreateEmployee(int id = 0)
         {
 
-            InitializeComponent();
+            try
+            {
+                employee = Controller.Employee.GetEmployee(id);
+            }
+            catch
+            {
+
+            }
+            InitializeComponent(id > 0);
         }
 
-        public void InitializeComponent()
+        public void InitializeComponent(bool isUpdate)
         {
             this.logo_size_invert = new Library.PictureBox("logo_size_full");
             this.btnConfirmar = new Library.Button("btnConfirmar");

@@ -3,17 +3,14 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Windows.Forms;
-using System.Text.RegularExpressions;
 using Repository;
-
-
 
 namespace Model
 {
-    public class Guest
+    public partial class Guest
     {
         [Key]
-        public int GuestId { get; set; }
+        public int IdGuest { get; set; }
         public string GuestName { get; set; }
         public string GuestBirth { get; set; }
         public double Payment { get; set; }
@@ -34,11 +31,12 @@ namespace Model
             string mothersName
         )
         {
-            GuestName = guestName;
-            GuestBirth = guestBirth;
-            Payment = payment;
-            GuestIdentification = guestIdentification;
-            MothersName = mothersName;
+            this.GuestName = guestName;
+            this.GuestBirth = guestBirth;
+            this.Payment = payment;
+            this.GuestIdentification = guestIdentification;
+            this.MothersName = mothersName;
+            reservations = new List<Reservation>();
 
             var db = new Context();
             db.Guests.Add(this);
@@ -49,7 +47,7 @@ namespace Model
         public override bool Equals(object obj)
         {
             return obj is Guest guest &&
-                   GuestId == guest.GuestId &&
+                   IdGuest == guest.IdGuest &&
                    GuestName == guest.GuestName &&
                    GuestBirth == guest.GuestBirth &&
                    Payment == guest.Payment &&
@@ -60,7 +58,7 @@ namespace Model
 
         public override int GetHashCode()
         {
-            return HashCode.Combine(GuestId, GuestName, GuestBirth, Payment, GuestIdentification, MothersName, reservations);
+            return HashCode.Combine(IdGuest, GuestName, GuestBirth, Payment, GuestIdentification, MothersName, reservations);
         }
 
         public void AddReservation(Reservation reservation)
@@ -72,15 +70,15 @@ namespace Model
         {
             var db = new Context();
             return (from guest in db.Guests
-                    where guest.GuestId == guestId
+                    where guest.IdGuest == guestId
                     select guest).First();
         }
 
-        public static Guest GetGuestId(int guestId)
-        {
-            var db = new Context();
-            return db.Guests.Find(guestId);
-        }
+        // public static Guest GetGuestId(int guestId)
+        // {
+        //     var db = new Context();
+        //     return db.Guests.Find(guestId);
+        // }
         public static List<Guest> GetGuests()
         {
             var db = new Context();
@@ -99,7 +97,7 @@ namespace Model
             var db = new Context();
             try
             {
-                Guest guest = db.Guests.First(guest => guest.GuestId == guestId);
+                Guest guest = db.Guests.First(guest => guest.IdGuest == guestId);
                 guest.GuestName = guestName;
                 guest.GuestBirth = guestBirth;
                 guest.Payment = payment;
@@ -118,7 +116,7 @@ namespace Model
             var db = new Context();
             try
             {
-                Guest guest = db.Guests.First(guest => guest.GuestId == guestId);
+                Guest guest = db.Guests.First(guest => guest.IdGuest == guestId);
                 db.Remove(guest);
                 db.SaveChanges();
             }
