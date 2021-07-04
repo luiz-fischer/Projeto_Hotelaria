@@ -354,10 +354,10 @@ namespace View
         }
         private void reservasListarMenuPrincipal_Click(object sender, EventArgs e)
         {
-            // CreateReservation createReservation = new();
-            // createReservation.MdiParent = this;
-            // createReservation.Text = "CADASTRAR RESERVA " + this.MdiChildren.Length.ToString();
-            // createReservation.Show();
+            ListReservation listReservation = new();
+            listReservation.MdiParent = this;
+            listReservation.Text = "CADASTRAR RESERVA " + this.MdiChildren.Length.ToString();
+            listReservation.Show();
         }
         private void quartoListarMenuPrincipal_Click(object sender, EventArgs e)
         {

@@ -10,7 +10,7 @@ namespace View
     public partial class ListGuests : Form
     {
         Model.Guest guest;
-        private Library.PictureBox logo_size_invert;
+        private Library.PictureBox menu_side;
         private Library.Button btnCancelar;
         private Library.Label lblTitle;
         private Library.ListView lvGuest;
@@ -22,7 +22,7 @@ namespace View
 
         public void InitializeComponent()
         {
-            this.logo_size_invert = new Library.PictureBox("logo_size_full");
+            this.menu_side = new Library.PictureBox("menu_side");
             this.btnCancelar = new Library.Button("btnCancelar");
             this.lvGuest = new Library.ListView();
             this.lblTitle = new();
@@ -69,7 +69,7 @@ namespace View
 
             this.WindowState = FormWindowState.Maximized;
             this.BackColor = ColorTranslator.FromHtml("#E0E6ED");
-            this.Controls.Add(this.logo_size_invert);
+            this.Controls.Add(this.menu_side);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.lblTitle);
 
