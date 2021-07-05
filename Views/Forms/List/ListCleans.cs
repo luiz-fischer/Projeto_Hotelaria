@@ -27,9 +27,6 @@ namespace View
             this.lvlClean = new Library.ListView();
             this.lblTitle = new();
             //
-            // btnCancelar
-            this.btnCancelar.Location = new Point(780, 620);
-            //
             // lblTitle
             this.lblTitle.Text = "Lista de Limpezas";
             this.lblTitle.Location = new Point(600, 10);
@@ -38,16 +35,15 @@ namespace View
             this.lvlClean.Size = new Size(1050, 400);
             this.lvlClean.Location = new Point(250, 100);
 
-
-            List<Model.Clean> cleanList = Controller.Clean.GetCleans();
-            List<Model.Room> roomList = Controller.Room.GetRooms();
+            List<Clean> cleanList = Controller.Clean.GetCleans();
+            List<Room> roomList = Controller.Room.GetRooms();
 
             foreach (var clean in cleanList)
             {
                 foreach (var room in roomList)
                 {
-                    Model.Employee employee = Controller.Employee.GetEmployee(clean.EmployeeId);
-                    Model.Room roomLt = Controller.Room.GetRoom(room.IdRoom);
+                    Employee employee = Controller.Employee.GetEmployee(clean.EmployeeId);
+                    Room roomLt = Controller.Room.GetRoom(room.IdRoom);
                     ListViewItem lvListRoom = new(clean.CleanId.ToString());
                     lvListRoom.SubItems.Add(employee.EmployeeName.ToString());
                     lvListRoom.SubItems.Add(clean.Date.ToString("dd/MM/yyyy"));
@@ -67,7 +63,6 @@ namespace View
             this.lvlClean.Columns.Add("Andar", -2, HorizontalAlignment.Center);
             this.lvlClean.Columns.Add("Número do Quarto", -2, HorizontalAlignment.Center);
             this.lvlClean.Columns.Add("Descrição do Quarto", -2, HorizontalAlignment.Center);
-            this.Text = "       LISTAR LIMPEZAS";
             //
             // btnCancelar
             this.btnCancelar.Click += new EventHandler(this.btnCancelar_Click);
@@ -85,6 +80,7 @@ namespace View
             this.Controls.Add(this.btnRelatorio);
             this.Controls.Add(this.lblTitle);
             this.Controls.Add(this.lvlClean);
+            this.Text = "       LISTAR LIMPEZAS";
 
         }
         private void btnRelatorio_Click(object sender, EventArgs e)

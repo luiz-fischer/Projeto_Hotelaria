@@ -24,11 +24,8 @@ namespace View
             this.menu_side = new Library.PictureBox("menu_side");
             this.btnCancelar = new Library.Button("btnCancelar");
             this.btnRelatorio = new Library.Button("btnRelatorio");
-
             this.lvGuest = new Library.ListView();
             this.lblTitle = new();
-            //
-            // btnCancelar
             
             //
             // lblTitle
@@ -39,7 +36,7 @@ namespace View
             this.lvGuest.Size = new Size(1050, 400);
             this.lvGuest.Location = new Point(250, 100);
 
-            List<Model.Guest> guestList = Controller.Guest.GetGuests();
+            List<Guest> guestList = Controller.Guest.GetGuests();
             foreach (var guest in guestList)
             {
                 ListViewItem lvListGuest = new(guest.IdGuest.ToString());
@@ -56,13 +53,6 @@ namespace View
             this.lvGuest.Columns.Add("Data Nascimento", -2, HorizontalAlignment.Center);
             this.lvGuest.Columns.Add("CPF", -2, HorizontalAlignment.Center);
             this.lvGuest.Columns.Add("Nome da Mãe", -2, HorizontalAlignment.Center);
-            // 
-            // Home
-            this.WindowState = FormWindowState.Maximized;
-            this.BackColor = ColorTranslator.FromHtml("#E0E6ED");
-            this.Controls.Add(this.btnCancelar);
-            this.Controls.Add(this.lvGuest);
-            this.Text = "       LISTAR HÓSPEDES";
             //
             // btnCancelar
             this.btnCancelar.Click += new EventHandler(this.btnCancelar_Click);
@@ -78,7 +68,9 @@ namespace View
             this.Controls.Add(this.menu_side);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnRelatorio);
+            this.Controls.Add(this.lvGuest);
             this.Controls.Add(this.lblTitle);
+            this.Text = "       LISTAR HÓSPEDES";
 
         }
 

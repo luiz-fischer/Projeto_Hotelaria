@@ -1,9 +1,8 @@
 using System;
 using System.Drawing;
 using System.Windows.Forms;
-using System.Text.RegularExpressions;
 using System.Collections.Generic;
-
+using Model;
 
 namespace View
 {
@@ -11,6 +10,7 @@ namespace View
     {
         private Library.PictureBox menu_side;
         private Library.Button btnCancelar;
+        private Library.Button btnRelatorio;
         private Library.Label lblTitle;
         private Library.ListView lvProduct;
 
@@ -23,11 +23,9 @@ namespace View
         {
             this.menu_side = new Library.PictureBox("menu_side");
             this.btnCancelar = new Library.Button("btnCancelar");
+            this.btnRelatorio = new Library.Button("btnRelatorio");
             this.lvProduct = new Library.ListView();
             this.lblTitle = new();
-            //
-            // btnCancelar
-            this.btnCancelar.Location = new Point(780, 620);
             //
             // lblTitle
             this.lblTitle.Text = "Lista de Produtos";
@@ -37,7 +35,7 @@ namespace View
             this.lvProduct.Size = new Size(1050, 400);
             this.lvProduct.Location = new Point(250, 100);
 
-            List<Model.Product> productList = Controller.Product.GetProducts();
+            List<Product> productList = Controller.Product.GetProducts();
             foreach (var product in productList)
             {
                 ListViewItem lvListProduct = new(product.ProductId.ToString());
@@ -50,27 +48,30 @@ namespace View
             this.lvProduct.Columns.Add("ID Product", -2, HorizontalAlignment.Center);
             this.lvProduct.Columns.Add("Nome do Produto", -2, HorizontalAlignment.Center);
             this.lvProduct.Columns.Add("Valor do Produto", -2, HorizontalAlignment.Center);
-            // 
-            // Home
-            this.WindowState = FormWindowState.Maximized;
-            this.BackColor = ColorTranslator.FromHtml("#E0E6ED");
-            this.Controls.Add(this.btnCancelar);
-            this.Controls.Add(this.lvProduct);
-            this.Text = "       LISTAR PRODUTOS";
             //
             // btnCancelar
             this.btnCancelar.Click += new EventHandler(this.btnCancelar_Click);
-
-
+            this.btnCancelar.Location = new Point(780, 620);
+            //
+            // btnRelatorio
+            this.btnRelatorio.Click += new EventHandler(this.btnRelatorio_Click);
+            this.btnRelatorio.Location = new Point(600, 620);
+            //
+            // Home
             this.WindowState = FormWindowState.Maximized;
             this.BackColor = ColorTranslator.FromHtml("#E0E6ED");
             this.Controls.Add(this.menu_side);
             this.Controls.Add(this.btnCancelar);
+            this.Controls.Add(this.btnRelatorio);
             this.Controls.Add(this.lblTitle);
-
+            this.Controls.Add(this.lvProduct);
+            this.Text = "       LISTAR PRODUTOS";
 
         }
-
+        private void btnRelatorio_Click(object sender, EventArgs e)
+        {
+            ReportProduct.ReportProductPdf();
+        }
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             this.Close();

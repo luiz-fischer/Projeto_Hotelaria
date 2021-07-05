@@ -29,9 +29,6 @@ namespace View
             this.lvlEmpolyee = new Library.ListView();
             this.lblTitle = new();
             //
-            // btnCancelar
-            this.btnCancelar.Location = new Point(780, 620);
-            //
             // lblTitle
             this.lblTitle.Text = "Lista de Empregados";
             this.lblTitle.Location = new Point(600, 10);
@@ -40,7 +37,7 @@ namespace View
             this.lvlEmpolyee.Size = new Size(1050, 400);
             this.lvlEmpolyee.Location = new Point(250, 100);
 
-            List<Model.Employee> employeeList = Controller.Employee.GetEmployees();
+            List<Employee> employeeList = Controller.Employee.GetEmployees();
             foreach (var employee in employeeList)
             {
                 ListViewItem lvListEmployee = new(employee.EmployeeId.ToString());
@@ -69,8 +66,6 @@ namespace View
             this.Controls.Add(this.lvlEmpolyee);
             this.Controls.Add(this.lblTitle);
             this.Text = "       LISTAR EMPREGADOS";
-
-
 
         }
         private void btnRelatorio_Click(object sender, EventArgs e)

@@ -15,7 +15,7 @@ namespace Model
             Document document = new(PageSize.A4.Rotate());
             document.SetMargins(3, 2, 3, 2);
             PdfWriter writer = PdfWriter.GetInstance(document, new FileStream(
-                path + "\\Relatorios\\Hospedes.pdf", FileMode.Create
+                path + "\\Relatorios\\Empregados.pdf", FileMode.Create
             ));
             document.Open();
             PdfPTable table = new(2);
