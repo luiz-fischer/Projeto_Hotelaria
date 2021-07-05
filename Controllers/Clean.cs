@@ -21,15 +21,14 @@ namespace Controller
         // {
         //     return new Model.Clean(employee, DateTime.Now);
         // }
-        // public static Model.Clean Add(Model.Employee employee, DateTime scheduledDate)
-        // {
-        //     return new Model.Clean(employee, scheduledDate);
-        // }
-        public static Model.Clean Add(Model.Employee employee, Model.Room room, DateTime scheduledDate)
+        public static Model.Clean Add(Model.Employee employee, DateTime scheduledDate)
         {
-            return new Model.Clean(employee, room, scheduledDate);
+            return new Model.Clean(employee, scheduledDate);
         }
-
+        // public static Model.Clean Add(Model.Employee employee, Model.Room room, DateTime scheduledDate)
+        // {
+        //     return new Model.Clean(employee, room, scheduledDate);
+        // }
 
         public static List<Model.Clean> GetCleans()
         {
@@ -45,7 +44,6 @@ namespace Controller
         {
             Model.Clean.DeleteClean(cleanId);
         }
-        
 
         public static void SetCleanDone(int cleanId, int employeeId)
         {
