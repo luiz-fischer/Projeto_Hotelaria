@@ -42,12 +42,14 @@ namespace View
             {
                 ListViewItem lvListProduct = new(product.ProductId.ToString());
                 lvListProduct.SubItems.Add(product.ProductName);
+                lvListProduct.SubItems.Add(product.ProductValue.ToString("C2"));
                 lvProduct.Items.Add(lvListProduct);
             }
             
             this.lvProduct.MultiSelect = false;
             this.lvProduct.Columns.Add("ID Product", -2, HorizontalAlignment.Center);
             this.lvProduct.Columns.Add("Nome do Produto", -2, HorizontalAlignment.Center);
+            this.lvProduct.Columns.Add("Valor do Produto", -2, HorizontalAlignment.Center);
             // 
             // Home
             this.WindowState = FormWindowState.Maximized;

@@ -23,7 +23,6 @@ namespace Library
                     this.BackColor = ColorTranslator.FromHtml("#005E6B");
                     this.Location = new Point(600, 510);
                     this.Name = "btnConfirmar";
-                    // this.UseVisualStyleBackColor = false;
                     this.Text = "Confirmar";
                     break;
 
@@ -45,6 +44,13 @@ namespace Library
                     // this.Location = new Point(1000, 635);
                     // this.Name = "btnAlterar";
                     // this.Text = "Alterar";
+                    break;
+
+                case "btnRelatorio":
+                    this.BackColor = ColorTranslator.FromHtml("#503176");
+                    this.Location = new Point(600, 510);
+                    this.Name = "btnRelatorio";
+                    this.Text = "Gerar em PDF";
                     break;
 
                 default:

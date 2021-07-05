@@ -2,6 +2,7 @@ using System;
 using System.Drawing;
 using System.Windows.Forms;
 using System.Collections.Generic;
+using Model;
 
 namespace View
 {
@@ -9,6 +10,7 @@ namespace View
     {
         private Library.PictureBox menu_side;
         private Library.Button btnCancelar;
+        private Library.Button btnRelatorio;
         private Library.Label lblTitle;
         private Library.ListView lvlClean;
 
@@ -21,6 +23,7 @@ namespace View
         {
             this.menu_side = new Library.PictureBox("menu_side");
             this.btnCancelar = new Library.Button("btnCancelar");
+            this.btnRelatorio = new Library.Button("btnRelatorio");
             this.lvlClean = new Library.ListView();
             this.lblTitle = new();
             //
@@ -68,15 +71,25 @@ namespace View
             //
             // btnCancelar
             this.btnCancelar.Click += new EventHandler(this.btnCancelar_Click);
-
-
+            this.btnCancelar.Location = new Point(780, 620);
+            //
+            // btnRelatorio
+            this.btnRelatorio.Click += new EventHandler(this.btnRelatorio_Click);
+            this.btnRelatorio.Location = new Point(600, 620);
+            //
+            // Forms
             this.WindowState = FormWindowState.Maximized;
             this.BackColor = ColorTranslator.FromHtml("#E0E6ED");
             this.Controls.Add(this.menu_side);
             this.Controls.Add(this.btnCancelar);
+            this.Controls.Add(this.btnRelatorio);
             this.Controls.Add(this.lblTitle);
             this.Controls.Add(this.lvlClean);
 
+        }
+        private void btnRelatorio_Click(object sender, EventArgs e)
+        {
+            ReportClean.ReportCleanPdf();
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)

@@ -1,17 +1,16 @@
 using System;
 using System.Drawing;
 using System.Windows.Forms;
-using System.Text.RegularExpressions;
 using System.Collections.Generic;
-
+using Model;
 
 namespace View
 {
     public partial class ListGuests : Form
     {
-        Model.Guest guest;
         private Library.PictureBox menu_side;
         private Library.Button btnCancelar;
+        private Library.Button btnRelatorio;
         private Library.Label lblTitle;
         private Library.ListView lvGuest;
 
@@ -24,11 +23,13 @@ namespace View
         {
             this.menu_side = new Library.PictureBox("menu_side");
             this.btnCancelar = new Library.Button("btnCancelar");
+            this.btnRelatorio = new Library.Button("btnRelatorio");
+
             this.lvGuest = new Library.ListView();
             this.lblTitle = new();
             //
             // btnCancelar
-            this.btnCancelar.Location = new Point(780, 620);
+            
             //
             // lblTitle
             this.lblTitle.Text = "Lista de Hóspedes";
@@ -48,7 +49,7 @@ namespace View
                 lvListGuest.SubItems.Add(guest.MothersName.ToString());
                 lvGuest.Items.Add(lvListGuest);
             }
-            
+
             this.lvGuest.MultiSelect = false;
             this.lvGuest.Columns.Add("ID Guest", -2, HorizontalAlignment.Center);
             this.lvGuest.Columns.Add("Nome Completo", -2, HorizontalAlignment.Center);
@@ -65,15 +66,25 @@ namespace View
             //
             // btnCancelar
             this.btnCancelar.Click += new EventHandler(this.btnCancelar_Click);
-
-
+            this.btnCancelar.Location = new Point(780, 620);
+            //
+            // btnRelatorio
+            this.btnRelatorio.Click += new EventHandler(this.btnRelatorio_Click);
+            this.btnRelatorio.Location = new Point(600, 620);
+            //
+            // Forms
             this.WindowState = FormWindowState.Maximized;
             this.BackColor = ColorTranslator.FromHtml("#E0E6ED");
             this.Controls.Add(this.menu_side);
             this.Controls.Add(this.btnCancelar);
+            this.Controls.Add(this.btnRelatorio);
             this.Controls.Add(this.lblTitle);
 
+        }
 
+        private void btnRelatorio_Click(object sender, EventArgs e)
+        {
+            ReportGuest.ReportGuestPdf();
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
@@ -81,6 +92,6 @@ namespace View
             this.Close();
 
         }
-
     }
 }
+ 
