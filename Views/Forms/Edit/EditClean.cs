@@ -105,7 +105,7 @@ namespace View
         }
         private void btnDeletar_Click(object sender, EventArgs e)
         {
-            DialogResult result = MessageBox.Show("Deseja Realmente Exluir Esse Hóspede?", "Exclusão", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
+            DialogResult result = MessageBox.Show("Deseja Realmente Exluir Essa Limpeza?", "Exclusão", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
             if (result == DialogResult.Yes)
             {
                 try

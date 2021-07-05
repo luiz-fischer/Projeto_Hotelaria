@@ -22,7 +22,7 @@ namespace View
 
             try
             {
-                product = Controller.Product.GetProductById(id);
+                product = Controller.Product.GetProduct(id);
             }
             catch
             {

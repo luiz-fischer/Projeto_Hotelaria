@@ -4,12 +4,13 @@ using System.Windows.Forms;
 using System.Collections.Generic;
 using Model;
 
-namespace View
+namespace View 
 {
     public partial class ListProducts : Form
     {
         private Library.PictureBox menu_side;
         private Library.Button btnCancelar;
+        private Library.Button btnConfirmar;
         private Library.Button btnRelatorio;
         private Library.Label lblTitle;
         private Library.ListView lvProduct;
@@ -23,6 +24,7 @@ namespace View
         {
             this.menu_side = new Library.PictureBox("menu_side");
             this.btnCancelar = new Library.Button("btnCancelar");
+            this.btnConfirmar = new Library.Button("btnConfirmar");
             this.btnRelatorio = new Library.Button("btnRelatorio");
             this.lvProduct = new Library.ListView();
             this.lblTitle = new();
@@ -53,6 +55,10 @@ namespace View
             this.btnCancelar.Click += new EventHandler(this.btnCancelar_Click);
             this.btnCancelar.Location = new Point(780, 620);
             //
+            // btnConfirmar
+            this.btnConfirmar.Click += new EventHandler(this.btnConfirmar_Click);
+            this.btnConfirmar.Location = new Point(420, 620);
+            //
             // btnRelatorio
             this.btnRelatorio.Click += new EventHandler(this.btnRelatorio_Click);
             this.btnRelatorio.Location = new Point(600, 620);
@@ -62,16 +68,33 @@ namespace View
             this.BackColor = ColorTranslator.FromHtml("#E0E6ED");
             this.Controls.Add(this.menu_side);
             this.Controls.Add(this.btnCancelar);
+            this.Controls.Add(this.btnConfirmar);
             this.Controls.Add(this.btnRelatorio);
             this.Controls.Add(this.lblTitle);
             this.Controls.Add(this.lvProduct);
             this.Text = "       LISTAR PRODUTOS";
 
         }
-        private void btnRelatorio_Click(object sender, EventArgs e)
+       private void btnRelatorio_Click(object sender, EventArgs e)
         {
             ReportProduct.ReportProductPdf();
         }
+
+        private void btnConfirmar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string IdProduct = this.lvProduct.SelectedItems[0].Text;
+                Product product = Controller.Product.GetProduct(Int32.Parse(IdProduct));
+                EditProduct editProduct = new(product);
+                editProduct.Show();
+            }
+            catch
+            {
+                MessageBox.Show("Selecionar um Produto!");
+            }
+        }
+
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             this.Close();
