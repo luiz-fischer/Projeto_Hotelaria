@@ -35,9 +35,9 @@ namespace Controller
             return Model.Product.GetProducts();
         }
 
-        public static Model.Product GetProductById(int ProductId)
+        public static Model.Product GetProduct(int ProductId)
         {
-            return Model.Product.GetProductId(ProductId);
+            return Model.Product.GetProduct(ProductId);
         }
     }
 }
