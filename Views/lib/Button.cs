@@ -35,20 +35,22 @@ namespace Library
                     break;
 
                 case "btnDeletar":
-                    // this.Location = new Point(1100, 635);
-                    // this.Name = "btnDeletar";
-                    // this.Text = "Deletar";
+                    this.Location = new Point(450, 510);
+                    this.BackColor = ColorTranslator.FromHtml("#BA0B0B");
+                    this.Name = "btnDeletar";
+                    this.Text = "Deletar";
                     break;
 
                 case "btnAlterar":
-                    // this.Location = new Point(1000, 635);
-                    // this.Name = "btnAlterar";
-                    // this.Text = "Alterar";
+                    this.BackColor = ColorTranslator.FromHtml("#FE4A49");
+                    this.Location = new Point(630, 510);
+                    this.Name = "btnAlterar";
+                    this.Text = "Alterar";
                     break;
 
                 case "btnRelatorio":
                     this.BackColor = ColorTranslator.FromHtml("#503176");
-                    this.Location = new Point(600, 510);
+                    this.Location = new Point(420, 510);
                     this.Name = "btnRelatorio";
                     this.Text = "Gerar em PDF";
                     break;
