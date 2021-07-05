@@ -1,10 +1,35 @@
 using System;
-using System.Linq;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using Repository;
+using System.Windows.Forms;
 
 namespace Controller {
-    
+    public class Employee {
+         public static Model.Employee AddEmployee(string employeeName)
+        {
+            return new Model.Employee(employeeName);
+        }
+
+        public static List<Model.Employee> GetEmployees()
+        {
+            return Model.Employee.GetEmployees();
+        }
+
+        public static Model.Employee GetEmployee(int employeeId)
+        {
+            return Model.Employee.GetEmployee(employeeId);
+        }
+
+        public static void DeleteEmployee(int employeeId)
+        {
+            try
+            {
+               Model.Employee.DeleteEmployee(employeeId);
+            }
+            catch (Exception error)
+            {
+                MessageBox.Show(error.Message, "Erro ao deletar!");
+            }
+
+        }
+    }
 }

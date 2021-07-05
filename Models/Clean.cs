@@ -9,7 +9,7 @@ using Repository;
 
 namespace Model
 {
-    public partial class Clean
+    public class Clean
     {
         [Key]
         public int CleanId { get; set; }
@@ -40,7 +40,21 @@ namespace Model
             db.Cleans.Add(this);
             db.SaveChanges();
 
+        }
 
+        public Clean(int roomId)
+        {
+            RoomId = roomId;
+            var db = new Context();
+            try
+            {
+                db.Cleans.Add(this);
+                db.SaveChanges();
+            }
+            catch (Exception error)
+            {
+                MessageBox.Show(error.Message, "Erro!");
+            }
         }
 
         public override bool Equals(object obj)
@@ -60,9 +74,7 @@ namespace Model
         public static Clean GetClean(int cleanId)
         {
             var db = new Context();
-            return (from clean in db.Cleans
-                    where clean.CleanId == cleanId
-                    select clean).First();
+            return db.Cleans.Find(cleanId);
         }
         public static List<Clean> GetCleans()
         {
@@ -117,7 +129,7 @@ namespace Model
             }
         }
 
-        public static void RemoveClean(int cleanId)
+        public static void DeleteClean(int cleanId)
         {
             var db = new Context();
             try

@@ -7,9 +7,6 @@ using System.Windows.Forms;
 using System.Text.RegularExpressions;
 using Repository;
 
-
-
-
 namespace Model
 {
     public class Reservation
@@ -37,25 +34,19 @@ namespace Model
 
         }
         public Reservation(
-            Model.Guest guest,
+            int guestId,
             // Model.Room room,
             DateTime reservationDate,
-            int daysOfStay,
-            DateTime checkIn,
-            DateTime checkOut,
-            double total)
+            int daysOfStay
+        )
         {
-            GuestId = guest.GuestId;
+            GuestId = guestId;
             // RoomId = room.RoomId;
             ReservationDate = reservationDate;
             DaysOfStay = daysOfStay;
-            CheckIn = checkIn;
-            CheckOut = checkOut;
-            Total = total;
             rooms = new List<Room>();
-            guest.AddReservation(this);
-
             var db = new Context();
+
             db.Reservations.Add(this);
             db.SaveChanges();
         }
@@ -72,6 +63,13 @@ namespace Model
         {
             var db = new Context();
             return db.Reservations.ToList();
+        }
+        public static List<Model.Reservation> GetReservationByIdGuest(int guestId)
+        {
+            var db = new Context();
+            return (from reservation in db.Reservations
+                    where reservation.GuestId == guestId
+                    select reservation).ToList();
         }
 
         public static void InsertCheckIn(int reservationId)
@@ -140,11 +138,11 @@ namespace Model
             }
             if (TotalDays < reservation.DaysOfStay)
             {
-                reservation.Total = (reservation.DaysOfStay * room.Value) + (AdditionalDays * 1.2 * room.Value) + TotalExpenses;
+                reservation.Total = (reservation.DaysOfStay * room.RoomValue) + (AdditionalDays * 1.2 * room.RoomValue) + TotalExpenses;
             }
             else if (TotalDays >= reservation.DaysOfStay)
             {
-                reservation.Total = (reservation.DaysOfStay * room.Value) + (AdditionalDays * 1.2 * room.Value) + TotalExpenses;
+                reservation.Total = (reservation.DaysOfStay * room.RoomValue) + (AdditionalDays * 1.2 * room.RoomValue) + TotalExpenses;
             }
             db.SaveChanges();
         }
