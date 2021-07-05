@@ -17,12 +17,20 @@ namespace Model
         public int IdRoom { get; set; }
         public virtual Model.Room Room { get; set; }
 
-        public static List<CleanRoom> GetReservationsByIdRoom(int IdRoom)
+        public static List<CleanRoom> GetCleansByIdRoom(int IdRoom)
         {
             var db = new Context();
             return (from clean in db.CleanRooms
                     where clean.IdRoom == IdRoom
                     select clean).ToList();
         }
+        public static List<CleanRoom> GetRoomsByIdClean(int IdClean)
+        {
+            var db = new Context();
+            return (from room in db.CleanRooms
+                    where room.IdClean == IdClean
+                    select room).ToList();
+        }
+        
     }
 }

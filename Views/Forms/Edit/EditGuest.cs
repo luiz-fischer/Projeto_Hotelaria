@@ -61,8 +61,9 @@ namespace View
                 "\n\n ID do Guest:                "         + guest.IdGuest +
                 "\n Nome:                           "       + guest.GuestName +
                 "\n Data Nascimento:      "                 + guest.GuestBirth +
-                "\n CPF:                               "    + guest.GuestIdentification;
-            // 
+                "\n CPF:                               "    + guest.GuestIdentification +
+                "\n Nome Mãe:                  "            + guest.MothersName;
+            //
             // Home
             this.WindowState = FormWindowState.Maximized;
             this.BackColor = ColorTranslator.FromHtml("#E0E6ED");
