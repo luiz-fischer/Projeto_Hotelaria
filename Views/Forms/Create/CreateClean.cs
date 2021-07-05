@@ -11,10 +11,12 @@ namespace View
         private Library.Button btnConfirmar;
         private Library.Button btnCancelar;
         private Library.Label lblTitle;
-        private Library.Label lblEmployee;
+        private Library.Label lblEmployee; 
         private Library.Label lblRoom;
         private Library.ListView lvEmployee;
         private Library.ListView lvRoom;
+        private DateTimePicker dtCheckIn;
+        private Library.Label lblCheckIn;
         Model.Clean clean;
 
 
@@ -41,7 +43,9 @@ namespace View
             this.lblRoom = new Library.Label();
             this.lvEmployee = new Library.ListView();
             this.lvRoom = new Library.ListView();
+            this.lblCheckIn = new Library.Label();
             this.lblTitle = new();
+            this.dtCheckIn = new();
             //
             // btnConfirmar
             this.btnConfirmar.Location = new Point(600, 620);
@@ -50,6 +54,18 @@ namespace View
             // btnCancelar
             this.btnCancelar.Location = new Point(780, 620);
             this.btnCancelar.Click += new EventHandler(this.btnCancelar_Click);
+            //
+            // lblCheckIn
+            this.lblCheckIn.Text = "Data da Limpeza";
+            this.lblCheckIn.Font = new Font("Roboto", 16F, GraphicsUnit.Point);
+            this.lblCheckIn.Location = new Point(850, 80);
+            this.lblCheckIn.ForeColor = ColorTranslator.FromHtml("#8492A6");
+            //
+            // dtCheckIn
+            this.dtCheckIn.Location = new Point(900, 120);
+            this.dtCheckIn.Format = DateTimePickerFormat.Custom;
+            this.dtCheckIn.CustomFormat = "dd/MM/yyyy";
+            this.dtCheckIn.ShowUpDown = true;
             //
             // lblTitle
             this.lblTitle.Text = "Cadastro de Limpeza";
@@ -63,6 +79,7 @@ namespace View
             //
             // lvEmployee
             this.lvEmployee.Location = new Point(240, 80);
+            this.lvEmployee.Size = new Size(500, 200);
             List<Model.Employee> listEmployees = Controller.Employee.GetEmployees();
             foreach (Model.Employee employee in listEmployees)
             {
@@ -110,6 +127,8 @@ namespace View
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.lblEmployee);
             this.Controls.Add(this.lblRoom);
+            this.Controls.Add(this.lblCheckIn);
+            this.Controls.Add(this.dtCheckIn);
             this.Controls.Add(this.lvEmployee);
             this.Controls.Add(this.lvRoom);
             this.Controls.Add(this.lblTitle);
@@ -122,9 +141,11 @@ namespace View
             {
                 if ((lvEmployee.SelectedItems.Count > 0) && (lvRoom.CheckedItems.Count > 0))
                 {
+                    DateTime scheduledDate = dtCheckIn.Value.Date;
+                    dtCheckIn.Value = scheduledDate.Date;
                     string employeeId = this.lvEmployee.SelectedItems[0].Text;
                     Model.Employee employee = Controller.Employee.GetEmployee(Int32.Parse(employeeId));
-                    Model.Clean clean = Controller.Clean.Add(employee);
+                    Model.Clean clean = Controller.Clean.Add(employee, scheduledDate);
 
                     foreach (ListViewItem Room in this.lvRoom.CheckedItems)
                     {

@@ -157,13 +157,13 @@ namespace View
             {
                 if ((lvListarGuests.SelectedItems.Count > 0) && (lvlListarRooms.CheckedItems.Count > 0))
                 {
-                    DateTime myDate = dtCheckIn.Value.Date;
-                    dtCheckIn.Value = myDate.Date;
-                    DateTime myDate2 = this.dtCheckOut.Value.Date;
-                    this.dtCheckOut.Value = myDate2.Date;
+                    DateTime convertCheckIn = dtCheckIn.Value.Date;
+                    dtCheckIn.Value = convertCheckIn.Date;
+                    DateTime convertCheckOut = this.dtCheckOut.Value.Date;
+                    this.dtCheckOut.Value = convertCheckOut.Date;
                     string IdGuest = this.lvListarGuests.SelectedItems[0].Text;
                     Model.Guest guest = Controller.Guest.GetGuest(Int32.Parse(IdGuest));
-                    Model.Reservation reservation = Controller.Reservation.Add(guest, myDate, myDate2);
+                    Model.Reservation reservation = Controller.Reservation.Add(guest, convertCheckIn, convertCheckOut);
 
                     foreach (ListViewItem room2 in this.lvlListarRooms.CheckedItems)
                     {

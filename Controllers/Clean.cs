@@ -20,6 +20,9 @@ namespace Controller
         public static Model.Clean Add(Model.Employee employee)
         {
             return new Model.Clean(employee, DateTime.Now);
+        }public static Model.Clean Add(Model.Employee employee, DateTime scheduledDate)
+        {
+            return new Model.Clean(employee, scheduledDate);
         }
 
         // public static Model.Clean GetCleansByRoom(int roomId)
