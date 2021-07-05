@@ -152,7 +152,7 @@ namespace View
                         Model.Room room = Controller.Room.GetRoom(Int32.Parse(Room.Text));
                         clean.AddRoom(room);
                     }
-                    MessageBox.Show("Locação Realizada!");
+                    MessageBox.Show("Cadastrado Com Sucesso!");
                     this.Close();
                 }
                 else
