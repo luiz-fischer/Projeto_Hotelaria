@@ -65,7 +65,7 @@ namespace Model
         public void AddRoom(Model.Room room)
         {
             var db = new Context();
-            Model.CleanRoom cleanRooms = new()
+            Model.CleanRoom cleanRooms = new CleanRoom()
             {
                 IdRoom = room.IdRoom,
                 IdClean = CleanId
@@ -104,7 +104,7 @@ namespace Model
 
         public int GetRoomsByEmployee()
         {
-            Context db = new();
+            Context db = new Context();
             IEnumerable<int> rooms =
             from room in db.CleanRooms
             where room.IdClean == CleanId

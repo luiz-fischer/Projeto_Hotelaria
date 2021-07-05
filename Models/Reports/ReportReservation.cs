@@ -12,21 +12,21 @@ namespace Model
         public static void ReportReservationPdf()
         {
             var path = Directory.GetCurrentDirectory();
-            Document document = new(PageSize.A4.Rotate());
+            Document document = new Document(PageSize.A4.Rotate());
             document.SetMargins(3, 2, 3, 2);
             PdfWriter writer = PdfWriter.GetInstance(document, new FileStream(
                 path + "\\Relatorios\\Reservas.pdf", FileMode.Create
             ));
             document.Open();
-            PdfPTable table = new(4);
+            PdfPTable table = new PdfPTable(4);
 
             FontFactory.RegisterDirectory("C:\\Projeto_Hotelaria\\lib\\Fonts");
             var fonte = FontFactory.GetFont("Roboto", 14);
 
-            Paragraph coluna1 = new("Nome Completo", fonte);
-            Paragraph coluna2 = new("CPF", fonte);
-            Paragraph coluna3 = new("Data do CheckIn", fonte);
-            Paragraph coluna4 = new("Data do CheckOut", fonte);
+            Paragraph coluna1 = new Paragraph("Nome Completo", fonte);
+            Paragraph coluna2 = new Paragraph("CPF", fonte);
+            Paragraph coluna3 = new Paragraph("Data do CheckIn", fonte);
+            Paragraph coluna4 = new Paragraph("Data do CheckOut", fonte);
 
             var cell1 = new PdfPCell();
             var cell2 = new PdfPCell();
@@ -46,23 +46,23 @@ namespace Model
             try
             {
 
-                List<Model.Reservation> reservationList = Controller.Reservation.GetReservations();
+                List<Reservation> reservationList = Controller.Reservation.GetReservations();
                 foreach (var reservation in reservationList)
                 {   
-                    Model.Guest guest = Controller.Guest.GetGuest(reservation.IdGuest);
-                    Phrase reservationName = new(guest.GuestName, fonte);
+                    Guest guest = Controller.Guest.GetGuest(reservation.IdGuest);
+                    Phrase reservationName = new Phrase(guest.GuestName, fonte);
                     var cell = new PdfPCell(reservationName);
                     table.AddCell(cell);
 
-                    Phrase reservationBirth = new(guest.GuestBirth, fonte);
+                    Phrase reservationBirth = new Phrase(guest.GuestBirth, fonte);
                     cell = new PdfPCell(reservationBirth);
                     table.AddCell(cell);
 
-                    Phrase reservationCheckIn = new(reservation.CheckIn.ToShortDateString(), fonte);
+                    Phrase reservationCheckIn = new Phrase(reservation.CheckIn.ToShortDateString(), fonte);
                     cell = new PdfPCell(reservationCheckIn);
                     table.AddCell(cell);
 
-                    Phrase reservationCheckOut = new(reservation.CheckOut.ToShortDateString(), fonte);
+                    Phrase reservationCheckOut = new Phrase(reservation.CheckOut.ToShortDateString(), fonte);
                     cell = new PdfPCell(reservationCheckOut);
                     table.AddCell(cell);
                 }

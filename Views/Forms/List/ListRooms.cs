@@ -27,7 +27,7 @@ namespace View
             this.btnConfirmar = new Library.Button("btnConfirmar");
             this.btnRelatorio = new Library.Button("btnRelatorio");
             this.lvRoom = new Library.ListView();
-            this.lblTitle = new();
+            this.lblTitle = new Library.Label();
             //
             // lblTitle
             this.lblTitle.Text = "Lista de Quartos";
@@ -40,7 +40,7 @@ namespace View
             List<Room> roomList = Controller.Room.GetRooms();
             foreach (var room in roomList)
             { 
-                ListViewItem lvListRoom = new(room.IdRoom.ToString());
+                ListViewItem lvListRoom = new ListViewItem(room.IdRoom.ToString());
                 lvListRoom.SubItems.Add(room.RoomFloor.ToString());
                 lvListRoom.SubItems.Add(room.RoomNumber);
                 lvListRoom.SubItems.Add(room.RoomDescription);
@@ -90,7 +90,7 @@ namespace View
             {
                 string IdRoom = this.lvRoom.SelectedItems[0].Text;
                 Room room = Controller.Room.GetRoom(Int32.Parse(IdRoom));
-                EditRoom editRoom = new(room);
+                EditRoom editRoom = new EditRoom(room);
                 editRoom.Show();
             }
             catch

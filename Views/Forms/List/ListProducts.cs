@@ -27,7 +27,7 @@ namespace View
             this.btnConfirmar = new Library.Button("btnConfirmar");
             this.btnRelatorio = new Library.Button("btnRelatorio");
             this.lvProduct = new Library.ListView();
-            this.lblTitle = new();
+            this.lblTitle = new Library.Label();
             //
             // lblTitle
             this.lblTitle.Text = "Lista de Produtos";
@@ -40,7 +40,7 @@ namespace View
             List<Product> productList = Controller.Product.GetProducts();
             foreach (var product in productList)
             {
-                ListViewItem lvListProduct = new(product.ProductId.ToString());
+                ListViewItem lvListProduct = new ListViewItem(product.ProductId.ToString());
                 lvListProduct.SubItems.Add(product.ProductName);
                 lvListProduct.SubItems.Add(product.ProductValue.ToString("C2"));
                 lvProduct.Items.Add(lvListProduct);
@@ -86,7 +86,7 @@ namespace View
             {
                 string IdProduct = this.lvProduct.SelectedItems[0].Text;
                 Product product = Controller.Product.GetProduct(Int32.Parse(IdProduct));
-                EditProduct editProduct = new(product);
+                EditProduct editProduct = new EditProduct(product);
                 editProduct.Show();
             }
             catch

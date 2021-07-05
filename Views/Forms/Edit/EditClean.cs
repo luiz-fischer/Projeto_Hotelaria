@@ -93,7 +93,7 @@ namespace View
 
         private void btnAlterar_Click(object sender, EventArgs e)
         {
-            CreateGuest createGuest = new(idClean);
+            CreateGuest createGuest = new CreateGuest(idClean);
             createGuest.Show();
         }
         private void btnDeletar_Click(object sender, EventArgs e)

@@ -80,7 +80,7 @@ namespace View
 
         private void btnAlterar_Click(object sender, EventArgs e)
         {
-            CreateProduct createProduct = new(idProduct);
+            CreateProduct createProduct = new CreateProduct(idProduct);
             createProduct.Show();
         }
         private void btnDeletar_Click(object sender, EventArgs e)

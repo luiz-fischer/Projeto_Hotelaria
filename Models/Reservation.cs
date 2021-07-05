@@ -19,14 +19,14 @@ namespace Model
         [Required] 
         public DateTime CheckIn { get; set; }
         public DateTime CheckOut { get; set; }
-        public List<Room> rooms = new();
+        public List<Room> rooms = new List<Room>();
 
         public Reservation()
         {
         }
 
         public Reservation(
-            Model.Guest guest,
+            Guest guest,
             DateTime checkIn,
             DateTime checkOut
         )
@@ -42,10 +42,10 @@ namespace Model
             db.SaveChanges();
         }
 
-        public void AddRoom(Model.Room room)
+        public void AddRoom(Room room)
         {
             var db = new Context();
-            Model.ReservationRoom reservationRoom = new()
+            ReservationRoom reservationRoom = new ReservationRoom()
             {
                 IdRoom = room.IdRoom,
                 IdReservation = IdReservation
@@ -60,7 +60,7 @@ namespace Model
             var dias = this.CheckOut - this.CheckIn;
 
             double total = 0;
-            Context db = new();
+            Context db = new Context();
             IEnumerable<int> rooms =
             from room in db.ReservationRooms
             where room.IdReservation == IdReservation
@@ -68,7 +68,7 @@ namespace Model
 
             foreach (int id in rooms)
             {
-                Model.Room room = Model.Room.GetRoom(id);
+                Room room = Room.GetRoom(id);
                 total += room.RoomValue * Convert.ToInt32(dias);
             }
 
@@ -89,7 +89,7 @@ namespace Model
             var db = new Context();
             return db.Reservations.ToList();
         }
-        public static List<Model.Reservation> GetReservationByIdGuest(int guestId)
+        public static List<Reservation> GetReservationByIdGuest(int guestId)
         {
             var db = new Context();
             return (from reservation in db.Reservations

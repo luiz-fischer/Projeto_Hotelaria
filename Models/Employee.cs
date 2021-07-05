@@ -12,14 +12,14 @@ namespace Model
         [Key]
         public int EmployeeId { get; set; }
         public string EmployeeName { get; set; }
-        public List<Model.Clean> cleans = new();
+        public List<Clean> cleans = new List<Clean>();
 
         public Employee(
             string employeeName
         )
         {
             this.EmployeeName = employeeName;
-            cleans = new List<Model.Clean>();
+            cleans = new List<Clean>();
 
             var db = new Context();
             db.Employees.Add(this);
@@ -37,12 +37,12 @@ namespace Model
                     select employee).First();
         }
 
-        public void AddClean(Model.Clean clean)
+        public void AddClean(Clean clean)
         {
             cleans.Add(clean);
         }
 
-        public static List<Model.Employee> GetEmployees()
+        public static List<Employee> GetEmployees()
         {
             var db = new Context();
             return db.Employees.ToList();
@@ -52,7 +52,7 @@ namespace Model
             int employeeId,
             string employeeName)
         {
-            Context db = new();
+            var db = new Context();
             try
             {
                 Employee employee = db.Employees.First(employee => employee.EmployeeId == employeeId);

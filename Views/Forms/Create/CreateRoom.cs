@@ -44,7 +44,7 @@ namespace View
             this.txtBxRoomNumber = new Library.TextBox("");
             this.txtBxRoomDescription = new Library.TextBox("");
             this.txtBxRoomValue = new Library.TextBox("");
-            this.lblTitle = new();
+            this.lblTitle = new Library.Label();
             //
             // lblTitle
             this.lblTitle.Text = "Cadastro de Quarto";
@@ -94,9 +94,9 @@ namespace View
                 double convertDoubleNumber;
 
                 convertDoubleNumber = Convert.ToDouble(txtBxRoomValue.Text);
-                Regex roomNumber = new(@"^?[0-9][0-9,\.]+$");
-                Regex roomDescription = new(@"^[a-zA-Z\s]");
-                Regex roomValue = new(@"^?[0-9][0-9,\.]+$");
+                Regex roomNumber = new Regex(@"^?[0-9][0-9,\.]+$");
+                Regex roomDescription = new Regex(@"^[a-zA-Z\s]");
+                Regex roomValue = new Regex(@"^?[0-9][0-9,\.]+$");
 
                 if ((!roomNumber.IsMatch(this.txtBxRoomNumber.Text)))
                 {

@@ -15,8 +15,8 @@ namespace Model
         public string RoomNumber { get; set; }
         public string RoomDescription { get; set; }
         public double RoomValue { get; set; }
-        public List<Model.Reservation> reservations = new();
-        public List<Model.Clean> cleans = new();
+        public List<Reservation> reservations = new List<Reservation>();
+        public List<Clean> cleans = new List<Clean>();
 
         public Room(
             int roomFloor,
@@ -38,21 +38,21 @@ namespace Model
         {
         }
 
-        public static Model.Room GetRoom(int roomId)
+        public static Room GetRoom(int roomId)
         {
             var db = new Context();
             return (from room in db.Rooms
                     where room.IdRoom == roomId
                     select room).First();
         }
-        public void AddReservation(Model.Reservation reservation)
+        public void AddReservation(Reservation reservation)
         {
             reservations.Add(reservation);
         }
 
         public static List<Room> GetRooms()
         {
-            Context db = new();
+            Context db = new Context();
             return db.Rooms.ToList();
         }
 
@@ -64,10 +64,10 @@ namespace Model
             double roomValue
         )
         {
-            Context db = new();
+            Context db = new Context();
             try
             {
-                Model.Room room = db.Rooms.First(room => room.IdRoom == roomId);
+                Room room = db.Rooms.First(room => room.IdRoom == roomId);
                 room.RoomFloor = roomFloor;
                 room.RoomNumber = roomNumber;
                 room.RoomDescription = roomDescription;
@@ -94,7 +94,7 @@ namespace Model
             }
 
         }
-        public void AddClean(Model.Clean clean)
+        public void AddClean(Clean clean)
         {
             cleans.Add(clean);
         }

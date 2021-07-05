@@ -16,7 +16,7 @@ namespace Model
         public double Payment { get; set; }
         public string GuestIdentification { get; set; }
         public string MothersName { get; set; }
-        public List<Reservation> reservations = new();
+        public List<Reservation> reservations = new List<Reservation>();
 
         public Guest()
         {

@@ -29,7 +29,7 @@ namespace View
             this.btnConfirmar = new Library.Button("btnConfirmar");
             this.btnRelatorio = new Library.Button("btnRelatorio");
             this.lvlEmpolyee = new Library.ListView();
-            this.lblTitle = new();
+            this.lblTitle = new Library.Label();
             this.lblTableEmployee = new Library.Label();
             //
             // lblTitle
@@ -49,7 +49,7 @@ namespace View
             List<Employee> employeeList = Controller.Employee.GetEmployees();
             foreach (var employee in employeeList)
             {
-                ListViewItem lvListEmployee = new(employee.EmployeeId.ToString());
+                ListViewItem lvListEmployee = new ListViewItem(employee.EmployeeId.ToString());
                 lvListEmployee.SubItems.Add(employee.EmployeeName);
                 lvlEmpolyee.Items.Add(lvListEmployee);
             }
@@ -94,7 +94,7 @@ namespace View
             {
                 string IdEmployee = this.lvlEmpolyee.SelectedItems[0].Text;
                 Employee employee = Controller.Employee.GetEmployee(Int32.Parse(IdEmployee));
-                EditEmployee editEmployee = new(employee);
+                EditEmployee editEmployee = new EditEmployee(employee);
                 editEmployee.Show();
             }
             catch

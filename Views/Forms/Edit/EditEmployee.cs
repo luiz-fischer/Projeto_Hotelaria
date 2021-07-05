@@ -79,7 +79,7 @@ namespace View
 
         private void btnAlterar_Click(object sender, EventArgs e)
         {
-            CreateEmployee createEmployee = new(idEmployee);
+            CreateEmployee createEmployee = new CreateEmployee(idEmployee);
             createEmployee.Show();
         }
         private void btnDeletar_Click(object sender, EventArgs e)

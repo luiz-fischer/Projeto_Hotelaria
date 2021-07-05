@@ -12,22 +12,22 @@ namespace Model
         public static void ReportCleanPdf()
         {
             var path = Directory.GetCurrentDirectory();
-            Document document = new(PageSize.A4.Rotate());
+            Document document = new Document(PageSize.A4.Rotate());
             document.SetMargins(3, 2, 3, 2);
             PdfWriter writer = PdfWriter.GetInstance(document, new FileStream(
                 path + "\\Relatorios\\Limpezas.pdf", FileMode.Create
             ));
             document.Open();
-            PdfPTable table = new(5);
+            PdfPTable table = new PdfPTable(5);
 
             FontFactory.RegisterDirectory("C:\\Projeto_Hotelaria\\lib\\Fonts");
             var fonte = FontFactory.GetFont("Roboto", 14);
 
-            Paragraph coluna1 = new("Nome Completo", fonte);
-            Paragraph coluna2 = new("Data Limpeza", fonte);
-            Paragraph coluna3 = new("Andar", fonte);
-            Paragraph coluna4 = new("Numero Quarto", fonte);
-            Paragraph coluna5 = new("Descrição", fonte);
+            Paragraph coluna1 = new Paragraph("Nome Completo", fonte);
+            Paragraph coluna2 = new Paragraph("Data Limpeza", fonte);
+            Paragraph coluna3 = new Paragraph("Andar", fonte);
+            Paragraph coluna4 = new Paragraph("Numero Quarto", fonte);
+            Paragraph coluna5 = new Paragraph("Descrição", fonte);
 
             var cell1 = new PdfPCell();
             var cell2 = new PdfPCell();
@@ -60,23 +60,23 @@ namespace Model
                         Model.Employee employee = Controller.Employee.GetEmployee(clean.EmployeeId);
                         Model.Room roomLt = Controller.Room.GetRoom(room.IdRoom);
 
-                        Phrase cleanEmployeeName = new(employee.EmployeeName, fonte);
+                        Phrase cleanEmployeeName = new Phrase(employee.EmployeeName, fonte);
                         var cell = new PdfPCell(cleanEmployeeName);
                         table.AddCell(cell);
 
-                        Phrase cleanDate = new(clean.Date.ToShortDateString(), fonte);
+                        Phrase cleanDate = new Phrase(clean.Date.ToShortDateString(), fonte);
                         cell = new PdfPCell(cleanDate);
                         table.AddCell(cell);
 
-                        Phrase cleanFloor = new(room.RoomFloor.ToString(), fonte);
+                        Phrase cleanFloor = new Phrase(room.RoomFloor.ToString(), fonte);
                         cell = new PdfPCell(cleanFloor);
                         table.AddCell(cell);
 
-                        Phrase cleanRoomNumber = new(room.RoomNumber.ToString(), fonte);
+                        Phrase cleanRoomNumber = new Phrase(room.RoomNumber.ToString(), fonte);
                         cell = new PdfPCell(cleanRoomNumber);
                         table.AddCell(cell);
 
-                        Phrase cleanRoomDescription = new(room.RoomDescription, fonte);
+                        Phrase cleanRoomDescription = new Phrase(room.RoomDescription, fonte);
                         cell = new PdfPCell(cleanRoomDescription);
                         table.AddCell(cell);
 

@@ -27,7 +27,7 @@ namespace View
             this.btnConfirmar = new Library.Button("btnConfirmar");
             this.btnRelatorio = new Library.Button("btnRelatorio");
             this.lvlClean = new Library.ListView();
-            this.lblTitle = new();
+            this.lblTitle = new Library.Label();
             //
             // btnCancelar
             this.btnCancelar.Click += new EventHandler(this.btnCancelar_Click);
@@ -54,7 +54,7 @@ namespace View
             {
                 Employee employee = Controller.Employee.GetEmployee(clean.EmployeeId);
                 Room room = Controller.Room.GetRoom(clean.RoomId);
-                ListViewItem lvListRoom = new(clean.CleanId.ToString());
+                ListViewItem lvListRoom = new ListViewItem(clean.CleanId.ToString());
                 lvListRoom.SubItems.Add(employee.EmployeeName.ToString());
                 lvListRoom.SubItems.Add(clean.Date.ToString("dd/MM/yyyy"));
                 lvListRoom.SubItems.Add(room.RoomFloor.ToString());
@@ -96,7 +96,7 @@ namespace View
             {   
                 string IdClean = this.lvlClean.SelectedItems[0].Text;
                 Clean clean = Controller.Clean.GetClean(Int32.Parse(IdClean));
-                EditClean editClean = new(clean);
+                EditClean editClean = new EditClean(clean);
                 editClean.Show();
             }
             catch

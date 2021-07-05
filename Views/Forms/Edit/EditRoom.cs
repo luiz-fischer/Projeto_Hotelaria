@@ -82,7 +82,7 @@ namespace View
 
         private void btnAlterar_Click(object sender, EventArgs e)
         {
-            CreateRoom createRoom = new(idRoom);
+            CreateRoom createRoom = new CreateRoom(idRoom);
             createRoom.Show();
         }
         private void btnDeletar_Click(object sender, EventArgs e)

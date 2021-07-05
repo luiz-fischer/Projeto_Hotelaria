@@ -35,7 +35,7 @@ namespace View
             this.btnConfirmar = new Library.Button("btnConfirmar");
             this.btnCancelar = new Library.Button("btnCancelar");
             this.txtBxName = new Library.TextBox("txtBxName");
-            this.lblTitle = new();
+            this.lblTitle = new Library.Label();
             //
             // lblTitle
             this.lblTitle.Text = "Cadastro de Empregados";
@@ -62,7 +62,7 @@ namespace View
         {
             try
             {
-                Regex employeeName = new(@"^[a-zA-Z\s]");
+                Regex employeeName = new Regex(@"^[a-zA-Z\s]");
 
                 if ((!employeeName.IsMatch(this.txtBxName.Text)))
                 {

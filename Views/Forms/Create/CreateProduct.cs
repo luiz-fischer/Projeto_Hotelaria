@@ -38,7 +38,7 @@ namespace View
             this.btnCancelar = new Library.Button("btnCancelar");
             this.txtBxName = new Library.TextBox("txtBxName");
             this.txtBxValue = new Library.TextBox("txtBxValue");
-            this.lblTitle = new();
+            this.lblTitle = new Library.Label();
             //
             // lblTitle
             this.lblTitle.Text = "Cadastro de Produtos";
@@ -72,8 +72,8 @@ namespace View
         {
             try
             {
-                Regex productName = new(@"^[a-zA-Z\s]");
-                Regex productValue = new(@"^?[0-9][0-9,\.]+$");
+                Regex productName = new Regex(@"^[a-zA-Z\s]");
+                Regex productValue = new Regex(@"^?[0-9][0-9,\.]+$");
                 if ((!productName.IsMatch(this.txtBxName.Text)))
                 {
                     this.TextErrorName.SetError(this.txtBxName, "Apenas letras!");

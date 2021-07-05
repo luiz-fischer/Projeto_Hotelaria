@@ -35,8 +35,8 @@ namespace View
             this.lblTitulo = new Library.Label();
             this.lblGuest = new Library.Label();
             this.lblRoom = new Library.Label();
-            this.dtCheckIn = new();
-            this.dtCheckOut = new();
+            this.dtCheckIn = new DateTimePicker();
+            this.dtCheckOut = new DateTimePicker();
             //
             // lblCheckIn
             this.lblCheckIn.Text = "Data CheckIn";
@@ -86,7 +86,7 @@ namespace View
             List<Model.Guest> listaGuests = Controller.Guest.GetGuests();
             foreach (Model.Guest guest in listaGuests)
             {
-                ListViewItem lv_ListaGuest = new(guest.IdGuest.ToString());
+                ListViewItem lv_ListaGuest = new ListViewItem(guest.IdGuest.ToString());
                 lv_ListaGuest.SubItems.Add(guest.GuestName);
                 lv_ListaGuest.SubItems.Add(guest.GuestBirth);
                 lv_ListaGuest.SubItems.Add(guest.GuestIdentification);
@@ -118,7 +118,7 @@ namespace View
             List<Model.Room> listaRooms = Controller.Room.GetRooms();
             foreach (Model.Room room in listaRooms)
             {
-                ListViewItem lv_ListaRoom = new(room.IdRoom.ToString());
+                ListViewItem lv_ListaRoom = new ListViewItem(room.IdRoom.ToString());
                 lv_ListaRoom.SubItems.Add(room.RoomFloor.ToString());
                 lv_ListaRoom.SubItems.Add(room.RoomNumber);
                 lv_ListaRoom.SubItems.Add(room.RoomDescription);

@@ -25,7 +25,7 @@ namespace View
             this.btnCancelar = new Library.Button("btnCancelar");
             this.btnRelatorio = new Library.Button("btnRelatorio");
             this.lvlReservation = new Library.ListView();
-            this.lblTitle = new();
+            this.lblTitle = new Library.Label();
             //
             // lblTitle
             this.lblTitle.Text = "Lista de Reservas";
@@ -39,7 +39,7 @@ namespace View
             foreach (var reservation in reservationList)
             { 
                 Guest guest = Controller.Guest.GetGuest(reservation.IdGuest);
-                ListViewItem lvListRoom = new(reservation.IdReservation.ToString());
+                ListViewItem lvListRoom = new ListViewItem(reservation.IdReservation.ToString());
                 lvListRoom.SubItems.Add(guest.GuestName.ToString());
                 lvListRoom.SubItems.Add(guest.GuestIdentification.ToString());
                 lvListRoom.SubItems.Add(reservation.CheckIn.ToString("dd/MM/yyyy"));

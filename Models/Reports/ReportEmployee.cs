@@ -12,19 +12,19 @@ namespace Model
         public static void ReportEmployeePdf()
         {
             var path = Directory.GetCurrentDirectory();
-            Document document = new(PageSize.A4.Rotate());
+            Document document = new Document(PageSize.A4.Rotate());
             document.SetMargins(3, 2, 3, 2);
             PdfWriter writer = PdfWriter.GetInstance(document, new FileStream(
                 path + "\\Relatorios\\Empregados.pdf", FileMode.Create
             ));
             document.Open();
-            PdfPTable table = new(2);
+            PdfPTable table = new PdfPTable(2);
 
             FontFactory.RegisterDirectory("C:\\Projeto_Hotelaria\\lib\\Fonts");
             var fonte = FontFactory.GetFont("Roboto", 14);
 
-            Paragraph coluna1 = new("ID Empregado", fonte);
-            Paragraph coluna2 = new("Nome Completo", fonte);
+            Paragraph coluna1 = new Paragraph("ID Empregado", fonte);
+            Paragraph coluna2 = new Paragraph("Nome Completo", fonte);
 
             var cell1 = new PdfPCell();
             var cell2 = new PdfPCell();
@@ -38,14 +38,14 @@ namespace Model
             try
             {
 
-                List<Model.Employee> employeeEmployee = Controller.Employee.GetEmployees();
+                List<Employee> employeeEmployee = Controller.Employee.GetEmployees();
                 foreach (var employee in employeeEmployee)
                 {
-                    Phrase employeeId = new(employee.EmployeeId.ToString(), fonte);
+                    Phrase employeeId = new Phrase(employee.EmployeeId.ToString(), fonte);
                     var cell = new PdfPCell(employeeId);
                     table.AddCell(cell);
 
-                    Phrase employeeName = new(employee.EmployeeName, fonte);
+                    Phrase employeeName = new Phrase(employee.EmployeeName, fonte);
                     cell = new PdfPCell(employeeName);
                     table.AddCell(cell);
 

@@ -48,7 +48,7 @@ namespace View
             this.txtBxMotherName = new Library.TextBox("txtBxMotherName");
             this.cbPayment = new Library.ComboBox("cbPayment");
             this.msktBxIdentification = new Library.MaskedTextBox();
-            this.lblTitle = new();
+            this.lblTitle = new Library.Label();
             //
             // lblTitle
             this.lblTitle.Text = "Cadastro de Hóspedes";
@@ -92,10 +92,10 @@ namespace View
         {
             try
             {
-                Regex guestName = new(@"^[a-zA-Z\s]");
-                Regex guestBirth = new(@"^(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]s|1[012])[- /.](19|20)\d\d$");
-                Regex guestIdentification = new(@"^\d{3}\.\d{3}\.\d{3}\-\d{2}$");
-                Regex guestMotherName = new(@"^[a-zA-Z\s]");
+                Regex guestName = new Regex(@"^[a-zA-Z\s]");
+                Regex guestBirth = new Regex(@"^(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]s|1[012])[- /.](19|20)\d\d$");
+                Regex guestIdentification = new Regex(@"^\d{3}\.\d{3}\.\d{3}\-\d{2}$");
+                Regex guestMotherName = new Regex(@"^[a-zA-Z\s]");
                 if ((!guestName.IsMatch(this.txtBxName.Text)))
                 {
                     this.TextErrorName.SetError(this.txtBxName, "Apenas Letras!");

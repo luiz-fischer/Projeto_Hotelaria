@@ -28,7 +28,7 @@ namespace View
             this.btnConfirmar = new Library.Button("btnConfirmar");
             this.btnRelatorio = new Library.Button("btnRelatorio");
             this.lvGuest = new Library.ListView();
-            this.lblTitle = new();
+            this.lblTitle = new Library.Label();
             this.lblTableGuest = new Library.Label();
             //
             // lblTitle
@@ -48,7 +48,7 @@ namespace View
             List<Guest> guestList = Controller.Guest.GetGuests();
             foreach (var guest in guestList)
             {
-                ListViewItem lvListGuest = new(guest.IdGuest.ToString());
+                ListViewItem lvListGuest = new ListViewItem(guest.IdGuest.ToString());
                 lvListGuest.SubItems.Add(guest.GuestName);
                 lvListGuest.SubItems.Add(guest.GuestBirth);
                 lvListGuest.SubItems.Add(guest.GuestIdentification);
@@ -99,8 +99,8 @@ namespace View
             try
             {
                 string IdGuest = this.lvGuest.SelectedItems[0].Text;
-                Model.Guest guest = Controller.Guest.GetGuest(Int32.Parse(IdGuest));
-                EditGuest editGuest = new(guest);
+                Guest guest = Controller.Guest.GetGuest(Int32.Parse(IdGuest));
+                EditGuest editGuest = new EditGuest(guest);
                 editGuest.Show();
             }
             catch
