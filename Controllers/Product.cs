@@ -6,7 +6,7 @@ namespace Controller
 {
     public class Product
     {
-        public static void AddProduct(string productName, int productValue)
+        public static void AddProduct(string productName, double productValue)
         {
             if (productName == null || productValue == 0)
             {
@@ -17,7 +17,11 @@ namespace Controller
             new Model.Product(productName, productValue);
         }
 
-        public static void UpdateProduct(int productId, string productName, int productValue)
+        public static void UpdateProduct(
+            int productId,
+            string productName,
+            double productValue
+        )
         {
             Model.Product.UpdateProduct(productId, productName, productValue);
         }
@@ -31,9 +35,9 @@ namespace Controller
             return Model.Product.GetProducts();
         }
 
-        public static Model.Product GetProductById(int ProductId)
+        public static Model.Product GetProduct(int ProductId)
         {
-            return Model.Product.GetProductId(ProductId);
+            return Model.Product.GetProduct(ProductId);
         }
     }
 }

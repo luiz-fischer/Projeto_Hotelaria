@@ -2,15 +2,14 @@ using System.Drawing;
 using System.Windows.Forms;
 using static System.Windows.Forms.View;
 
-namespace Library
+namespace Library 
 {
     public class ListView : System.Windows.Forms.ListView
     {
-        public ListView()
+        public ListView( )
         {
-            this.Location = new Point(12, 175);
-            this.Size = new Size(1320, 200);
-            this.Font = new Font(this.Font, FontStyle.Bold);
+            this.Size = new Size(1050, 200);
+            this.Font = new Font("Roboto", 14F, GraphicsUnit.Point);
             this.View = Details;
             this.FullRowSelect = true;
             this.GridLines = true;

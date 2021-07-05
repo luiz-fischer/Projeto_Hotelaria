@@ -1,10 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
-using System.Windows.Forms;
-using System.Text.RegularExpressions;
 using Repository;
 
 
@@ -16,6 +13,11 @@ namespace Model
         public int ProductId { get; set; }
         public string ProductName { get; set; }
         public double ProductValue { get; set; }
+
+        public Product()
+        {
+
+        }
 
         public Product(
             string productName,
@@ -53,7 +55,7 @@ namespace Model
         public static void UpdateProduct(
             int productId,
             string productName,
-            int productValue
+            double productValue
         )
         {
             Product Product = GetProductId(productId);

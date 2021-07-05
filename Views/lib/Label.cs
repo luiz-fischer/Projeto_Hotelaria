@@ -7,9 +7,9 @@ namespace Library
     {
         public Label()
         {
-            this.Size = new Size(500, 28);
-            this.Font = new Font(FontFamily.GenericSansSerif, 12F, FontStyle.Bold);
-            this.ForeColor = Color.Black;
+            this.Size = new Size(500, 40);
+            this.Font = new Font("Roboto", 23F, FontStyle.Bold, GraphicsUnit.Point);
+            this.ForeColor = ColorTranslator.FromHtml("#3C4858");
         }
-    }
+     }
 }

@@ -7,7 +7,7 @@ namespace Library
 {
     public class LinkLabelAjuda : System.Windows.Forms.LinkLabel
     {
-        public LinkLabelAjuda()
+        public  LinkLabelAjuda()
         {
             this.AutoSize = true;
             this.BorderStyle = BorderStyle.Fixed3D;

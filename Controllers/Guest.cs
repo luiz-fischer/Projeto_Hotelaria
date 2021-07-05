@@ -2,29 +2,29 @@ using System;
 using System.Collections.Generic;
 namespace Controller
 {
-    public class Guest
+    public static class Guest
     {
 
-        public static Model.Guest AddGuest(
+        public static void AddGuest(
             string guestName,
-            DateTime guestBirth,
+            string guestBirth,
             int payment,
             string guestIdentification,
             string mothersName
         )
         {
+            DateTime birthDate;
             try
             {
-                DateTime birthDate;
                 birthDate = Convert.ToDateTime(guestBirth);
             }
             catch
             {
                 Console.WriteLine("FORMATO INVÁLIDO!");
-                guestBirth = DateTime.Now;
+                birthDate = DateTime.Now;
             }
 
-            return new Model.Guest(
+            new Model.Guest(
                 guestName,
                 guestBirth,
                 payment,
@@ -36,7 +36,7 @@ namespace Controller
         public static void UpdateGuest(
             int guestId,
             string guestName,
-            DateTime guestBirth,
+            string guestBirth,
             double payment,
             string guestIdentification,
             string mothersName
@@ -62,9 +62,9 @@ namespace Controller
             return Model.Guest.GetGuests();
         }
 
-        public static Model.Guest GetGuestId(int guestsId)
+        public static Model.Guest GetGuest(int guestsId)
         {
-            return Model.Guest.GetGuestId(guestsId);
+            return Model.Guest.GetGuest(guestsId);
         }
     }
 }

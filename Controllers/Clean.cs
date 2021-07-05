@@ -9,7 +9,7 @@ namespace Controller
         {
             try
             {
-                Model.Room.GetRoomId(roomId);
+                Model.Room.GetRoom(roomId);
             }
             catch (Exception error)
             {
@@ -18,9 +18,9 @@ namespace Controller
             return new Model.Clean(roomId);
         }
 
-        public static Model.Clean GetCleansByRoom(int roomId)
+        public static Model.Clean Add(Model.Employee employee, Model.Room room, DateTime scheduledDate)
         {
-            return Model.Clean.GetCleanByRoom(roomId);
+            return new Model.Clean(employee, room, scheduledDate);
         }
 
         public static List<Model.Clean> GetCleans()
@@ -37,23 +37,8 @@ namespace Controller
         {
             Model.Clean.DeleteClean(cleanId);
         }
-
-        public static void SetCleanDone(int cleanId, int employeeId)
-        {
-            Model.Clean clean = GetClean(cleanId);
-            try
-            {
-                Model.Employee.GetEmployee(employeeId);
-            }
-            catch (Exception error)
-            {
-                MessageBox.Show(error.Message, "Funcionário não encontrado!");
-            }
-
-            if (string.IsNullOrEmpty(clean.Date.ToString()))
-            {
-                Model.Clean.SetCleanDone(cleanId, employeeId);
-            }
-        }
+        
     }
 }
+
+

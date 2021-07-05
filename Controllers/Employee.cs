@@ -2,9 +2,11 @@ using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
-namespace Controller {
-    public class Employee {
-         public static Model.Employee AddEmployee(string employeeName)
+namespace Controller
+{
+    public class Employee
+    {
+        public static Model.Employee AddEmployee(string employeeName)
         {
             return new Model.Employee(employeeName);
         }
@@ -18,12 +20,22 @@ namespace Controller {
         {
             return Model.Employee.GetEmployee(employeeId);
         }
+        public static void UpdateEmployee(
+           int employeeId,
+           string employeeName
+       )
+        {
+            Model.Employee.UpdateEmployee(
+                employeeId,
+                employeeName
+            );
+        }
 
         public static void DeleteEmployee(int employeeId)
         {
             try
             {
-               Model.Employee.DeleteEmployee(employeeId);
+                Model.Employee.DeleteEmployee(employeeId);
             }
             catch (Exception error)
             {

@@ -8,29 +8,29 @@ namespace Library
     {
         public PictureBox(string caseSwitch)
         {
-            this.BorderStyle = BorderStyle.Fixed3D;
+            // this.BorderStyle = BorderStyle.Fixed3D;
             this.ImeMode = ImeMode.NoControl;
-            this.SizeMode = PictureBoxSizeMode.StretchImage;
+            // this.SizeMode = PictureBoxSizeMode.StretchImage;
             this.BackgroundImageLayout = ImageLayout.Stretch;
             this.TabIndex = 41;
             this.TabStop = false;
 
             switch (caseSwitch)
             {
-                case "imagemTitle":
-                    // ImagemTitle
-                    // this.Load("C:\\LocaCar\\Imagens\\imagemTitle.jpg");
-                    this.Location = new Point(230, 10);
-                    this.Size = new Size(900, 102);
-                    this.Name = "imagemTitle";
+                case "menu_side":
+                    // menu_side
+                    this.Load("C:\\Projeto_Hotelaria\\Views\\Assets\\menu_side.png");
+                    this.Location = new Point(10, 10);
+                    this.Size = new Size(200, 800);
+                    this.Name = "menu_side";
                     break;
 
-                case "imagemLogo":
-                    // ImagemLogo
-                    // this.Load("C:\\LocaCar\\Imagens\\imagemLogo.jpg");
-                    this.Location = new Point(12, 550);
-                    this.Size = new Size(130, 120);
-                    this.Name = "imagemLogo";
+                case "logo_image": 
+                    // logo_image
+                    // this.Load("C:\\Projeto_Hotelaria\\Views\\Assets\\logo_image.png");
+                    this.Location = new Point(900, 475);
+                    this.Size = new Size(350, 350);
+                    this.Name = "logo_image";
                     break;
 
                 default:
