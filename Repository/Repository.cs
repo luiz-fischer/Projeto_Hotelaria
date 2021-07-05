@@ -13,6 +13,7 @@ namespace Repository
         public DbSet<Model.Reservation> Reservations { get; set; }
         public DbSet<Model.Room> Rooms { get; set; }
         public DbSet<Model.ReservationRoom> ReservationRooms { get; set; }
+        public DbSet<Model.CleanRoom> CleanRooms { get; set; }
 
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

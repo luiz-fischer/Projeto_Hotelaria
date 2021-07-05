@@ -2,7 +2,6 @@ using System;
 using System.Drawing;
 using System.Windows.Forms;
 using System.Collections.Generic;
-using System.Globalization;
 
 namespace View
 {
@@ -42,23 +41,23 @@ namespace View
             // lblCheckIn
             this.lblCheckIn.Text = "Data CheckIn";
             this.lblCheckIn.Font = new Font("Roboto", 16F, GraphicsUnit.Point);
-            this.lblCheckIn.Location = new Point(900, 90);
+            this.lblCheckIn.Location = new Point(900, 355);
             this.lblCheckIn.ForeColor = ColorTranslator.FromHtml("#8492A6");
             //
-            // lblCheckOut
-            this.lblCheckOut.Text = "Data CheckOut";
-            this.lblCheckOut.Font = new Font("Roboto", 16F, GraphicsUnit.Point);
-            this.lblCheckOut.Location = new Point(900, 150);
-            this.lblCheckOut.ForeColor = ColorTranslator.FromHtml("#8492A6");
-            //
             // dtCheckIn
-            this.dtCheckIn.Location = new Point(950, 120);
+            this.dtCheckIn.Location = new Point(950, 385);
             this.dtCheckIn.Format = DateTimePickerFormat.Custom;
             this.dtCheckIn.CustomFormat = "dd/MM/yyyy";
             this.dtCheckIn.ShowUpDown = true;
             //
+            // lblCheckOut
+            this.lblCheckOut.Text = "Data CheckOut";
+            this.lblCheckOut.Font = new Font("Roboto", 16F, GraphicsUnit.Point);
+            this.lblCheckOut.Location = new Point(900, 415);
+            this.lblCheckOut.ForeColor = ColorTranslator.FromHtml("#8492A6");
+            //
             // dtCheckOut
-            this.dtCheckOut.Location = new Point(950, 180);
+            this.dtCheckOut.Location = new Point(950, 445);
             this.dtCheckOut.Format = DateTimePickerFormat.Custom;
             this.dtCheckOut.CustomFormat = "dd/MM/yyyy";
             this.dtCheckOut.ShowUpDown = true;
@@ -82,7 +81,7 @@ namespace View
             this.lblGuest.Location = new Point(247, 75);
             //
             // lvListarGuests
-            this.lvListarGuests.Size = new Size(620, 200);
+            this.lvListarGuests.Size = new Size(900, 200);
             this.lvListarGuests.Location = new Point(250, 100);
             List<Model.Guest> listaGuests = Controller.Guest.GetGuests();
             foreach (Model.Guest guest in listaGuests)
@@ -114,7 +113,7 @@ namespace View
             // lvlListarRooms
             this.lvlListarRooms.Location = new Point(250, 360);
             this.lvlListarRooms.Size = new Size(620, 200);
-            this.lvlListarRooms.MultiSelect = true;
+            // this.lvlListarRooms.MultiSelect = true;
             this.lvlListarRooms.CheckBoxes = true;
             List<Model.Room> listaRooms = Controller.Room.GetRooms();
             foreach (Model.Room room in listaRooms)

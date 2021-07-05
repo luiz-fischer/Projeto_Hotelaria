@@ -19,7 +19,7 @@ namespace Model
         )
         {
             this.EmployeeName = employeeName;
-            this.cleans = new List<Model.Clean>();
+            cleans = new List<Model.Clean>();
 
             var db = new Context();
             db.Employees.Add(this);
@@ -40,7 +40,6 @@ namespace Model
         public void AddClean(Model.Clean clean)
         {
             cleans.Add(clean);
-
         }
 
         public static List<Model.Employee> GetEmployees()
@@ -49,7 +48,9 @@ namespace Model
             return db.Employees.ToList();
         }
 
-        public static void UpdateEmployee(int employeeId, string employeeName)
+        public static void UpdateEmployee(
+            int employeeId,
+            string employeeName)
         {
             Context db = new();
             try

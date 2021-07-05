@@ -7,7 +7,7 @@ namespace View
 {
     public class CreateClean : Form
     {
-        private Library.PictureBox logo_size_invert;
+        private Library.PictureBox menu_side;
         private Library.Button btnConfirmar;
         private Library.Button btnCancelar;
         private Library.Label lblTitle;
@@ -34,7 +34,7 @@ namespace View
 
         public void InitializeComponent(bool isUpdate)
         {
-            this.logo_size_invert = new Library.PictureBox("logo_size_full");
+            this.menu_side = new Library.PictureBox("menu_side");
             this.btnConfirmar = new Library.Button("btnConfirmar");
             this.btnCancelar = new Library.Button("btnCancelar");
             this.lblEmployee = new Library.Label();
@@ -45,6 +45,7 @@ namespace View
             //
             // btnConfirmar
             this.btnConfirmar.Location = new Point(600, 620);
+            this.btnConfirmar.Click += new EventHandler(this.btn_ConfirmarClick);
             //
             // btnCancelar
             this.btnCancelar.Location = new Point(780, 620);
@@ -94,6 +95,7 @@ namespace View
                 lvRoom.Items.Add(lvListRoom);
             }
             this.lvRoom.MultiSelect = false;
+            this.lvRoom.CheckBoxes = true;
             this.lvRoom.Columns.Add("ID Quarto", -2, HorizontalAlignment.Center);
             this.lvRoom.Columns.Add("Andar", -2, HorizontalAlignment.Center);
             this.lvRoom.Columns.Add("Quarto", -2, HorizontalAlignment.Center);
@@ -103,7 +105,7 @@ namespace View
             // Form
             this.WindowState = FormWindowState.Maximized;
             this.BackColor = ColorTranslator.FromHtml("#E0E6ED");
-            this.Controls.Add(this.logo_size_invert);
+            this.Controls.Add(this.menu_side);
             this.Controls.Add(this.btnConfirmar);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.lblEmployee);
@@ -120,26 +122,26 @@ namespace View
             {
                 if ((lvEmployee.SelectedItems.Count > 0) && (lvRoom.CheckedItems.Count > 0))
                 {
-                    string EmployeeId = this.lvEmployee.SelectedItems[0].Text;
-                    Model.Employee employee = Controller.Employee.GetEmployee(Int32.Parse(EmployeeId));
+                    string employeeId = this.lvEmployee.SelectedItems[0].Text;
+                    Model.Employee employee = Controller.Employee.GetEmployee(Int32.Parse(employeeId));
                     Model.Clean clean = Controller.Clean.Add(employee);
 
                     foreach (ListViewItem Room in this.lvRoom.CheckedItems)
                     {
                         Model.Room room = Controller.Room.GetRoom(Int32.Parse(Room.Text));
-                        // clean.AddRoom(room);
+                        clean.AddRoom(room);
                     }
                     MessageBox.Show("Locação Realizada!");
                     this.Close();
                 }
                 else
                 {
-                    MessageBox.Show("Selecione o Cliente e Pelo Menos Um Veiculo!");
+                    MessageBox.Show("Selecione o Empregado e Pelo Menos Um Quarto!");
                 }
             }
             catch (Exception error)
             {
-                MessageBox.Show(error.Message, "Selecione o Cliente e Pelo Menos Um Veiculo!");
+                MessageBox.Show(error.Message, "Selecione o Empregado e Pelo Menos Um Quarto!");
             }
         }
         private void btnCancelar_Click(object sender, EventArgs e)
@@ -150,3 +152,5 @@ namespace View
 
     }
 }
+
+

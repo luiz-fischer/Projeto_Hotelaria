@@ -1,9 +1,7 @@
 using System;
 using System.Drawing;
 using System.Windows.Forms;
-using System.Text.RegularExpressions;
 using System.Collections.Generic;
-
 
 namespace View
 {

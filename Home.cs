@@ -270,14 +270,14 @@ namespace View
         {
             // CreateGuest createGuest = new();
             // createGuest.MdiParent = this;
-            // createGuest.Text = "CADASTRAR HÓSPEDE" + this.MdiChildren.Length.ToString();
+            // createGuest.Text = "PESQUISAR HÓSPEDE" + this.MdiChildren.Length.ToString();
             // createGuest.Show();
         }
         private void empregadoPesquisarMenuPrincipal_Click(object sender, EventArgs e)
         {
             // CreateEmployee createEmployee = new();
             // createEmployee.MdiParent = this;
-            // createEmployee.Text = "CADASTRAR EMPREGADO " + this.MdiChildren.Length.ToString();
+            // createEmployee.Text = "PESQUISAR EMPREGADO " + this.MdiChildren.Length.ToString();
             // createEmployee.Show();
         }
 
@@ -285,35 +285,35 @@ namespace View
         {
             // CreateProduct createProduct = new();
             // createProduct.MdiParent = this;
-            // createProduct.Text = "CADASTRAR PRODUTO " + this.MdiChildren.Length.ToString();
+            // createProduct.Text = "PESQUISAR PRODUTO " + this.MdiChildren.Length.ToString();
             // createProduct.Show();
         }
         private void despesasPesquisarMenuPrincipal_Click(object sender, EventArgs e)
         {
             // CreateExpense createExpense = new CreateExpense();
             // createExpense.MdiParent = this;
-            // createExpense.Text = "CADASTRAR DESPESA " + this.MdiChildren.Length.ToString();
+            // createExpense.Text = "PESQUISAR DESPESA " + this.MdiChildren.Length.ToString();
             // createExpense.Show();
         }
         private void limpezaPesquisarMenuPrincipal_Click(object sender, EventArgs e)
         {
             // CreateClean createClean = new();
             // createClean.MdiParent = this;
-            // createClean.Text = "CADASTRAR LIMPEZA " + this.MdiChildren.Length.ToString();
+            // createClean.Text = "PESQUISAR LIMPEZA " + this.MdiChildren.Length.ToString();
             // createClean.Show();
         }
         private void reservasPesquisarMenuPrincipal_Click(object sender, EventArgs e)
         {
             // CreateReservation createReservation = new();
             // createReservation.MdiParent = this;
-            // createReservation.Text = "CADASTRAR RESERVA " + this.MdiChildren.Length.ToString();
+            // createReservation.Text = "PESQUISAR RESERVA " + this.MdiChildren.Length.ToString();
             // createReservation.Show();
         }
         private void quartoPesquisarMenuPrincipal_Click(object sender, EventArgs e)
         {
             // CreateRoom createRoom = new();
             // createRoom.MdiParent = this;
-            // createRoom.Text = "CADASTRAR QUARTO " + this.MdiChildren.Length.ToString();
+            // createRoom.Text = "PESQUISAR QUARTO " + this.MdiChildren.Length.ToString();
             // createRoom.Show();
         } 
         private void hospedeListarMenuPrincipal_Click(object sender, EventArgs e)
@@ -342,28 +342,28 @@ namespace View
         {
             // CreateExpense createExpense = new CreateExpense();
             // createExpense.MdiParent = this;
-            // createExpense.Text = "CADASTRAR DESPESA " + this.MdiChildren.Length.ToString();
+            // createExpense.Text = "LISTAR DESPESA " + this.MdiChildren.Length.ToString();
             // createExpense.Show();
         }
         private void limpezaListarMenuPrincipal_Click(object sender, EventArgs e)
         {
-            // CreateClean createClean = new();
-            // createClean.MdiParent = this;
-            // createClean.Text = "CADASTRAR LIMPEZA " + this.MdiChildren.Length.ToString();
-            // createClean.Show();
+            ListCleans listCleans = new();
+            listCleans.MdiParent = this;
+            listCleans.Text = "LISTAR LIMPEZA " + this.MdiChildren.Length.ToString();
+            listCleans.Show();
         }
         private void reservasListarMenuPrincipal_Click(object sender, EventArgs e)
         {
             ListReservation listReservation = new();
             listReservation.MdiParent = this;
-            listReservation.Text = "CADASTRAR RESERVA " + this.MdiChildren.Length.ToString();
+            listReservation.Text = "LISTAR RESERVA " + this.MdiChildren.Length.ToString();
             listReservation.Show();
         }
         private void quartoListarMenuPrincipal_Click(object sender, EventArgs e)
         {
             ListRoom listRooms = new();
             listRooms.MdiParent = this;
-            listRooms.Text = "CADASTRAR QUARTO " + this.MdiChildren.Length.ToString();
+            listRooms.Text = "LISTAR QUARTO " + this.MdiChildren.Length.ToString();
             listRooms.Show();
         }
         

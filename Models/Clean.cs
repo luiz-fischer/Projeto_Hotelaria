@@ -4,7 +4,6 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Windows.Forms;
-using System.Text.RegularExpressions;
 using Repository;
 
 namespace Model
@@ -13,9 +12,6 @@ namespace Model
     {
         [Key]
         public int CleanId { get; set; }
-        // public virtual Room Room { get; set; }
-        // [ForeignKey("rooms")]
-        // public int IdRoom { get; set; }
         public virtual Employee Employee { get; set; }
         [ForeignKey("employees")]
 
@@ -27,8 +23,8 @@ namespace Model
 
         public Clean()
         {
-
         }
+
         public Clean(
             // int roomId,
             Model.Employee employee,
@@ -62,6 +58,19 @@ namespace Model
             }
         }
 
+        public void AddRoom(Model.Room room)
+        {
+            var db = new Context();
+            Model.CleanRoom cleanRooms = new()
+            {
+                IdRoom = room.IdRoom,
+                IdClean = CleanId
+            };  
+
+            db.CleanRooms.Add(cleanRooms);
+            db.SaveChanges();
+        }
+
         public override bool Equals(object obj)
         {
             return obj is Clean clean &&
@@ -87,22 +96,7 @@ namespace Model
             var db = new Context();
             return db.Cleans.ToList();
         }
-        // public static Clean GetCleanByRoom(int roomId)
-        // {
-        //     var db = new Context();
-        //     IEnumerable<Clean> query =
-        //                 from clean in db.Cleans
-        //                 where clean.R == roomId
-        //                 select clean;
-        //     return query.Last();
-        // }
-
-        // public static Clean VerifyClean(int reservationId)
-        // {
-        //     Reservation reservation = Reservation.GetReservation(reservationId);
-        //     Clean clean = GetCleanByRoom(reservation.IdRoom);
-        //     return clean;
-        // }
+        
 
         public static void SetCleanDone(int cleanId, int employeeId)
         {
