@@ -94,9 +94,9 @@ namespace View
                 double convertDoubleNumber;
 
                 convertDoubleNumber = Convert.ToDouble(txtBxRoomValue.Text);
-                Regex roomNumber = new(@"^[a-zA-Z\s]");
-                Regex roomDescription = new(@"^(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]s|1[012])[- /.](19|20)\d\d$");
-                Regex roomValue = new(@"^\d{3}\.\d{3}\.\d{3}\-\d{2}$");
+                Regex roomNumber = new(@"^?[0-9][0-9,\.]+$");
+                Regex roomDescription = new(@"^[a-zA-Z\s]");
+                Regex roomValue = new(@"^?[0-9][0-9,\.]+$");
 
                 if ((!roomNumber.IsMatch(this.txtBxRoomNumber.Text)))
                 {
@@ -108,7 +108,7 @@ namespace View
                 }
                 else if (!roomValue.IsMatch(this.txtBxRoomValue.Text))
                 {
-                    this.TextErrorRoomValue.SetError(this.txtBxRoomValue, "CPF Inválido!");
+                    this.TextErrorRoomValue.SetError(this.txtBxRoomValue, "Formato Inválido!");
                 } else if (cbRoomFloor.SelectedItem == null)
                 {
                     this.TextErrorRoomFloor.SetError(this.cbRoomFloor, "Quantidade Inválida!");

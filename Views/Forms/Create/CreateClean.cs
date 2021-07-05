@@ -144,14 +144,16 @@ namespace View
                     DateTime scheduledDate = dtCheckIn.Value.Date;
                     dtCheckIn.Value = scheduledDate.Date;
                     string employeeId = this.lvEmployee.SelectedItems[0].Text;
+                    string roomId = this.lvRoom.SelectedItems[0].Text;
                     Model.Employee employee = Controller.Employee.GetEmployee(Int32.Parse(employeeId));
-                    Model.Clean clean = Controller.Clean.Add(employee, scheduledDate);
+                    Model.Room roomTeste = Controller.Room.GetRoom(Int32.Parse(roomId));
+                    Model.Clean clean = Controller.Clean.Add(employee, roomTeste, scheduledDate);
 
-                    foreach (ListViewItem Room in this.lvRoom.CheckedItems)
-                    {
-                        Model.Room room = Controller.Room.GetRoom(Int32.Parse(Room.Text));
-                        clean.AddRoom(room);
-                    }
+                    // foreach (ListViewItem Room in this.lvRoom.CheckedItems)
+                    // {
+                    //     Model.Room room = Controller.Room.GetRoom(Int32.Parse(Room.Text));
+                    //     clean.AddRoom(room);
+                    // }
                     MessageBox.Show("Cadastrado Com Sucesso!");
                     this.Close();
                 }

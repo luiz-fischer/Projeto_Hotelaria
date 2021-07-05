@@ -16,6 +16,7 @@ namespace Model
         public string RoomDescription { get; set; }
         public double RoomValue { get; set; }
         public List<Model.Reservation> reservations = new();
+        public List<Model.Clean> cleans = new();
 
         public Room(
             int roomFloor,
@@ -92,6 +93,10 @@ namespace Model
                 MessageBox.Show(error.Message, "Erro ao deletar!");
             }
 
+        }
+        public void AddClean(Model.Clean clean)
+        {
+            cleans.Add(clean);
         }
     }
 }

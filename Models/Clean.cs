@@ -18,6 +18,7 @@ namespace Model
         public int EmployeeId { get; set; }
         [Required]
         public DateTime Date { get; set; }
+        public int IdRoom { get; set; }
         public List<Model.Room> rooms = new();
         Model.Room room;
 
@@ -26,16 +27,17 @@ namespace Model
         }
 
         public Clean(
-            // int roomId,
             Model.Employee employee,
+            Model.Room room,
             DateTime date
         )
         {
-            // IdRoom = roomId;
+            IdRoom = room.IdRoom;
             EmployeeId = employee.EmployeeId;
             Date = date;
             rooms = new List<Model.Room>();
             employee.AddClean(this);
+            room.AddClean(this);
 
             var db = new Context();
             db.Cleans.Add(this);

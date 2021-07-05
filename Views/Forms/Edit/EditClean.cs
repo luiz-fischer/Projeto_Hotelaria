@@ -59,27 +59,22 @@ namespace View
             this.richTextBoxClean.Location = new Point(410, 170);
             this.richTextBoxClean.Size = new Size(600, 300);
             List<Clean> cleanList = Controller.Clean.GetCleans();
-            List<Room> roomList = Controller.Room.GetRooms();
 
-            foreach (var cleanVar in cleanList)
+            foreach (var varClean in cleanList)
             {
-                foreach (var room in roomList)
-                {
-                    Employee employee = Controller.Employee.GetEmployee(cleanVar.EmployeeId);
-                    Room roomLt = Controller.Room.GetRoom(room.IdRoom);
-            
+                Employee employee = Controller.Employee.GetEmployee(varClean.EmployeeId);
+                Room room = Controller.Room.GetRoom(varClean.IdRoom);
 
             this.richTextBoxClean.Text =  
-                "\n\n ID da Limpeza:                                         "        + cleanVar.CleanId.ToString() +
-                "\n Data da Limpeza:                                    "           + cleanVar.Date.ToString("dd/MM/yyyy") +
+                "\n\n ID da Limpeza:                                         "      + varClean.CleanId.ToString() +
+                "\n Data da Limpeza:                                    "           + varClean.Date.ToString("dd/MM/yyyy") +
                 "\n ID do Responsável:                                "             + employee.EmployeeId.ToString() +
                 "\n Nome do Resonsável:                            "                + employee.EmployeeName +
-                "\n Total de Quartos:                                    "          + cleanVar.GetRoomsByEmployee() +
+                "\n Total de Quartos:                                    "          + varClean.GetRoomsByEmployee() +
                 "\n Andar:                                                        " + room.RoomFloor.ToString() +
                 "\n Número do Quarto:                                 "             + room.RoomNumber +
-                "\n Descrição do Quarto:                             "               + room.RoomDescription ;
+                "\n Descrição do Quarto:                             "              + room.RoomDescription ;
 
-                }
             }
             //      
             // Home
