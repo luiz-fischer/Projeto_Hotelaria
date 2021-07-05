@@ -7,7 +7,7 @@ namespace View
     public partial class CreateGuest : Form
     {
         Model.Guest guest;
-        private Library.PictureBox logo_size_invert;
+        private Library.PictureBox menu_side;
         private Library.Button btnConfirmar;
         private Library.Button btnCancelar;
         private Library.TextBox txtBxName;
@@ -40,7 +40,7 @@ namespace View
 
         public void InitializeComponent(bool isUpdate)
         {
-            this.logo_size_invert = new Library.PictureBox("logo_size_full");
+            this.menu_side = new Library.PictureBox("menu_side");
             this.btnConfirmar = new Library.Button("btnConfirmar");
             this.btnCancelar = new Library.Button("btnCancelar");
             this.txtBxName = new Library.TextBox("txtBxName");
@@ -76,7 +76,7 @@ namespace View
 
             this.WindowState = FormWindowState.Maximized;
             this.BackColor = ColorTranslator.FromHtml("#E0E6ED");
-            this.Controls.Add(this.logo_size_invert);
+            this.Controls.Add(this.menu_side);
             this.Controls.Add(this.btnConfirmar);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.txtBxName);

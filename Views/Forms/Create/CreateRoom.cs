@@ -6,7 +6,7 @@ namespace View
 {
     partial class CreateRoom : Form
     {
-        private Library.PictureBox logo_size_invert;
+        private Library.PictureBox menu_side;
         private Library.Button btnConfirmar;
         private Library.Button btnCancelar;
         private Library.ComboBox cbRoomFloor;
@@ -37,7 +37,7 @@ namespace View
 
         public void InitializeComponent(bool isUpdate)
         {
-            this.logo_size_invert = new Library.PictureBox("logo_size_full");
+            this.menu_side = new Library.PictureBox("menu_side");
             this.btnConfirmar = new Library.Button("btnConfirmar");
             this.btnCancelar = new Library.Button("btnCancelar");
             this.cbRoomFloor = new Library.ComboBox("cbRoomFloor");
@@ -77,7 +77,7 @@ namespace View
             // Form
             this.WindowState = FormWindowState.Maximized;
             this.BackColor = ColorTranslator.FromHtml("#E0E6ED");
-            this.Controls.Add(this.logo_size_invert);
+            this.Controls.Add(this.menu_side);
             this.Controls.Add(this.btnConfirmar);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.cbRoomFloor);
