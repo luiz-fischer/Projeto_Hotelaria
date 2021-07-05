@@ -6,7 +6,7 @@ namespace View
 {
     public partial class CreateEmployee : Form
     {
-        private Library.PictureBox logo_size_invert;
+        private Library.PictureBox menu_side;
         private Library.Button btnConfirmar;
         private Library.Button btnCancelar;
         private Library.TextBox txtBxName;
@@ -31,7 +31,7 @@ namespace View
 
         public void InitializeComponent(bool isUpdate)
         {
-            this.logo_size_invert = new Library.PictureBox("logo_size_full");
+            this.menu_side = new Library.PictureBox("menu_side");
             this.btnConfirmar = new Library.Button("btnConfirmar");
             this.btnCancelar = new Library.Button("btnCancelar");
             this.txtBxName = new Library.TextBox("txtBxName");
@@ -51,12 +51,11 @@ namespace View
 
             this.WindowState = FormWindowState.Maximized;
             this.BackColor = ColorTranslator.FromHtml("#E0E6ED");
-            this.Controls.Add(this.logo_size_invert);
+            this.Controls.Add(this.menu_side);
             this.Controls.Add(this.btnConfirmar);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.txtBxName);
             this.Controls.Add(this.lblTitle);
-
 
         }
         private void btn_ConfirmarClick(object sender, EventArgs e)
@@ -64,11 +63,11 @@ namespace View
             try
             {
                 Regex employeeName = new(@"^[a-zA-Z\s]");
+
                 if ((!employeeName.IsMatch(this.txtBxName.Text)))
                 {
-                    this.TextErrorName.SetError(this.txtBxName, "Apenas letras!");
+                    this.TextErrorName.SetError(this.txtBxName, "Apenas Letras!");
                 }
-                
                 else if ((txtBxName.Text != string.Empty))
                 {
                     if (employee == null)

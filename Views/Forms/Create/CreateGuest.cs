@@ -92,13 +92,13 @@ namespace View
         {
             try
             {
-                Regex guestName = new(@"^[0-9]+$");
-                Regex guestBirth = new(@"^(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]s|1[012])[- /.]\d\d$");
+                Regex guestName = new(@"^[a-zA-Z\s]");
+                Regex guestBirth = new(@"^(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]s|1[012])[- /.](19|20)\d\d$");
                 Regex guestIdentification = new(@"^\d{3}\.\d{3}\.\d{3}\-\d{2}$");
                 Regex guestMotherName = new(@"^[a-zA-Z\s]");
                 if ((!guestName.IsMatch(this.txtBxName.Text)))
                 {
-                    this.TextErrorName.SetError(this.txtBxName, "Apenas Números!");
+                    this.TextErrorName.SetError(this.txtBxName, "Apenas Letras!");
                 }
                 else if (!guestBirth.IsMatch(this.mskBxBirth.Text))
                 {

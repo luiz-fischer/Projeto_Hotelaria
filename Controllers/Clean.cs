@@ -5,18 +5,18 @@ namespace Controller
 {  
     public class Clean
     {
-        // public static Model.Clean AddClean(int roomId)
-        // {
-        //     try
-        //     {
-        //         Model.Room.GetRoomId(roomId);
-        //     }
-        //     catch (Exception error)
-        //     {
-        //         MessageBox.Show(error.Message, "Quarto não cadastrado!");
-        //     }
-        //     return new Model.Clean(roomId);
-        // }
+        public static Model.Clean AddClean(int roomId)
+        {
+            try
+            {
+                Model.Room.GetRoom(roomId);
+            }
+            catch (Exception error)
+            {
+                MessageBox.Show(error.Message, "Quarto não cadastrado!");
+            }
+            return new Model.Clean(roomId);
+        }
         public static Model.Clean Add(Model.Employee employee)
         {
             return new Model.Clean(employee, DateTime.Now);

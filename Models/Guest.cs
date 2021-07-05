@@ -20,7 +20,6 @@ namespace Model
 
         public Guest()
         {
-
         }
 
         public Guest(

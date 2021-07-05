@@ -25,7 +25,6 @@ namespace Model
 
         public Expense()
         {
-
         }
         public Expense(
             int productId,

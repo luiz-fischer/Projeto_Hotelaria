@@ -140,7 +140,6 @@ namespace View
                     }
                     else
                     {
-
                         convertDoubleNumber = Convert.ToDouble(txtBxRoomValue.Text);
                         Controller.Room.UpdateRoom(
                         room.IdRoom,

@@ -6,9 +6,9 @@ namespace Controller
 {
     public class Employee
     {
-        public static Model.Employee AddEmployee(string employeeName)
+        public static void AddEmployee(string employeeName)
         {
-            return new Model.Employee(employeeName);
+            new Model.Employee(employeeName);
         }
 
         public static List<Model.Employee> GetEmployees()

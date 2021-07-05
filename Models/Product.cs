@@ -29,6 +29,9 @@ namespace Model
             db.Products.Add(this);
             db.SaveChanges();
         }
+        public Product()
+        {
+        }
 
         public static Product GetProduct(int productID)
         {
