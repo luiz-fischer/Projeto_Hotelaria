@@ -17,18 +17,11 @@ namespace Controller
             }
             return new Model.Clean(roomId);
         }
-        // public static Model.Clean Add(Model.Employee employee)
-        // {
-        //     return new Model.Clean(employee, DateTime.Now);
-        // }
-        public static Model.Clean Add(Model.Employee employee, DateTime scheduledDate)
+
+        public static Model.Clean Add(Model.Employee employee, Model.Room room, DateTime scheduledDate)
         {
-            return new Model.Clean(employee, scheduledDate);
+            return new Model.Clean(employee, room, scheduledDate);
         }
-        // public static Model.Clean Add(Model.Employee employee, Model.Room room, DateTime scheduledDate)
-        // {
-        //     return new Model.Clean(employee, room, scheduledDate);
-        // }
 
         public static List<Model.Clean> GetCleans()
         {
@@ -44,23 +37,8 @@ namespace Controller
         {
             Model.Clean.DeleteClean(cleanId);
         }
-
-        public static void SetCleanDone(int cleanId, int employeeId)
-        {
-            Model.Clean clean = GetClean(cleanId);
-            try
-            {
-                Model.Employee.GetEmployee(employeeId);
-            }
-            catch (Exception error)
-            {
-                MessageBox.Show(error.Message, "Funcionário não encontrado!");
-            }
-
-            if (string.IsNullOrEmpty(clean.Date.ToString()))
-            {
-                Model.Clean.SetCleanDone(cleanId, employeeId);
-            }
-        }
+        
     }
 }
+
+

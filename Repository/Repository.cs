@@ -24,11 +24,9 @@ namespace Repository
                 "server=localhost;user=root;password=;database=hotelaria;",
                 new MySqlServerVersion("8.0.22")
             );
-            
         }
-
-
     }
 }
+
 
 

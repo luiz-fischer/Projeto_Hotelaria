@@ -50,22 +50,17 @@ namespace View
             this.lvlClean.Location = new Point(250, 100);
 
             List<Clean> cleanList = Controller.Clean.GetCleans();
-            List<Room> roomList = Controller.Room.GetRooms();
-
             foreach (var clean in cleanList)
             {
-                foreach (var room in roomList)
-                {
-                    Employee employee = Controller.Employee.GetEmployee(clean.EmployeeId);
-                    Room roomLt = Controller.Room.GetRoom(room.IdRoom);
-                    ListViewItem lvListRoom = new(clean.CleanId.ToString());
-                    lvListRoom.SubItems.Add(employee.EmployeeName.ToString());
-                    lvListRoom.SubItems.Add(clean.Date.ToString("dd/MM/yyyy"));
-                    lvListRoom.SubItems.Add(room.RoomFloor.ToString());
-                    lvListRoom.SubItems.Add(room.RoomNumber.ToString());
-                    lvListRoom.SubItems.Add(room.RoomDescription.ToString());
-                    lvlClean.Items.Add(lvListRoom);
-                }
+                Employee employee = Controller.Employee.GetEmployee(clean.EmployeeId);
+                Room room = Controller.Room.GetRoom(clean.RoomId);
+                ListViewItem lvListRoom = new(clean.CleanId.ToString());
+                lvListRoom.SubItems.Add(employee.EmployeeName.ToString());
+                lvListRoom.SubItems.Add(clean.Date.ToString("dd/MM/yyyy"));
+                lvListRoom.SubItems.Add(room.RoomFloor.ToString());
+                lvListRoom.SubItems.Add(room.RoomNumber.ToString());
+                lvListRoom.SubItems.Add(room.RoomDescription.ToString());
+                lvlClean.Items.Add(lvListRoom);
             }
 
             this.lvlClean.Size = new Size(1050, 400);
@@ -113,8 +108,7 @@ namespace View
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             this.Close();
-
         }
-
     }
 }
+

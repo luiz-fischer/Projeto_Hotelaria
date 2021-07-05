@@ -18,14 +18,14 @@ namespace Controller
         {
             Model.Reservation reservation = Model.Reservation.GetReservation(reservationId);
 
-            // if (string.IsNullOrEmpty(reservation.CheckIn.ToString()))
-            // {
+            if (string.IsNullOrEmpty(reservation.CheckIn.ToString()))
+            {
                 Model.Reservation.DeleteReservation(reservationId);
-            // }
-            // else
-            // {
-            //     MessageBox.Show("Não é possível remover.");
-            // }
+            }
+            else
+            {
+                MessageBox.Show("Não é possível remover.");
+            }
         }
 
         public static Model.Reservation GetReservation(int reservationId)

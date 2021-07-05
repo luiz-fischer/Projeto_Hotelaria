@@ -59,27 +59,20 @@ namespace View
             this.richTextBoxClean.Location = new Point(410, 170);
             this.richTextBoxClean.Size = new Size(600, 300);
             List<Clean> cleanList = Controller.Clean.GetCleans();
-            List<Room> roomList = Controller.Room.GetRooms();
-
             foreach (var cleanVar in cleanList)
             {
-                foreach (var room in roomList)
-                {
-                    Employee employee = Controller.Employee.GetEmployee(cleanVar.EmployeeId);
-                    Room roomLt = Controller.Room.GetRoom(room.IdRoom);
-            
+                Employee employee = Controller.Employee.GetEmployee(cleanVar.EmployeeId);
+                Room room = Controller.Room.GetRoom(cleanVar.RoomId);
 
             this.richTextBoxClean.Text =  
-                "\n\n ID da Limpeza:                                         "        + cleanVar.CleanId.ToString() +
+                "\n\n ID da Limpeza:                                         "      + cleanVar.CleanId.ToString() +
                 "\n Data da Limpeza:                                    "           + cleanVar.Date.ToString("dd/MM/yyyy") +
                 "\n ID do Responsável:                                "             + employee.EmployeeId.ToString() +
                 "\n Nome do Resonsável:                            "                + employee.EmployeeName +
                 "\n Total de Quartos:                                    "          + cleanVar.GetRoomsByEmployee() +
                 "\n Andar:                                                        " + room.RoomFloor.ToString() +
                 "\n Número do Quarto:                                 "             + room.RoomNumber +
-                "\n Descrição do Quarto:                             "               + room.RoomDescription ;
-
-                }
+                "\n Descrição do Quarto:                             "              + room.RoomDescription ;
             }
             //      
             // Home
@@ -122,7 +115,6 @@ namespace View
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             this.Close();
-
         }
     }
 }

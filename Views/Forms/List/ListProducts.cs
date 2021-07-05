@@ -98,8 +98,7 @@ namespace View
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             this.Close();
-
         }
-
     }
 }
+

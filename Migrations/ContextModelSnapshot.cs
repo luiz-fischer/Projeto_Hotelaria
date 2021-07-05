@@ -29,11 +29,43 @@ namespace Projeto_Hotelaria.Migrations
                     b.Property<int>("EmployeeId")
                         .HasColumnType("int");
 
+                    b.Property<int>("RoomId")
+                        .HasColumnType("int");
+
                     b.HasKey("CleanId");
 
                     b.HasIndex("EmployeeId");
 
+                    b.HasIndex("RoomId");
+
                     b.ToTable("Cleans");
+                });
+
+            modelBuilder.Entity("Model.CleanRoom", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<int?>("CleanId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("IdClean")
+                        .HasColumnType("int");
+
+                    b.Property<int>("IdRoom")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("RoomIdRoom")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CleanId");
+
+                    b.HasIndex("RoomIdRoom");
+
+                    b.ToTable("CleanRooms");
                 });
 
             modelBuilder.Entity("Model.Employee", b =>
@@ -203,7 +235,30 @@ namespace Projeto_Hotelaria.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Model.Room", "Room")
+                        .WithMany()
+                        .HasForeignKey("RoomId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Employee");
+
+                    b.Navigation("Room");
+                });
+
+            modelBuilder.Entity("Model.CleanRoom", b =>
+                {
+                    b.HasOne("Model.Clean", "Clean")
+                        .WithMany()
+                        .HasForeignKey("CleanId");
+
+                    b.HasOne("Model.Room", "Room")
+                        .WithMany()
+                        .HasForeignKey("RoomIdRoom");
+
+                    b.Navigation("Clean");
+
+                    b.Navigation("Room");
                 });
 
             modelBuilder.Entity("Model.Expense", b =>

@@ -14,12 +14,14 @@ namespace Model
         public int CleanId { get; set; }
         public virtual Employee Employee { get; set; }
         [ForeignKey("employees")]
-
         public int EmployeeId { get; set; }
         [Required]
+        public virtual Room Room { get; set; }
+        [ForeignKey("rooms")]
+        public int RoomId { get; set; }
+        [Required]
         public DateTime Date { get; set; }
-        public int idRoom { get; set; }
-        public List<Model.Room> rooms = new();
+        // public List<Model.Room> rooms = new();
         Model.Room room;
 
         public Clean()
@@ -28,13 +30,16 @@ namespace Model
 
         public Clean(
             Model.Employee employee,
+            Model.Room room,
             DateTime date
         )
-        {
+        {   
+            RoomId = room.IdRoom;
             EmployeeId = employee.EmployeeId;
             Date = date;
-            rooms = new List<Model.Room>();
+            // rooms = new List<Model.Room>();
             employee.AddClean(this);
+            room.AddClean(this);
 
             var db = new Context();
             db.Cleans.Add(this);

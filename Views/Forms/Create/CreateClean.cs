@@ -133,7 +133,6 @@ namespace View
             this.Controls.Add(this.lvRoom);
             this.Controls.Add(this.lblTitle);
 
-
         }
         private void btn_ConfirmarClick(object sender, EventArgs e)
         {
@@ -145,11 +144,13 @@ namespace View
                     dtCheckIn.Value = scheduledDate.Date;
                     string employeeId = this.lvEmployee.SelectedItems[0].Text;
                     Model.Employee employee = Controller.Employee.GetEmployee(Int32.Parse(employeeId));
-                    Model.Clean clean = Controller.Clean.Add(employee, scheduledDate);
+                    string roomId = this.lvRoom.SelectedItems[0].Text;
+                    Model.Room room = Controller.Room.GetRoom(Int32.Parse(roomId));
+                    Model.Clean clean = Controller.Clean.Add(employee, room, scheduledDate);
 
                     foreach (ListViewItem Room in this.lvRoom.CheckedItems)
                     {
-                        Model.Room room = Controller.Room.GetRoom(Int32.Parse(Room.Text));
+                        room = Controller.Room.GetRoom(Int32.Parse(Room.Text));
                         clean.AddRoom(room);
                     }
                     MessageBox.Show("Cadastrado Com Sucesso!");
@@ -168,10 +169,9 @@ namespace View
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             this.Close();
-
         }
-
     }
 }
+
 
 

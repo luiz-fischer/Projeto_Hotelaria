@@ -54,7 +54,27 @@ namespace Model
             db.ReservationRooms.Add(reservationRoom);
             db.SaveChanges();
         }
+        public double ValorTotalLocacao()
+        {
+            Guest guest = Guest.GetGuest(this.IdGuest);
+            var dias = this.CheckOut - this.CheckIn;
 
+            double total = 0;
+            Context db = new();
+            IEnumerable<int> rooms =
+            from room in db.ReservationRooms
+            where room.IdReservation == IdReservation
+            select room.IdRoom;
+
+            foreach (int id in rooms)
+            {
+                Model.Room room = Model.Room.GetRoom(id);
+                total += room.RoomValue * Convert.ToInt32(dias);
+            }
+
+            return total;
+
+        }
 
         public static Reservation GetReservation(int reservationId)
         {
@@ -112,7 +132,6 @@ namespace Model
             {
                 MessageBox.Show(error.Message, "Erro ao deletar!");
             }
-
         }
     }
 }

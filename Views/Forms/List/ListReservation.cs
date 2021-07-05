@@ -44,6 +44,7 @@ namespace View
                 lvListRoom.SubItems.Add(guest.GuestIdentification.ToString());
                 lvListRoom.SubItems.Add(reservation.CheckIn.ToString("dd/MM/yyyy"));
                 lvListRoom.SubItems.Add(reservation.CheckOut.ToString("dd/MM/yyyy"));
+                lvListRoom.SubItems.Add(reservation.ValorTotalLocacao().ToString("C2"));
                 lvlReservation.Items.Add(lvListRoom);
             }
             this.lvlReservation.Size = new Size(1050, 400);
@@ -54,6 +55,7 @@ namespace View
             this.lvlReservation.Columns.Add("C.P.F.", -2, HorizontalAlignment.Center);
             this.lvlReservation.Columns.Add("Data Do CheckIn", -2, HorizontalAlignment.Center);
             this.lvlReservation.Columns.Add("Data Da CheckOut", -2, HorizontalAlignment.Center);
+            this.lvlReservation.Columns.Add("Total", -2, HorizontalAlignment.Center);
             //
             // btnCancelar
             this.btnCancelar.Click += new EventHandler(this.btnCancelar_Click);
@@ -81,8 +83,7 @@ namespace View
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             this.Close();
-
         }
-
     }
 }
+
