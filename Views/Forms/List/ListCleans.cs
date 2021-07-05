@@ -10,6 +10,7 @@ namespace View
     {
         private Library.PictureBox menu_side;
         private Library.Button btnCancelar;
+        private Library.Button btnConfirmar;
         private Library.Button btnRelatorio;
         private Library.Label lblTitle;
         private Library.ListView lvlClean;
@@ -23,9 +24,22 @@ namespace View
         {
             this.menu_side = new Library.PictureBox("menu_side");
             this.btnCancelar = new Library.Button("btnCancelar");
+            this.btnConfirmar = new Library.Button("btnConfirmar");
             this.btnRelatorio = new Library.Button("btnRelatorio");
             this.lvlClean = new Library.ListView();
             this.lblTitle = new();
+            //
+            // btnCancelar
+            this.btnCancelar.Click += new EventHandler(this.btnCancelar_Click);
+            this.btnCancelar.Location = new Point(780, 620);
+            //
+            // btnConfirmar
+            this.btnConfirmar.Click += new EventHandler(this.btnConfirmar_Click);
+            this.btnConfirmar.Location = new Point(420, 620);
+            //
+            // btnRelatorio
+            this.btnRelatorio.Click += new EventHandler(this.btnRelatorio_Click);
+            this.btnRelatorio.Location = new Point(600, 620);
             //
             // lblTitle
             this.lblTitle.Text = "Lista de Limpezas";
@@ -64,19 +78,12 @@ namespace View
             this.lvlClean.Columns.Add("Número do Quarto", -2, HorizontalAlignment.Center);
             this.lvlClean.Columns.Add("Descrição do Quarto", -2, HorizontalAlignment.Center);
             //
-            // btnCancelar
-            this.btnCancelar.Click += new EventHandler(this.btnCancelar_Click);
-            this.btnCancelar.Location = new Point(780, 620);
-            //
-            // btnRelatorio
-            this.btnRelatorio.Click += new EventHandler(this.btnRelatorio_Click);
-            this.btnRelatorio.Location = new Point(600, 620);
-            //
             // Forms
             this.WindowState = FormWindowState.Maximized;
             this.BackColor = ColorTranslator.FromHtml("#E0E6ED");
             this.Controls.Add(this.menu_side);
             this.Controls.Add(this.btnCancelar);
+            this.Controls.Add(this.btnConfirmar);
             this.Controls.Add(this.btnRelatorio);
             this.Controls.Add(this.lblTitle);
             this.Controls.Add(this.lvlClean);
@@ -86,6 +93,21 @@ namespace View
         private void btnRelatorio_Click(object sender, EventArgs e)
         {
             ReportClean.ReportCleanPdf();
+        }
+
+        private void btnConfirmar_Click(object sender, EventArgs e)
+        {
+            try
+            {   
+                string IdClean = this.lvlClean.SelectedItems[0].Text;
+                Clean clean = Controller.Clean.GetClean(Int32.Parse(IdClean));
+                EditClean editClean = new(clean);
+                editClean.Show();
+            }
+            catch
+            {
+                MessageBox.Show("Selecionar uma Limpeza para Avançar!");
+            }
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)

@@ -41,6 +41,7 @@ namespace Controller
         {
             Model.Clean.DeleteClean(cleanId);
         }
+        
 
         public static void SetCleanDone(int cleanId, int employeeId)
         {

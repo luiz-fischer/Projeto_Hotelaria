@@ -98,14 +98,17 @@ namespace Model
         }
         
 
-        public static void SetCleanDone(int cleanId, int employeeId)
+        public int GetRoomsByEmployee()
         {
-            var db = new Context();
+            Context db = new();
+            IEnumerable<int> rooms =
+            from room in db.CleanRooms
+            where room.IdClean == CleanId
+            select room.IdRoom;
 
-            Clean clean = GetClean(cleanId);
-            clean.EmployeeId = employeeId;
-            clean.Date = DateTime.Now;
-            db.SaveChanges();
+            Model.Employee employee = Model.Employee.GetEmployee(EmployeeId);
+
+            return rooms.Count();
         }
 
         public static void UpdateClean(
@@ -140,6 +143,15 @@ namespace Model
             {
                 MessageBox.Show(error.Message, "Erro ao deletar!");
             }
+        }
+        public static void SetCleanDone(int cleanId, int employeeId)
+        {
+            var db = new Context();
+
+            Clean clean = GetClean(cleanId);
+            clean.EmployeeId = employeeId;
+            clean.Date = DateTime.Now;
+            db.SaveChanges();
         }
     }
 }
