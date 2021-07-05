@@ -17,15 +17,13 @@ namespace View
         private Library.ListView lvRoom;
         private DateTimePicker dtClean;
         private Library.Label lblCheckIn;
-        Model.Clean clean;
-
 
         public CreateClean(int id = 0)
         {
 
             try
             {
-                clean = Controller.Clean.GetClean(id);
+                Model.Clean clean = Controller.Clean.GetClean(id);
             }
             catch
             {

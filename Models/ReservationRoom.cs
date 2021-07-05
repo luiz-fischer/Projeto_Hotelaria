@@ -12,10 +12,10 @@ namespace Model
         public int Id { get; set; }
         [ForeignKey("reservations")]
         public int IdReservation { get; set; }
-        public virtual Model.Reservation Reservation { get; set; }
+        public virtual Reservation Reservation { get; set; }
         [ForeignKey("rooms")]
         public int IdRoom { get; set; }
-        public virtual Model.Room Room { get; set; }
+        public virtual Room Room { get; set; }
 
         public static List<ReservationRoom> GetReservationsByIdRoom(int IdRoom)
         {

@@ -21,23 +21,21 @@ namespace Model
         public int RoomId { get; set; }
         [Required]
         public DateTime Date { get; set; }
-        // public List<Model.Room> rooms = new();
-        Model.Room room;
+        readonly Room room;
 
         public Clean()
         {
         }
 
         public Clean(
-            Model.Employee employee,
-            Model.Room room,
+            Employee employee,
+            Room room,
             DateTime date
         )
         {   
             RoomId = room.IdRoom;
             EmployeeId = employee.EmployeeId;
             Date = date;
-            // rooms = new List<Model.Room>();
             employee.AddClean(this);
             room.AddClean(this);
 
@@ -62,10 +60,10 @@ namespace Model
             }
         }
 
-        public void AddRoom(Model.Room room)
+        public void AddRoom(Room room)
         {
             var db = new Context();
-            Model.CleanRoom cleanRooms = new CleanRoom()
+            CleanRoom cleanRooms = new CleanRoom()
             {
                 IdRoom = room.IdRoom,
                 IdClean = CleanId
@@ -88,7 +86,7 @@ namespace Model
             return HashCode.Combine(CleanId, EmployeeId, Date);
         }
 
-        public static Model.Clean GetClean(int cleanId)
+        public static Clean GetClean(int cleanId)
         {
             var db = new Context();
             return (from clean in db.Cleans
@@ -110,7 +108,7 @@ namespace Model
             where room.IdClean == CleanId
             select room.IdRoom;
 
-            Model.Employee employee = Model.Employee.GetEmployee(EmployeeId);
+            Employee employee = Employee.GetEmployee(EmployeeId);
 
             return rooms.Count();
         }

@@ -14,7 +14,7 @@ namespace View
         private Library.Label lblTitle;
         private ErrorProvider TextErrorName;
         private ErrorProvider TextErrorValue;
-        Model.Product product;
+        readonly Model.Product product;
 
 
         public CreateProduct(int id = 0)

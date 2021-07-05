@@ -1,10 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
-using System.Windows.Forms;
-using System.Text.RegularExpressions;
 using Repository;
 
 
@@ -17,6 +14,11 @@ namespace Model
         public string ProductName { get; set; }
         public double ProductValue { get; set; }
 
+        public Product()
+        {
+
+        }
+
         public Product(
             string productName,
             double productValue
@@ -28,9 +30,6 @@ namespace Model
             var db = new Context();
             db.Products.Add(this);
             db.SaveChanges();
-        }
-        public Product()
-        {
         }
 
         public static Product GetProduct(int productID)

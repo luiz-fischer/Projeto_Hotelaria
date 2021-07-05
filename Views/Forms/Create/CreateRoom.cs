@@ -18,7 +18,7 @@ namespace View
         private ErrorProvider TextErrorRoomNumber;
         private ErrorProvider TextErrorRoomDescription;
         private ErrorProvider TextErrorRoomValue;
-        Model.Room room;
+        readonly Model.Room room;
 
 
         public CreateRoom(int id = 0)

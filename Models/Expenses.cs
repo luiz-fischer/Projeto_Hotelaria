@@ -4,7 +4,6 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Windows.Forms;
-using System.Text.RegularExpressions;
 using Repository;
 
 
@@ -75,7 +74,10 @@ namespace Model
          public static List<Expense> GetExpenseByReservation(int reservationId)
         {
             var db = new Context();
-            IEnumerable<Expense> Expense = from expense in db.Expenses where expense.ReservationId == reservationId select expense;
+            IEnumerable<Expense> Expense = 
+                from expense in db.Expenses 
+                where expense.ReservationId == reservationId 
+                select expense;
             return Expense.ToList();
         }
 

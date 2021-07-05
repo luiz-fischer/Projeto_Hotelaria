@@ -12,10 +12,10 @@ namespace Model
         public int Id { get; set; }
         [ForeignKey("cleans")]
         public int IdClean { get; set; }
-        public virtual Model.Clean Clean { get; set; }
+        public virtual Clean Clean { get; set; }
         [ForeignKey("rooms")]
         public int IdRoom { get; set; }
-        public virtual Model.Room Room { get; set; }
+        public virtual Room Room { get; set; }
 
         public static List<CleanRoom> GetCleansByIdRoom(int IdRoom)
         {

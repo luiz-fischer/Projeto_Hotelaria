@@ -46,13 +46,13 @@ namespace Model
         public override bool Equals(object obj)
         {
             return obj is Guest guest &&
-                   IdGuest == guest.IdGuest &&
-                   GuestName == guest.GuestName &&
-                   GuestBirth == guest.GuestBirth &&
-                   Payment == guest.Payment &&
-                   GuestIdentification == guest.GuestIdentification &&
-                   MothersName == guest.MothersName &&
-                   EqualityComparer<List<Reservation>>.Default.Equals(reservations, guest.reservations);
+                IdGuest == guest.IdGuest &&
+                GuestName == guest.GuestName &&
+                GuestBirth == guest.GuestBirth &&
+                Payment == guest.Payment &&
+                GuestIdentification == guest.GuestIdentification &&
+                MothersName == guest.MothersName &&
+                EqualityComparer<List<Reservation>>.Default.Equals(reservations, guest.reservations);
         }
 
         public override int GetHashCode()

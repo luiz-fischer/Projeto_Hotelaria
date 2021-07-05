@@ -16,13 +16,14 @@ namespace Model
         public virtual Guest Guest { get; set; }
         [ForeignKey("guests")]
         public int IdGuest { get; set; }
-        [Required] 
+        [Required]
         public DateTime CheckIn { get; set; }
         public DateTime CheckOut { get; set; }
         public List<Room> rooms = new List<Room>();
 
         public Reservation()
         {
+
         }
 
         public Reservation(
@@ -101,7 +102,6 @@ namespace Model
                 int reservationId,
                 DateTime checkIn,
                 DateTime checkOut
-                // double total
             )
         {
             var db = new Context();
@@ -111,7 +111,6 @@ namespace Model
                 reservation.CheckIn = checkIn;
                 reservation.CheckIn = checkIn;
                 reservation.CheckOut = checkOut;
-                // reservation.Total = total;
             }
             catch (Exception error)
             {

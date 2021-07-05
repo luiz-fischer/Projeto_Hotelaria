@@ -18,6 +18,12 @@ namespace Model
         public List<Reservation> reservations = new List<Reservation>();
         public List<Clean> cleans = new List<Clean>();
 
+        public Room()
+        {
+
+        }
+
+
         public Room(
             int roomFloor,
             string roomNumber,
@@ -33,9 +39,6 @@ namespace Model
             var db = new Context();
             db.Rooms.Add(this);
             db.SaveChanges();
-        }
-        public Room()
-        {
         }
 
         public static Room GetRoom(int roomId)

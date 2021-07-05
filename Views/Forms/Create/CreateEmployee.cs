@@ -12,7 +12,7 @@ namespace View
         private Library.TextBox txtBxName;
         private Library.Label lblTitle;
         private ErrorProvider TextErrorName;
-        Model.Employee employee;
+        readonly Model.Employee employee;
 
 
         public CreateEmployee(int id = 0)

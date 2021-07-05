@@ -21,6 +21,15 @@ namespace View
         private Library.Label lblRoom;
         public CreateReservation(int id = 0)
         {
+            try
+            {
+                Model.Reservation reservation = Controller.Reservation.GetReservation(id);
+            }
+            catch 
+            {
+
+            }
+
             InitializeComponent(id > 0);
         }
         public void InitializeComponent(bool isUpdate)

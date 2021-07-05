@@ -1,7 +1,7 @@
 using System;
 using System.Windows.Forms;
 
-namespace View
+namespace pig202101_hotel
 {
     static class Program
     {

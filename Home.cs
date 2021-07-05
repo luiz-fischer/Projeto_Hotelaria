@@ -1,12 +1,13 @@
 using System;
 using System.Drawing;
 using System.Windows.Forms;
+using View;
 
-namespace View
+namespace pig202101_hotel
 {
     public class Home : Form
     {
-        private Library.PictureBox menu_side;
+        private readonly Library.PictureBox menu_side;
 
         public Home()
         {

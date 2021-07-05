@@ -6,7 +6,6 @@ namespace View
 {
     public partial class CreateGuest : Form
     {
-        Model.Guest guest;
         private Library.PictureBox menu_side;
         private Library.Button btnConfirmar;
         private Library.Button btnCancelar;
@@ -21,7 +20,7 @@ namespace View
         private ErrorProvider TextErrorIdentification;
         private ErrorProvider TextErrorPayment;
         private ErrorProvider TextErrorMotherName;
-
+        readonly Model.Guest guest;
 
 
         public CreateGuest(int id = 0)
