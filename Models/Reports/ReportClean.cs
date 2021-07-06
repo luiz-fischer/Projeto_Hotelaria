@@ -10,12 +10,12 @@ namespace Model
     public class ReportClean
     {
         public static void ReportCleanPdf()
-        {
+        { 
             var path = Directory.GetCurrentDirectory();
             Document document = new Document(PageSize.A4.Rotate());
             document.SetMargins(3, 2, 3, 2);
             PdfWriter writer = PdfWriter.GetInstance(document, new FileStream(
-                path + "\\Relatorios\\Limpezas.pdf", FileMode.Create
+                path + "\\Relatorios\\Limpezas" + (new DateTime()).ToString() + ".pdf", FileMode.Create
             ));
             document.Open();
             PdfPTable table = new PdfPTable(5);

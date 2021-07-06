@@ -6,6 +6,7 @@
 4. `dotnet add package Microsoft.EntityFrameworkCore --version 5.0.6`
 5. `dotnet add package Microsoft.EntityFrameworkCore.Desing --version 5.0.6`
 6. `dotnet add package Microsoft.Windows.Compatibility --version 3.0.0`
+7. `dotnet add package iTextSharp --version 5.5.13.2`
 
 ## Building Data Base
 
