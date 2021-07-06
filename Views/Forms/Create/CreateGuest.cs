@@ -2,6 +2,8 @@ using System;
 using System.Drawing;
 using System.Windows.Forms;
 using System.Text.RegularExpressions;
+using System.Collections.Generic;
+using System.Data;
 namespace View
 {
     public partial class CreateGuest : Form
@@ -48,6 +50,7 @@ namespace View
             this.cbPayment = new Library.ComboBox("cbPayment");
             this.msktBxIdentification = new Library.MaskedTextBox();
             this.lblTitle = new Library.Label();
+
             //
             // lblTitle
             this.lblTitle.Text = "Cadastro de Hóspedes";
@@ -72,7 +75,6 @@ namespace View
             this.TextErrorMotherName = new ErrorProvider();
             this.TextErrorPayment = new ErrorProvider();
             this.TextErrorIdentification = new ErrorProvider();
-
             this.WindowState = FormWindowState.Maximized;
             this.BackColor = ColorTranslator.FromHtml("#E0E6ED");
             this.Controls.Add(this.menu_side);
@@ -110,11 +112,12 @@ namespace View
                 else if (cbPayment.SelectedItem == null)
                 {
                     this.TextErrorPayment.SetError(this.cbPayment, "Quantidade Inválida!");
-                } else  if ((!guestMotherName.IsMatch(this.txtBxMotherName.Text)))
+                }
+                else if ((!guestMotherName.IsMatch(this.txtBxMotherName.Text)))
                 {
                     this.TextErrorName.SetError(this.txtBxMotherName, "Apenas letras!");
                 }
-                
+
                 else if ((txtBxName.Text != string.Empty)
                 && (mskBxBirth.Text != string.Empty)
                 && (msktBxIdentification.Text != string.Empty)
@@ -126,14 +129,14 @@ namespace View
                         Controller.Guest.AddGuest(
                         txtBxName.Text,
                         mskBxBirth.Text,
-                        cbPayment.Text == "1 Dia" ? 1 :
-                        cbPayment.Text == "1 Dia" ? 1 :
-                        cbPayment.Text == "1 Dia" ? 1 :
-                        cbPayment.Text == "2 Dia" ? 2 :
-                        cbPayment.Text == "3 Dia" ? 3 : 1,
+                        cbPayment.Text == "Em dinheiro" ? 1 :
+                        cbPayment.Text == "Débito" ? 1 :
+                        cbPayment.Text == "Crédito - 1x" ? 1 :
+                        cbPayment.Text == "Crédito - 2x" ? 2 :
+                        cbPayment.Text == "Crédito - 3x" ? 3 : 1,
                         msktBxIdentification.Text,
                         txtBxMotherName.Text
-                        
+
                         );
                         this.TextErrorName.SetError(this.txtBxName, String.Empty);
                         this.TextErrorBirth.SetError(this.mskBxBirth, String.Empty);
@@ -144,16 +147,16 @@ namespace View
 
                     }
                     else
-                    { 
+                    {
                         Controller.Guest.UpdateGuest(
                         guest.IdGuest,
                         txtBxName.Text,
                         mskBxBirth.Text,
-                        cbPayment.Text == "1 Dia" ? 1 :
-                        cbPayment.Text == "1 Dia" ? 1 :
-                        cbPayment.Text == "1 Dia" ? 1 :
-                        cbPayment.Text == "2 Dia" ? 2 :
-                        cbPayment.Text == "3 Dia" ? 3 : 1,
+                        cbPayment.Text == "Em dinheiro" ? 1 :
+                        cbPayment.Text == "Débito" ? 1 :
+                        cbPayment.Text == "Crédito - 1x" ? 1 :
+                        cbPayment.Text == "Crédito - 2x" ? 2 :
+                        cbPayment.Text == "Crédito - 3x" ? 3 : 1,
                         msktBxIdentification.Text,
                         txtBxMotherName.Text
                         );
@@ -175,6 +178,7 @@ namespace View
         {
             this.Close();
         }
+        
     }
 }
 

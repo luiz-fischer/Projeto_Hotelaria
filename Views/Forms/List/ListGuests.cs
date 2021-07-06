@@ -46,7 +46,7 @@ namespace View
             this.lvGuest.Location = new Point(250, 100);
  
             List<Guest> guestList = Controller.Guest.GetGuests();
-            foreach (var guest in guestList)
+            foreach (Guest guest in guestList)
             {
                 ListViewItem lvListGuest = new ListViewItem(guest.IdGuest.ToString());
                 lvListGuest.SubItems.Add(guest.GuestName);

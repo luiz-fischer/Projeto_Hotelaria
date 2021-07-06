@@ -21,16 +21,32 @@ namespace Library
                     // menu_side
                     this.Load("C:\\Projeto_Hotelaria\\Views\\Assets\\menu_side.png");
                     this.Location = new Point(10, 10);
-                    this.Size = new Size(200, 800);
+                    this.Size = new Size(200, 660);
                     this.Name = "menu_side";
                     break;
 
-                case "logo_image": 
-                    // logo_image
-                    // this.Load("C:\\Projeto_Hotelaria\\Views\\Assets\\logo_image.png");
-                    this.Location = new Point(900, 475);
-                    this.Size = new Size(350, 350);
-                    this.Name = "logo_image";
+                case "logo_footer_full": 
+                    // logo_footer_full
+                    this.Load("C:\\Projeto_Hotelaria\\Views\\Assets\\logo_footer_full.jpg");
+                    this.Location = new Point(550, 625);
+                    this.Size = new Size(480, 80);
+                    this.Name = "logo_footer_full";
+                    break;
+                
+                case "hotel_front2": 
+                    // hotel_front2
+                    this.Load("C:\\Projeto_Hotelaria\\Views\\Assets\\hotel_front2.jpg");
+                    this.Location = new Point(280, 240);
+                    this.Size = new Size(500, 340);
+                    this.Name = "hotel_front2";
+                    break;
+                
+                case "hotel_wp": 
+                    // hotel_wp
+                    this.Load("C:\\Projeto_Hotelaria\\Views\\Assets\\hotel_wp.jpg");
+                    this.Location = new Point(780, 240);
+                    this.Size = new Size(500, 340);
+                    this.Name = "hotel_wp";
                     break;
 
                 default:

@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
@@ -23,7 +22,10 @@ namespace Controller
             double productValue
         )
         {
-            Model.Product.UpdateProduct(productId, productName, productValue);
+            Model.Product.UpdateProduct(
+                productId,
+                productName,
+                productValue);
         }
 
         public static void DeleteProduct(int ProductId)

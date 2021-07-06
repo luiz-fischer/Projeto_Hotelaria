@@ -38,7 +38,7 @@ namespace View
             this.lvProduct.Location = new Point(250, 100);
 
             List<Product> productList = Controller.Product.GetProducts();
-            foreach (var product in productList)
+            foreach (Product product in productList)
             {
                 ListViewItem lvListProduct = new ListViewItem(product.ProductId.ToString());
                 lvListProduct.SubItems.Add(product.ProductName);

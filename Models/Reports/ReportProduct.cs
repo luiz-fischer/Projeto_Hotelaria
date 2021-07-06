@@ -12,25 +12,26 @@ namespace Model
     {
         public static void ReportProductPdf()
         {
-            var path = Directory.GetCurrentDirectory();
+            string path = Directory.GetCurrentDirectory();
             Document document = new Document(PageSize.A4.Rotate());
-            document.SetMargins(3, 2, 3, 2);
+            string localDate = DateTime.Now.ToString();
+            string dateConverted = DateTime.Parse(localDate).ToString("dddd_d_MMMM_yyyy, HH;mm;ss");
             PdfWriter writer = PdfWriter.GetInstance(document, new FileStream(
-                path + "\\Relatorios\\Hospedes.pdf", FileMode.Create
+                path + "\\Relatorios\\Produtos_" + dateConverted + ".pdf", FileMode.Create
             ));
             document.Open();
             PdfPTable table = new PdfPTable(3);
 
             FontFactory.RegisterDirectory("C:\\Projeto_Hotelaria\\lib\\Fonts");
-            var fonte = FontFactory.GetFont("Roboto", 14);
+            Font fonte = FontFactory.GetFont("Roboto", 14);
 
             Paragraph coluna1 = new Paragraph("ID Produto", fonte);
             Paragraph coluna2 = new Paragraph("Nome do Produto", fonte);
             Paragraph coluna3 = new Paragraph("Valor", fonte);
 
-            var cell1 = new PdfPCell();
-            var cell2 = new PdfPCell();
-            var cell3 = new PdfPCell();
+            PdfPCell cell1 = new PdfPCell();
+            PdfPCell cell2 = new PdfPCell();
+            PdfPCell cell3 = new PdfPCell();
 
             cell1.AddElement(coluna1);
             cell2.AddElement(coluna2);
@@ -43,11 +44,11 @@ namespace Model
             try
             {
 
-                List<Model.Product> productProduct = Controller.Product.GetProducts();
-                foreach (var product in productProduct)
+                List<Product> productProduct = Controller.Product.GetProducts();
+                foreach (Product product in productProduct)
                 {
                     Phrase productId = new Phrase(product.ProductId.ToString(), fonte);
-                    var cell = new PdfPCell(productId);
+                    PdfPCell cell = new PdfPCell(productId);
                     table.AddCell(cell);
 
                     Phrase productName = new Phrase(product.ProductName, fonte);

@@ -11,17 +11,19 @@ namespace Model
     {
         public static void ReportCleanPdf()
         { 
-            var path = Directory.GetCurrentDirectory();
+            string path = Directory.GetCurrentDirectory();
             Document document = new Document(PageSize.A4.Rotate());
             document.SetMargins(3, 2, 3, 2);
+            string localDate = DateTime.Now.ToString();
+            string dateConverted = DateTime.Parse(localDate).ToString("dddd_d_MMMM_yyyy, HH;mm;ss");
             PdfWriter writer = PdfWriter.GetInstance(document, new FileStream(
-                path + "\\Relatorios\\Limpezas" + (new DateTime()).ToString() + ".pdf", FileMode.Create
+                path + "\\Relatorios\\Limpezas_" + dateConverted + ".pdf", FileMode.Create
             ));
             document.Open();
             PdfPTable table = new PdfPTable(5);
 
             FontFactory.RegisterDirectory("C:\\Projeto_Hotelaria\\lib\\Fonts");
-            var fonte = FontFactory.GetFont("Roboto", 14);
+            Font fonte = FontFactory.GetFont("Roboto", 14);
 
             Paragraph coluna1 = new Paragraph("Nome Completo", fonte);
             Paragraph coluna2 = new Paragraph("Data Limpeza", fonte);
@@ -29,11 +31,11 @@ namespace Model
             Paragraph coluna4 = new Paragraph("Numero Quarto", fonte);
             Paragraph coluna5 = new Paragraph("Descrição", fonte);
 
-            var cell1 = new PdfPCell();
-            var cell2 = new PdfPCell();
-            var cell3 = new PdfPCell();
-            var cell4 = new PdfPCell();
-            var cell5 = new PdfPCell();
+            PdfPCell cell1 = new PdfPCell();
+            PdfPCell cell2 = new PdfPCell();
+            PdfPCell cell3 = new PdfPCell();
+            PdfPCell cell4 = new PdfPCell();
+            PdfPCell cell5 = new PdfPCell();
 
             cell1.AddElement(coluna1);
             cell2.AddElement(coluna2);
@@ -50,18 +52,18 @@ namespace Model
             try
             {
 
-                List<Model.Clean> cleanList = Controller.Clean.GetCleans();
-                List<Model.Room> roomList = Controller.Room.GetRooms();
+                List<Clean> cleanList = Controller.Clean.GetCleans();
+                List<Room> roomList = Controller.Room.GetRooms();
 
-                foreach (var clean in cleanList)
+                foreach (Clean clean in cleanList)
                 {
-                    foreach (var room in roomList)
+                    foreach (Room room in roomList)
                     {
-                        Model.Employee employee = Controller.Employee.GetEmployee(clean.EmployeeId);
-                        Model.Room roomLt = Controller.Room.GetRoom(room.IdRoom);
+                        Employee employee = Controller.Employee.GetEmployee(clean.EmployeeId);
+                        Room roomLt = Controller.Room.GetRoom(room.IdRoom);
 
                         Phrase cleanEmployeeName = new Phrase(employee.EmployeeName, fonte);
-                        var cell = new PdfPCell(cleanEmployeeName);
+                        PdfPCell cell = new PdfPCell(cleanEmployeeName);
                         table.AddCell(cell);
 
                         Phrase cleanDate = new Phrase(clean.Date.ToShortDateString(), fonte);
@@ -86,7 +88,6 @@ namespace Model
                 document.Add(table);
                 document.Close();
                 MessageBox.Show("Documento PDF Gerato em: " + path + "\\Relatorios\\");
-
             }
             catch (Exception erro)
             {

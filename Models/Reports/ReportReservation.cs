@@ -11,27 +11,29 @@ namespace Model
     {
         public static void ReportReservationPdf()
         {
-            var path = Directory.GetCurrentDirectory();
+            string path = Directory.GetCurrentDirectory();
             Document document = new Document(PageSize.A4.Rotate());
             document.SetMargins(3, 2, 3, 2);
+            string localDate = DateTime.Now.ToString();
+            string dateConverted = DateTime.Parse(localDate).ToString("dddd_d_MMMM_yyyy, HH;mm;ss");
             PdfWriter writer = PdfWriter.GetInstance(document, new FileStream(
-                path + "\\Relatorios\\Reservas.pdf", FileMode.Create
+                path + "\\Relatorios\\Reservas_" + dateConverted + ".pdf", FileMode.Create
             ));
             document.Open();
             PdfPTable table = new PdfPTable(4);
 
             FontFactory.RegisterDirectory("C:\\Projeto_Hotelaria\\lib\\Fonts");
-            var fonte = FontFactory.GetFont("Roboto", 14);
+            Font fonte = FontFactory.GetFont("Roboto", 14);
 
             Paragraph coluna1 = new Paragraph("Nome Completo", fonte);
             Paragraph coluna2 = new Paragraph("CPF", fonte);
             Paragraph coluna3 = new Paragraph("Data do CheckIn", fonte);
             Paragraph coluna4 = new Paragraph("Data do CheckOut", fonte);
 
-            var cell1 = new PdfPCell();
-            var cell2 = new PdfPCell();
-            var cell3 = new PdfPCell();
-            var cell4 = new PdfPCell();
+            PdfPCell cell1 = new PdfPCell();
+            PdfPCell cell2 = new PdfPCell();
+            PdfPCell cell3 = new PdfPCell();
+            PdfPCell cell4 = new PdfPCell();
 
             cell1.AddElement(coluna1);
             cell2.AddElement(coluna2);
@@ -47,11 +49,11 @@ namespace Model
             {
 
                 List<Reservation> reservationList = Controller.Reservation.GetReservations();
-                foreach (var reservation in reservationList)
+                foreach (Reservation reservation in reservationList)
                 {   
                     Guest guest = Controller.Guest.GetGuest(reservation.IdGuest);
                     Phrase reservationName = new Phrase(guest.GuestName, fonte);
-                    var cell = new PdfPCell(reservationName);
+                    PdfPCell cell = new PdfPCell(reservationName);
                     table.AddCell(cell);
 
                     Phrase reservationBirth = new Phrase(guest.GuestBirth, fonte);

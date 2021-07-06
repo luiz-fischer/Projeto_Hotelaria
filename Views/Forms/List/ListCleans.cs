@@ -50,7 +50,7 @@ namespace View
             this.lvlClean.Location = new Point(250, 100);
 
             List<Clean> cleanList = Controller.Clean.GetCleans();
-            foreach (var clean in cleanList)
+            foreach (Clean clean in cleanList)
             {
                 Employee employee = Controller.Employee.GetEmployee(clean.EmployeeId);
                 Room room = Controller.Room.GetRoom(clean.RoomId);

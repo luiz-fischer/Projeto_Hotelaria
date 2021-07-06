@@ -37,7 +37,7 @@ namespace Model
             Date = date;
             Value = value;
 
-            var db = new Context();
+            Context db = new Context();
             db.Expenses.Add(this);
             db.SaveChanges();
         }
@@ -59,7 +59,7 @@ namespace Model
 
         public static Expense GetExpense(int expenseId)
         {
-            var db = new Context();
+            Context db = new Context();
             return (from expense in db.Expenses
                     where expense.ExpenseId == expenseId
                     select expense).First();
@@ -67,13 +67,13 @@ namespace Model
 
         public static List<Expense> GetExpenses()
         {
-            var db = new Context();
+            Context db = new Context();
             return db.Expenses.ToList();
         }
 
          public static List<Expense> GetExpenseByReservation(int reservationId)
         {
-            var db = new Context();
+            Context db = new Context();
             IEnumerable<Expense> Expense = 
                 from expense in db.Expenses 
                 where expense.ReservationId == reservationId 
@@ -89,7 +89,7 @@ namespace Model
             double value
         )
         {
-            var db = new Context();
+            Context db = new Context();
             try
             {
                 Expense expense = db.Expenses.First(expense => expense.ExpenseId == expenseId);
@@ -106,7 +106,7 @@ namespace Model
         }
         public static void DeleteExpense(int expenseId)
         {
-            var db = new Context();
+            Context db = new Context();
             try
             {
                 Expense expense = db.Expenses.First(expense => expense.ExpenseId == expenseId);

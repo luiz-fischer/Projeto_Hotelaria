@@ -24,31 +24,31 @@ namespace Model
             double productValue
         )
         {
-            ProductName = productName;
-            ProductValue = productValue;
+            this.ProductName = productName;
+            this.ProductValue = productValue;
 
-            var db = new Context();
+            Context db = new Context();
             db.Products.Add(this);
             db.SaveChanges();
         }
 
         public static Product GetProduct(int productID)
         {
-            var db = new Context();
+            Context db = new Context();
             return (from product in db.Products
                     where product.ProductId == productID
                     select product).First();
         }
         public static List<Product> GetProducts()
         {
-            var db = new Context();
+            Context db = new Context();
             IEnumerable<Product> query = from Product in db.Products select Product;
             return query.ToList();
         }
 
         public static Product GetProductId(int productId)
         {
-            var db = new Context();
+            Context db = new Context();
             return db.Products.Find(productId);
         }
 
@@ -63,13 +63,13 @@ namespace Model
             Product.ProductName = productName;
             Product.ProductValue = productValue;
 
-            var db = new Context();
+            Context db = new Context();
             db.SaveChanges();
         }
 
         public static void DeleteProduct(int productId)
         {
-            var db = new Context();
+            Context db = new Context();
 
             Product product = db.Products.First(product => product.ProductId == productId);
             db.Remove(product);

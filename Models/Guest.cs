@@ -37,7 +37,7 @@ namespace Model
             this.MothersName = mothersName;
             reservations = new List<Reservation>();
 
-            var db = new Context();
+            Context db = new Context();
             db.Guests.Add(this);
             db.SaveChanges();
 
@@ -67,7 +67,7 @@ namespace Model
 
         public static Guest GetGuest(int guestId)
         {
-            var db = new Context();
+            Context db = new Context();
             return (from guest in db.Guests
                     where guest.IdGuest == guestId
                     select guest).First();
@@ -75,7 +75,7 @@ namespace Model
 
         public static List<Guest> GetGuests()
         {
-            var db = new Context();
+            Context db = new Context();
             return db.Guests.ToList();
         }
 
@@ -88,7 +88,7 @@ namespace Model
             string mothersName
         )
         {
-            var db = new Context();
+            Context db = new Context();
             try
             {
                 Guest guest = db.Guests.First(guest => guest.IdGuest == guestId);
@@ -107,7 +107,7 @@ namespace Model
 
         public static void DeleteGuest(int guestId)
         {
-            var db = new Context();
+            Context db = new Context();
             try
             {
                 Guest guest = db.Guests.First(guest => guest.IdGuest == guestId);

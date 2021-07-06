@@ -47,7 +47,7 @@ namespace View
             this.lvlEmpolyee.Location = new Point(250, 100);
 
             List<Employee> employeeList = Controller.Employee.GetEmployees();
-            foreach (var employee in employeeList)
+            foreach (Employee employee in employeeList)
             {
                 ListViewItem lvListEmployee = new ListViewItem(employee.EmployeeId.ToString());
                 lvListEmployee.SubItems.Add(employee.EmployeeName);

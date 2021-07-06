@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 namespace Controller
 {
@@ -13,16 +12,6 @@ namespace Controller
             string mothersName
         )
         {
-            DateTime birthDate;
-            try
-            {
-                birthDate = Convert.ToDateTime(guestBirth);
-            }
-            catch
-            {
-                Console.WriteLine("FORMATO INVÁLIDO!");
-                birthDate = DateTime.Now;
-            }
 
             new Model.Guest(
                 guestName,

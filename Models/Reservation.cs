@@ -32,20 +32,20 @@ namespace Model
             DateTime checkOut
         )
         {
-            IdGuest = guest.IdGuest;
-            CheckIn = checkIn;
-            CheckOut = checkOut;
+            this.IdGuest = guest.IdGuest;
+            this.CheckIn = checkIn;
+            this.CheckOut = checkOut;
             rooms = new List<Room>();
             guest.AddReservation(this);
 
-            var db = new Context();
+            Context db = new Context();
             db.Reservations.Add(this);
             db.SaveChanges();
         }
 
         public void AddRoom(Room room)
         {
-            var db = new Context();
+            Context db = new Context();
             ReservationRoom reservationRoom = new ReservationRoom()
             {
                 IdRoom = room.IdRoom,
@@ -55,13 +55,15 @@ namespace Model
             db.ReservationRooms.Add(reservationRoom);
             db.SaveChanges();
         }
-        public double ValorTotalLocacao()
+        public double TotalValueReservation()
         {
             Guest guest = Guest.GetGuest(this.IdGuest);
-            var dias = this.CheckOut - this.CheckIn;
+            TimeSpan date = Convert.ToDateTime(this.CheckOut) - Convert.ToDateTime(this.CheckIn);
 
+            int totalDays = date.Days;
             double total = 0;
             Context db = new Context();
+            
             IEnumerable<int> rooms =
             from room in db.ReservationRooms
             where room.IdReservation == IdReservation
@@ -70,7 +72,7 @@ namespace Model
             foreach (int id in rooms)
             {
                 Room room = Room.GetRoom(id);
-                total += room.RoomValue * Convert.ToInt32(dias);
+                total += room.RoomValue * totalDays;
             }
 
             return total;
@@ -79,7 +81,7 @@ namespace Model
 
         public static Reservation GetReservation(int reservationId)
         {
-            var db = new Context();
+            Context db = new Context();
             return (from reservation in db.Reservations
                     where reservation.IdReservation == reservationId
                     select reservation).First();
@@ -87,12 +89,12 @@ namespace Model
 
         public static List<Reservation> GetReservations()
         {
-            var db = new Context();
+            Context db = new Context();
             return db.Reservations.ToList();
         }
         public static List<Reservation> GetReservationByIdGuest(int guestId)
         {
-            var db = new Context();
+            Context db = new Context();
             return (from reservation in db.Reservations
                     where reservation.IdGuest == guestId
                     select reservation).ToList();
@@ -104,7 +106,7 @@ namespace Model
                 DateTime checkOut
             )
         {
-            var db = new Context();
+            Context db = new Context();
             try
             {
                 Reservation reservation = db.Reservations.First(reservation => reservation.IdReservation == reservationId);
@@ -120,7 +122,7 @@ namespace Model
 
         public static void DeleteReservation(int reservationId)
         {
-            var db = new Context();
+            Context db = new Context();
             try
             {
                 Reservation reservation = db.Reservations.First(reservation => reservation.IdReservation == reservationId);

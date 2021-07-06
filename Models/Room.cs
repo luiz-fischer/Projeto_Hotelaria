@@ -23,7 +23,6 @@ namespace Model
 
         }
 
-
         public Room(
             int roomFloor,
             string roomNumber,
@@ -36,14 +35,14 @@ namespace Model
             this.RoomDescription = roomDescription;
             this.RoomValue = roomValue;
 
-            var db = new Context();
+            Context db = new Context();
             db.Rooms.Add(this);
             db.SaveChanges();
         }
 
         public static Room GetRoom(int roomId)
         {
-            var db = new Context();
+            Context db = new Context();
             return (from room in db.Rooms
                     where room.IdRoom == roomId
                     select room).First();
@@ -84,7 +83,7 @@ namespace Model
         }
         public static void DeleteRoom(int roomId)
         {
-            var db = new Context();
+            Context db = new Context();
             try
             {
                 Room room = db.Rooms.First(room => room.IdRoom == roomId);

@@ -19,7 +19,7 @@ namespace Model
 
         public static List<ReservationRoom> GetReservationsByIdRoom(int IdRoom)
         {
-            var db = new Context();
+            Context db = new Context();
             return (from reservation in db.ReservationRooms
                     where reservation.IdRoom == IdRoom
                     select reservation).ToList();

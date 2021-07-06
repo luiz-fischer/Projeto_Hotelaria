@@ -21,7 +21,7 @@ namespace Model
             this.EmployeeName = employeeName;
             cleans = new List<Clean>();
 
-            var db = new Context();
+            Context db = new Context();
             db.Employees.Add(this);
             db.SaveChanges();
         }
@@ -31,7 +31,7 @@ namespace Model
 
         public static Employee GetEmployee(int employeeId)
         {
-            var db = new Context();
+            Context db = new Context();
             return (from employee in db.Employees
                     where employee.EmployeeId == employeeId
                     select employee).First();
@@ -44,7 +44,7 @@ namespace Model
 
         public static List<Employee> GetEmployees()
         {
-            var db = new Context();
+            Context db = new Context();
             return db.Employees.ToList();
         }
 
@@ -52,7 +52,7 @@ namespace Model
             int employeeId,
             string employeeName)
         {
-            var db = new Context();
+            Context db = new Context();
             try
             {
                 Employee employee = db.Employees.First(employee => employee.EmployeeId == employeeId);
@@ -67,7 +67,7 @@ namespace Model
         }
         public static void DeleteEmployee(int employeeId)
         {
-            var db = new Context();
+            Context db = new Context();
             try
             {
                 Employee employee = db.Employees.First(employee => employee.EmployeeId == employeeId);

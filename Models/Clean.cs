@@ -33,13 +33,13 @@ namespace Model
             DateTime date
         )
         {   
-            RoomId = room.IdRoom;
-            EmployeeId = employee.EmployeeId;
-            Date = date;
+            this.RoomId = room.IdRoom;
+            this.EmployeeId = employee.EmployeeId;
+            this.Date = date;
             employee.AddClean(this);
             room.AddClean(this);
 
-            var db = new Context();
+            Context db = new Context();
             db.Cleans.Add(this);
             db.SaveChanges();
 
@@ -48,7 +48,7 @@ namespace Model
         public Clean(int roomId)
         {
             room.IdRoom = roomId;
-            var db = new Context();
+            Context db = new Context();
             try
             {
                 db.Cleans.Add(this);
@@ -62,7 +62,7 @@ namespace Model
 
         public void AddRoom(Room room)
         {
-            var db = new Context();
+            Context db = new Context();
             CleanRoom cleanRooms = new CleanRoom()
             {
                 IdRoom = room.IdRoom,
@@ -88,14 +88,14 @@ namespace Model
 
         public static Clean GetClean(int cleanId)
         {
-            var db = new Context();
+            Context db = new Context();
             return (from clean in db.Cleans
                     where clean.CleanId == cleanId
                     select clean).First();
         }
         public static List<Clean> GetCleans()
         {
-            var db = new Context();
+            Context db = new Context();
             return db.Cleans.ToList();
         }
         
@@ -119,7 +119,7 @@ namespace Model
             DateTime date
         )
         {
-            var db = new Context();
+            Context db = new Context();
             try
             {
                 Clean clean = db.Cleans.First(clean => clean.CleanId == cleanId);
@@ -134,7 +134,7 @@ namespace Model
 
         public static void DeleteClean(int cleanId)
         {
-            var db = new Context();
+            Context db = new Context();
             try
             {
                 Clean clean = db.Cleans.First(clean => clean.CleanId == cleanId);
@@ -148,7 +148,7 @@ namespace Model
         }
         public static void SetCleanDone(int cleanId, int employeeId)
         {
-            var db = new Context();
+            Context db = new Context();
 
             Clean clean = GetClean(cleanId);
             clean.EmployeeId = employeeId;

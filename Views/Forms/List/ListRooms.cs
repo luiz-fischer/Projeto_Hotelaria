@@ -38,7 +38,7 @@ namespace View
             this.lvRoom.Location = new Point(250, 100);
 
             List<Room> roomList = Controller.Room.GetRooms();
-            foreach (var room in roomList)
+            foreach (Room room in roomList)
             { 
                 ListViewItem lvListRoom = new ListViewItem(room.IdRoom.ToString());
                 lvListRoom.SubItems.Add(room.RoomFloor.ToString());
