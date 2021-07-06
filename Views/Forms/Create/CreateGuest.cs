@@ -2,15 +2,12 @@ using System;
 using System.Drawing;
 using System.Windows.Forms;
 using System.Text.RegularExpressions;
-using System.Collections.Generic;
-using System.Data;
 namespace View
 {
     public partial class CreateGuest : Form
     {
-        private Library.PictureBox menu_side;
-        private Library.Button btnConfirmar;
-        private Library.Button btnCancelar;
+        private Library.Button btnConfirm;
+        private Library.Button btnCancel;
         private Library.TextBox txtBxName;
         private Library.MaskedTextBox mskBxBirth;
         private Library.MaskedTextBox msktBxIdentification;
@@ -36,21 +33,19 @@ namespace View
             {
 
             }
-            InitializeComponent(id > 0);
+            InitializeComponent();
         }
 
-        public void InitializeComponent(bool isUpdate)
+        public void InitializeComponent()
         {
-            this.menu_side = new Library.PictureBox("menu_side");
-            this.btnConfirmar = new Library.Button("btnConfirmar");
-            this.btnCancelar = new Library.Button("btnCancelar");
+            this.btnConfirm = new Library.Button("btnConfirm");
+            this.btnCancel = new Library.Button("btnCancel");
             this.txtBxName = new Library.TextBox("txtBxName");
             this.mskBxBirth = new Library.MaskedTextBox();
             this.txtBxMotherName = new Library.TextBox("txtBxMotherName");
             this.cbPayment = new Library.ComboBox("cbPayment");
             this.msktBxIdentification = new Library.MaskedTextBox();
             this.lblTitle = new Library.Label();
-
             //
             // lblTitle
             this.lblTitle.Text = "Cadastro de Hóspedes";
@@ -64,22 +59,23 @@ namespace View
             this.msktBxIdentification.Mask = "000,000,000-00";
             this.msktBxIdentification.Location = new Point(600, 280);
             //
-            // btnConfirmar
-            this.btnConfirmar.Click += new EventHandler(this.btn_ConfirmarClick);
+            // btnConfirm
+            this.btnConfirm.Click += new EventHandler(this.btn_ConfirmarClick);
             //
-            // btnCancelar
-            this.btnCancelar.Click += new EventHandler(this.btnCancelar_Click);
+            // btnCancel
+            this.btnCancel.Click += new EventHandler(this.btnCancel_Click);
 
             this.TextErrorName = new ErrorProvider();
             this.TextErrorBirth = new ErrorProvider();
             this.TextErrorMotherName = new ErrorProvider();
             this.TextErrorPayment = new ErrorProvider();
             this.TextErrorIdentification = new ErrorProvider();
+
             this.WindowState = FormWindowState.Maximized;
+            this.TopLevel = true;
             this.BackColor = ColorTranslator.FromHtml("#E0E6ED");
-            this.Controls.Add(this.menu_side);
-            this.Controls.Add(this.btnConfirmar);
-            this.Controls.Add(this.btnCancelar);
+            this.Controls.Add(this.btnConfirm);
+            this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.txtBxName);
             this.Controls.Add(this.mskBxBirth);
             this.Controls.Add(this.msktBxIdentification);
@@ -174,11 +170,9 @@ namespace View
                 MessageBox.Show(error.Message, "Preencha Todos Os Campos!");
             }
         }
-        private void btnCancelar_Click(object sender, EventArgs e)
+        private void btnCancel_Click(object sender, EventArgs e)
         {
             this.Close();
         }
-        
     }
 }
-

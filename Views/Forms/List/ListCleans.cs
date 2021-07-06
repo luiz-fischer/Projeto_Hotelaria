@@ -8,10 +8,9 @@ namespace View
 {
     public partial class ListCleans : Form
     {
-        private Library.PictureBox menu_side;
-        private Library.Button btnCancelar;
-        private Library.Button btnConfirmar;
-        private Library.Button btnRelatorio;
+        private Library.Button btnCancel;
+        private Library.Button btnConfirm;
+        private Library.Button btnReport;
         private Library.Label lblTitle;
         private Library.ListView lvlClean;
 
@@ -22,24 +21,23 @@ namespace View
 
         public void InitializeComponent()
         {
-            this.menu_side = new Library.PictureBox("menu_side");
-            this.btnCancelar = new Library.Button("btnCancelar");
-            this.btnConfirmar = new Library.Button("btnConfirmar");
-            this.btnRelatorio = new Library.Button("btnRelatorio");
+            this.btnCancel = new Library.Button("btnCancel");
+            this.btnConfirm = new Library.Button("btnConfirm");
+            this.btnReport = new Library.Button("btnReport");
             this.lvlClean = new Library.ListView();
             this.lblTitle = new Library.Label();
             //
-            // btnCancelar
-            this.btnCancelar.Click += new EventHandler(this.btnCancelar_Click);
-            this.btnCancelar.Location = new Point(780, 620);
+            // btnCancel
+            this.btnCancel.Click += new EventHandler(this.btnCancel_Click);
+            this.btnCancel.Location = new Point(780, 620);
             //
-            // btnConfirmar
-            this.btnConfirmar.Click += new EventHandler(this.btnConfirmar_Click);
-            this.btnConfirmar.Location = new Point(420, 620);
+            // btnConfirm
+            this.btnConfirm.Click += new EventHandler(this.btnConfirm_Click);
+            this.btnConfirm.Location = new Point(420, 620);
             //
-            // btnRelatorio
-            this.btnRelatorio.Click += new EventHandler(this.btnRelatorio_Click);
-            this.btnRelatorio.Location = new Point(600, 620);
+            // btnReport
+            this.btnReport.Click += new EventHandler(this.btnReport_Click);
+            this.btnReport.Location = new Point(600, 620);
             //
             // lblTitle
             this.lblTitle.Text = "Lista de Limpezas";
@@ -76,21 +74,20 @@ namespace View
             // Forms
             this.WindowState = FormWindowState.Maximized;
             this.BackColor = ColorTranslator.FromHtml("#E0E6ED");
-            this.Controls.Add(this.menu_side);
-            this.Controls.Add(this.btnCancelar);
-            this.Controls.Add(this.btnConfirmar);
-            this.Controls.Add(this.btnRelatorio);
+            this.Controls.Add(this.btnCancel);
+            this.Controls.Add(this.btnConfirm);
+            this.Controls.Add(this.btnReport);
             this.Controls.Add(this.lblTitle);
             this.Controls.Add(this.lvlClean);
             this.Text = "       LISTAR LIMPEZAS";
 
         }
-        private void btnRelatorio_Click(object sender, EventArgs e)
+        private void btnReport_Click(object sender, EventArgs e)
         {
             ReportClean.ReportCleanPdf();
         }
 
-        private void btnConfirmar_Click(object sender, EventArgs e)
+        private void btnConfirm_Click(object sender, EventArgs e)
         {
             try
             {   
@@ -105,7 +102,7 @@ namespace View
             }
         }
 
-        private void btnCancelar_Click(object sender, EventArgs e)
+        private void btnCancel_Click(object sender, EventArgs e)
         {
             this.Close();
         }

@@ -7,9 +7,8 @@ namespace View
 {
     public class CreateClean : Form
     {
-        private Library.PictureBox menu_side;
-        private Library.Button btnConfirmar;
-        private Library.Button btnCancelar;
+        private Library.Button btnConfirm;
+        private Library.Button btnCancel;
         private Library.Label lblTitle;
         private Library.Label lblEmployee; 
         private Library.Label lblRoom;
@@ -29,14 +28,13 @@ namespace View
             {
 
             }
-            InitializeComponent(id > 0);
+            InitializeComponent();
         }
 
-        public void InitializeComponent(bool isUpdate)
+        public void InitializeComponent()
         {
-            this.menu_side = new Library.PictureBox("menu_side");
-            this.btnConfirmar = new Library.Button("btnConfirmar");
-            this.btnCancelar = new Library.Button("btnCancelar");
+            this.btnConfirm = new Library.Button("btnConfirm");
+            this.btnCancel = new Library.Button("btnCancel");
             this.lblEmployee = new Library.Label();
             this.lblRoom = new Library.Label();
             this.lvEmployee = new Library.ListView();
@@ -45,13 +43,13 @@ namespace View
             this.lblTitle = new Library.Label();
             this.dtClean = new DateTimePicker();
             //
-            // btnConfirmar
-            this.btnConfirmar.Location = new Point(600, 620);
-            this.btnConfirmar.Click += new EventHandler(this.btn_ConfirmarClick);
+            // btnConfirm
+            this.btnConfirm.Location = new Point(600, 620);
+            this.btnConfirm.Click += new EventHandler(this.btn_ConfirmarClick);
             //
-            // btnCancelar
-            this.btnCancelar.Location = new Point(780, 620);
-            this.btnCancelar.Click += new EventHandler(this.btnCancelar_Click);
+            // btnCancel
+            this.btnCancel.Location = new Point(780, 620);
+            this.btnCancel.Click += new EventHandler(this.btnCancel_Click);
             //
             // lblCheckIn
             this.lblCheckIn.Text = "Data da Limpeza";
@@ -120,9 +118,8 @@ namespace View
             // Form
             this.WindowState = FormWindowState.Maximized;
             this.BackColor = ColorTranslator.FromHtml("#E0E6ED");
-            this.Controls.Add(this.menu_side);
-            this.Controls.Add(this.btnConfirmar);
-            this.Controls.Add(this.btnCancelar);
+            this.Controls.Add(this.btnConfirm);
+            this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.lblEmployee);
             this.Controls.Add(this.lblRoom);
             this.Controls.Add(this.lblCheckIn);
@@ -164,7 +161,7 @@ namespace View
                 MessageBox.Show(error.Message, "Selecione o Empregado e Pelo Menos Um Quarto!");
             }
         }
-        private void btnCancelar_Click(object sender, EventArgs e)
+        private void btnCancel_Click(object sender, EventArgs e)
         {
             this.Close();
         }

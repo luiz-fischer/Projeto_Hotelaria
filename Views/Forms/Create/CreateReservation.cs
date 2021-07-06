@@ -7,9 +7,8 @@ namespace View
 {
     partial class CreateReservation : Form
     {
-        private Library.PictureBox menu_side;
-        private Library.Button btnConfirmar;
-        private Library.Button btnCancelar;
+        private Library.Button btnConfirm;
+        private Library.Button btnCancel;
         private Library.ListView lvListarGuests;
         private Library.ListView lvlListarRooms;
         private DateTimePicker dtCheckIn;
@@ -30,13 +29,12 @@ namespace View
 
             }
 
-            InitializeComponent(id > 0);
+            InitializeComponent();
         }
-        public void InitializeComponent(bool isUpdate)
+        public void InitializeComponent()
         {
-            this.menu_side = new Library.PictureBox("menu_side");
-            this.btnConfirmar = new Library.Button("btnConfirmar");
-            this.btnCancelar = new Library.Button("btnCancelar");
+            this.btnConfirm = new Library.Button("btnConfirm");
+            this.btnCancel = new Library.Button("btnCancel");
             this.lvListarGuests = new Library.ListView();
             this.lvlListarRooms = new Library.ListView();
             this.lblCheckIn = new Library.Label();
@@ -71,13 +69,13 @@ namespace View
             this.dtCheckOut.CustomFormat = "dd/MM/yyyy";
             this.dtCheckOut.ShowUpDown = true;
             //
-            // btnConfirmar
-            this.btnConfirmar.Click += new EventHandler(this.btn_ConfirmarClick);
-            this.btnConfirmar.Location = new Point(600, 610);
+            // btnConfirm
+            this.btnConfirm.Click += new EventHandler(this.btn_ConfirmarClick);
+            this.btnConfirm.Location = new Point(600, 610);
             //
-            // btnCancelar
-            this.btnCancelar.Click += new EventHandler(this.btnCancelar_Click);
-            this.btnCancelar.Location = new Point(780, 610);
+            // btnCancel
+            this.btnCancel.Click += new EventHandler(this.btnCancel_Click);
+            this.btnCancel.Location = new Point(780, 610);
             //
             // lblTitulo
             this.lblTitulo.Text = "Cadastro de Hospedagem";
@@ -146,9 +144,8 @@ namespace View
             // Home
             this.WindowState = FormWindowState.Maximized;
             this.BackColor = ColorTranslator.FromHtml("#E0E6ED");
-            this.Controls.Add(this.menu_side);
-            this.Controls.Add(this.btnConfirmar);
-            this.Controls.Add(this.btnCancelar);
+            this.Controls.Add(this.btnConfirm);
+            this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.lvListarGuests);
             this.Controls.Add(this.lvlListarRooms);
             this.Controls.Add(this.dtCheckIn);
@@ -192,7 +189,7 @@ namespace View
                 MessageBox.Show(error.Message, "Selecione o Guest e Pelo Menos Um Room!22222");
             }
         }
-        private void btnCancelar_Click(object sender, EventArgs e)
+        private void btnCancel_Click(object sender, EventArgs e)
         {
             this.Close();
         }

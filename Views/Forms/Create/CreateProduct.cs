@@ -6,9 +6,8 @@ namespace View
 {
     public partial class CreateProduct : Form
     {
-        private Library.PictureBox menu_side;
-        private Library.Button btnConfirmar;
-        private Library.Button btnCancelar;
+        private Library.Button btnConfirm;
+        private Library.Button btnCancel;
         private Library.TextBox txtBxName;
         private Library.TextBox txtBxValue;
         private Library.Label lblTitle;
@@ -28,14 +27,13 @@ namespace View
             {
 
             }
-            InitializeComponent(id > 0);
+            InitializeComponent();
         }
 
-        public void InitializeComponent(bool isUpdate)
+        public void InitializeComponent()
         {
-            this.menu_side = new Library.PictureBox("menu_side");
-            this.btnConfirmar = new Library.Button("btnConfirmar");
-            this.btnCancelar = new Library.Button("btnCancelar");
+            this.btnConfirm = new Library.Button("btnConfirm");
+            this.btnCancel = new Library.Button("btnCancel");
             this.txtBxName = new Library.TextBox("txtBxName");
             this.txtBxValue = new Library.TextBox("txtBxValue");
             this.lblTitle = new Library.Label();
@@ -47,11 +45,11 @@ namespace View
             // txtBxName
             this.txtBxName.PlaceholderText = "    Nome do Produto";
             //
-            // btnConfirmar
-            this.btnConfirmar.Click += new EventHandler(this.btn_ConfirmarClick);
+            // btnConfirm
+            this.btnConfirm.Click += new EventHandler(this.btn_ConfirmarClick);
             //
-            // btnCancelar
-            this.btnCancelar.Click += new EventHandler(this.btnCancelar_Click);
+            // btnCancel
+            this.btnCancel.Click += new EventHandler(this.btnCancel_Click);
             //
             // Erros
             this.TextErrorName = new ErrorProvider();
@@ -60,9 +58,8 @@ namespace View
             // Form
             this.WindowState = FormWindowState.Maximized;
             this.BackColor = ColorTranslator.FromHtml("#E0E6ED");
-            this.Controls.Add(this.menu_side);
-            this.Controls.Add(this.btnConfirmar);
-            this.Controls.Add(this.btnCancelar);
+            this.Controls.Add(this.btnConfirm);
+            this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.txtBxName);
             this.Controls.Add(this.txtBxValue);
             this.Controls.Add(this.lblTitle);
@@ -129,7 +126,7 @@ namespace View
                 MessageBox.Show(error.Message, "Preencha Todos Os Campos!");
             }
         }
-        private void btnCancelar_Click(object sender, EventArgs e)
+        private void btnCancel_Click(object sender, EventArgs e)
         {
             this.Close();
         }

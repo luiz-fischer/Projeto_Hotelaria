@@ -7,10 +7,9 @@ namespace View
 {
     partial class EditProduct : Form
     {
-        private Library.PictureBox menu_side;
-        private Library.Button btnDeletar;
-        private Library.Button btnAlterar;
-        private Library.Button btnCancelar;
+        private Library.Button btnDelete;
+        private Library.Button btnEdit;
+        private Library.Button btnCancel;
         private Library.RichTextBox richTextBoxProduct;
         private Library.Label lblDataProduct;
         private Library.Label lblTitle;
@@ -25,24 +24,23 @@ namespace View
 
         public void InitializeComponent(Product product)
         { 
-            this.menu_side = new Library.PictureBox("menu_side");
-            this.btnDeletar = new Library.Button("btnDeletar");
-            this.btnAlterar = new Library.Button("btnAlterar");
-            this.btnCancelar = new Library.Button("btnCancelar");
+            this.btnDelete = new Library.Button("btnDelete");
+            this.btnEdit = new Library.Button("btnEdit");
+            this.btnCancel = new Library.Button("btnCancel");
             this.richTextBoxProduct = new Library.RichTextBox();
             this.lblDataProduct = new Library.Label();
             this.lblTitle = new Library.Label();
             //
-            // btnAlterar
-            this.btnAlterar.Click += new EventHandler(this.btnAlterar_Click);
+            // btnEdit
+            this.btnEdit.Click += new EventHandler(this.btnEdit_Click);
             //
-            // btnDeletar
-            this.btnDeletar.Click += new EventHandler(this.btnDeletar_Click);
+            // btnDelete
+            this.btnDelete.Click += new EventHandler(this.btnDelete_Click);
             //
-            // btnCancelar
-            this.btnCancelar.Click += new EventHandler(this.btnCancelar_Click);
-            this.btnCancelar.BackColor = ColorTranslator.FromHtml("#FF6C6C");
-            this.btnCancelar.Location = new Point(810, 510);
+            // btnCancel
+            this.btnCancel.Click += new EventHandler(this.btnCancel_Click);
+            this.btnCancel.BackColor = ColorTranslator.FromHtml("#FF6C6C");
+            this.btnCancel.Location = new Point(810, 510);
             //
             // lblTitle
             this.lblTitle.Text = "EDITAR PRODUTO";
@@ -65,10 +63,9 @@ namespace View
             // Home
             this.WindowState = FormWindowState.Maximized;
             this.BackColor = ColorTranslator.FromHtml("#E0E6ED");
-            this.Controls.Add(this.menu_side);
-            this.Controls.Add(this.btnAlterar);
-            this.Controls.Add(this.btnDeletar);
-            this.Controls.Add(this.btnCancelar);
+            this.Controls.Add(this.btnEdit);
+            this.Controls.Add(this.btnDelete);
+            this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.richTextBoxProduct);
             this.Controls.Add(this.lblDataProduct);
             this.Controls.Add(this.lblTitle);
@@ -78,12 +75,12 @@ namespace View
 
         }
 
-        private void btnAlterar_Click(object sender, EventArgs e)
+        private void btnEdit_Click(object sender, EventArgs e)
         {
             CreateProduct createProduct = new CreateProduct(idProduct);
             createProduct.Show();
         }
-        private void btnDeletar_Click(object sender, EventArgs e)
+        private void btnDelete_Click(object sender, EventArgs e)
         {
             DialogResult result = MessageBox.Show("Deseja Realmente Exluir Esse Produto?", "Exclusão", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
             if (result == DialogResult.Yes)
@@ -99,7 +96,7 @@ namespace View
                 }
             }
         }
-        private void btnCancelar_Click(object sender, EventArgs e)
+        private void btnCancel_Click(object sender, EventArgs e)
         {
             this.Close();
         }

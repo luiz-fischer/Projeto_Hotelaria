@@ -6,9 +6,8 @@ namespace View
 {
     partial class CreateRoom : Form
     {
-        private Library.PictureBox menu_side;
-        private Library.Button btnConfirmar;
-        private Library.Button btnCancelar;
+        private Library.Button btnConfirm;
+        private Library.Button btnCancel;
         private Library.ComboBox cbRoomFloor;
         private Library.TextBox txtBxRoomNumber;
         private Library.TextBox txtBxRoomDescription;
@@ -32,14 +31,13 @@ namespace View
             {
 
             }
-            InitializeComponent(id > 0);
+            InitializeComponent();
         }
 
-        public void InitializeComponent(bool isUpdate)
+        public void InitializeComponent()
         {
-            this.menu_side = new Library.PictureBox("menu_side");
-            this.btnConfirmar = new Library.Button("btnConfirmar");
-            this.btnCancelar = new Library.Button("btnCancelar");
+            this.btnConfirm = new Library.Button("btnConfirm");
+            this.btnCancel = new Library.Button("btnCancel");
             this.cbRoomFloor = new Library.ComboBox("cbRoomFloor");
             this.txtBxRoomNumber = new Library.TextBox("");
             this.txtBxRoomDescription = new Library.TextBox("");
@@ -62,11 +60,11 @@ namespace View
             this.txtBxRoomValue.Location = new Point(600, 345);
             this.txtBxRoomValue.PlaceholderText = "    Valor do Quarto";
             //
-            // btnConfirmar
-            this.btnConfirmar.Click += new EventHandler(this.btn_ConfirmarClick);
+            // btnConfirm
+            this.btnConfirm.Click += new EventHandler(this.btn_ConfirmarClick);
             //
-            // btnCancelar
-            this.btnCancelar.Click += new EventHandler(this.btnCancelar_Click);
+            // btnCancel
+            this.btnCancel.Click += new EventHandler(this.btnCancel_Click);
             //
             // Erros
             this.TextErrorRoomFloor = new ErrorProvider();
@@ -77,9 +75,8 @@ namespace View
             // Form
             this.WindowState = FormWindowState.Maximized;
             this.BackColor = ColorTranslator.FromHtml("#E0E6ED");
-            this.Controls.Add(this.menu_side);
-            this.Controls.Add(this.btnConfirmar);
-            this.Controls.Add(this.btnCancelar);
+            this.Controls.Add(this.btnConfirm);
+            this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.cbRoomFloor);
             this.Controls.Add(this.txtBxRoomNumber);
             this.Controls.Add(this.txtBxRoomDescription);
@@ -165,7 +162,7 @@ namespace View
                 MessageBox.Show(error.Message, "Preencha Todos Os Campos!");
             }
         }
-        private void btnCancelar_Click(object sender, EventArgs e)
+        private void btnCancel_Click(object sender, EventArgs e)
         {
             this.Close();
         }

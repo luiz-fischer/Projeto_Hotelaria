@@ -8,9 +8,10 @@ namespace pig202101_hotel
     public class Home : Form
     {
         private readonly Library.PictureBox menu_side;
-        private readonly Library.PictureBox hotel_front2;
-        private readonly Library.PictureBox hotel_wp;
-        private readonly Library.Label lblWelcome;
+        private readonly Library.Button btnCreateGuest;
+        private readonly Library.Button btnCreateEmployee;
+        private readonly Library.Button btnCreateReservation;
+        private readonly Library.Button btnCreateRoom;
 
         public Home()
         {
@@ -114,21 +115,30 @@ namespace pig202101_hotel
             this.menu_side = new Library.PictureBox("menu_side");
             this.menu_side.Location = new Point(10, 35);
             //
-            // hotel_front2
-            this.hotel_front2 = new Library.PictureBox("hotel_front2");
+            // btnCreateGuest 
+            this.btnCreateGuest = new Library.Button("btnMenu");
+            this.btnCreateGuest.Location = new Point(34, 250);
+            this.btnCreateGuest.Text = "Cadastro de Hóspede";
+            this.btnCreateGuest.Click += new EventHandler(this.hospedeCadastrarMenuPrincipal_Click);
             //
-            // hotel_wp
-            this.hotel_wp = new Library.PictureBox("hotel_wp");
+            // btnCreateEmployee 
+            this.btnCreateEmployee = new Library.Button("btnMenu");
+            this.btnCreateEmployee.Location = new Point(34, 310);
+            this.btnCreateEmployee.Text = "Cadastro de Empregado";
+            this.btnCreateEmployee.Click += new EventHandler(this.empregadoCadastrarMenuPrincipal_Click);
             //
-            // lblWelcome
-            this.lblWelcome = new Library.Label();
-            this.lblWelcome.Location = new Point(550, 40);
-            this.lblWelcome.Size = new Size(800,100);
-            this.lblWelcome.Font = new Font("Old English Text MT", 70F,  GraphicsUnit.Point);
-            this.lblWelcome.ForeColor = ColorTranslator.FromHtml("#273444");
-            this.lblWelcome.BackColor = ColorTranslator.FromHtml("#E0E6ED");
-            this.lblWelcome.AutoSize = true;
-            this.lblWelcome.Text = "Bem Vindo";
+            // btnCreateReservation 
+            this.btnCreateReservation = new Library.Button("btnMenu");
+            this.btnCreateReservation.Location = new Point(34, 370);
+            this.btnCreateReservation.Text = "Cadastro de Reservas";
+            this.btnCreateReservation.Click += new EventHandler(this.reservasCadastrarMenuPrincipal_Click);
+            //
+            // btnCreateRoom 
+            this.btnCreateRoom = new Library.Button("btnMenu");
+            this.btnCreateRoom.Location = new Point(34, 430);
+            this.btnCreateRoom.Text = "Cadastro de Quartos";
+            this.btnCreateRoom.Click += new EventHandler(this.quartoCadastrarMenuPrincipal_Click);
+           
             // Home
             homeMenuPrincipal.DropDownItems.Add(homeMenuDropItem);
             homeMenuPrincipal.DropDownItems.Add(exitMenuDropItem);
@@ -157,6 +167,7 @@ namespace pig202101_hotel
             menuStrip.Items.Add(windowsMenuPrincipal);
             menuStrip.Dock = DockStyle.Top;
             this.MainMenuStrip = menuStrip;
+            this.IsMdiContainer = true;
 
             this.SetBounds(
                 0,
@@ -170,11 +181,13 @@ namespace pig202101_hotel
             menuStrip.Font = new Font("Roboto", 8F, FontStyle.Bold, GraphicsUnit.Point);
             menuStrip.Renderer = new MyRenderer();
             this.Controls.Add(menuStrip);
+            this.Controls.Add(this.btnCreateGuest);
+            this.Controls.Add(this.btnCreateEmployee);
+            this.Controls.Add(this.btnCreateReservation);
+            this.Controls.Add(this.btnCreateRoom);
             this.Controls.Add(this.menu_side);
-            this.Controls.Add(this.hotel_front2);
-            this.Controls.Add(this.hotel_wp);
-            this.Controls.Add(this.lblWelcome);
             this.IsMdiContainer = true;
+
             this.SetBackGroundColorOfMDIForm();
 
 
@@ -203,11 +216,13 @@ namespace pig202101_hotel
             CreateGuest createGuest = new CreateGuest();
             createGuest.MdiParent = this;
             createGuest.Text = "CADASTRAR HÓSPEDE" + this.MdiChildren.Length.ToString();
+            createGuest.TopMost = true; 
             createGuest.Show();
         }
         private void empregadoCadastrarMenuPrincipal_Click(object sender, EventArgs e)
         {
             CreateEmployee createEmployee = new CreateEmployee();
+            Form azul = new Form();
             createEmployee.MdiParent = this;
             createEmployee.Text = "CADASTRAR EMPREGADO " + this.MdiChildren.Length.ToString();
             createEmployee.Show();

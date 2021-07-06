@@ -6,9 +6,8 @@ namespace View
 {
     public partial class CreateEmployee : Form
     {
-        private Library.PictureBox menu_side;
-        private Library.Button btnConfirmar;
-        private Library.Button btnCancelar;
+        private Library.PictureBox menu_side;        private Library.Button btnConfirm;
+        private Library.Button btnCancel;
         private Library.TextBox txtBxName;
         private Library.Label lblTitle;
         private ErrorProvider TextErrorName;
@@ -26,14 +25,13 @@ namespace View
             {
 
             }
-            InitializeComponent(id > 0);
+            InitializeComponent();
         }
 
-        public void InitializeComponent(bool isUpdate)
+        public void InitializeComponent()
         {
-            this.menu_side = new Library.PictureBox("menu_side");
-            this.btnConfirmar = new Library.Button("btnConfirmar");
-            this.btnCancelar = new Library.Button("btnCancelar");
+            this.btnConfirm = new Library.Button("btnConfirm");
+            this.btnCancel = new Library.Button("btnCancel");
             this.txtBxName = new Library.TextBox("txtBxName");
             this.lblTitle = new Library.Label();
             //
@@ -41,19 +39,18 @@ namespace View
             this.lblTitle.Text = "Cadastro de Empregados";
             this.lblTitle.Location = new Point(600, 10);
             //
-            // btnConfirmar
-            this.btnConfirmar.Click += new EventHandler(this.btn_ConfirmarClick);
+            // btnConfirm
+            this.btnConfirm.Click += new EventHandler(this.btn_ConfirmarClick);
             //
-            // btnCancelar
-            this.btnCancelar.Click += new EventHandler(this.btnCancelar_Click);
+            // btnCancel
+            this.btnCancel.Click += new EventHandler(this.btnCancel_Click);
 
             this.TextErrorName = new ErrorProvider();
 
             this.WindowState = FormWindowState.Maximized;
             this.BackColor = ColorTranslator.FromHtml("#E0E6ED");
-            this.Controls.Add(this.menu_side);
-            this.Controls.Add(this.btnConfirmar);
-            this.Controls.Add(this.btnCancelar);
+            this.Controls.Add(this.btnConfirm);
+            this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.txtBxName);
             this.Controls.Add(this.lblTitle);
 
@@ -99,7 +96,7 @@ namespace View
                 MessageBox.Show(error.Message, "Preencha Todos Os Campos!");
             }
         }
-        private void btnCancelar_Click(object sender, EventArgs e)
+        private void btnCancel_Click(object sender, EventArgs e)
         {
             this.Close();
         }
