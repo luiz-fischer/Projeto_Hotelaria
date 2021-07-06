@@ -216,13 +216,11 @@ namespace pig202101_hotel
             CreateGuest createGuest = new CreateGuest();
             createGuest.MdiParent = this;
             createGuest.Text = "CADASTRAR HÓSPEDE" + this.MdiChildren.Length.ToString();
-            createGuest.TopMost = true; 
             createGuest.Show();
         }
         private void empregadoCadastrarMenuPrincipal_Click(object sender, EventArgs e)
         {
             CreateEmployee createEmployee = new CreateEmployee();
-            Form azul = new Form();
             createEmployee.MdiParent = this;
             createEmployee.Text = "CADASTRAR EMPREGADO " + this.MdiChildren.Length.ToString();
             createEmployee.Show();
