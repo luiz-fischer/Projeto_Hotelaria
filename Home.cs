@@ -8,11 +8,14 @@ namespace pig202101_hotel
     public class Home : Form
     {
         private readonly Library.PictureBox menu_side;
+        private readonly Library.PictureBox hotel_front2;
+        private readonly Library.PictureBox hotel_wp;
+        private readonly Library.Label lblWelcome;
 
         public Home()
         {
 
-            MenuStrip ms = new MenuStrip();
+            MenuStrip menuStrip = new MenuStrip();
             //
             // Home
             ToolStripMenuItem homeMenuPrincipal = new ToolStripMenuItem("Home");
@@ -110,6 +113,22 @@ namespace pig202101_hotel
             // menu_side
             this.menu_side = new Library.PictureBox("menu_side");
             this.menu_side.Location = new Point(10, 35);
+            //
+            // hotel_front2
+            this.hotel_front2 = new Library.PictureBox("hotel_front2");
+            //
+            // hotel_wp
+            this.hotel_wp = new Library.PictureBox("hotel_wp");
+            //
+            // lblWelcome
+            this.lblWelcome = new Library.Label();
+            this.lblWelcome.Location = new Point(550, 40);
+            this.lblWelcome.Size = new Size(800,100);
+            this.lblWelcome.Font = new Font("Old English Text MT", 70F,  GraphicsUnit.Point);
+            this.lblWelcome.ForeColor = ColorTranslator.FromHtml("#273444");
+            this.lblWelcome.BackColor = ColorTranslator.FromHtml("#E0E6ED");
+            this.lblWelcome.AutoSize = true;
+            this.lblWelcome.Text = "Bem Vindo";
             // Home
             homeMenuPrincipal.DropDownItems.Add(homeMenuDropItem);
             homeMenuPrincipal.DropDownItems.Add(exitMenuDropItem);
@@ -130,14 +149,14 @@ namespace pig202101_hotel
             listarMenuPrincipal.DropDownItems.Add(listarReservasMenuPrincipal);
             listarMenuPrincipal.DropDownItems.Add(listarQuartoMenuPrincipal);
 
-            ms.MdiWindowListItem = windowsMenuPrincipal;
+            menuStrip.MdiWindowListItem = windowsMenuPrincipal;
 
-            ms.Items.Add(homeMenuPrincipal);
-            ms.Items.Add(cadastrarMenuPrincipal);
-            ms.Items.Add(listarMenuPrincipal);
-            ms.Items.Add(windowsMenuPrincipal);
-            ms.Dock = DockStyle.Top;
-            this.MainMenuStrip = ms;
+            menuStrip.Items.Add(homeMenuPrincipal);
+            menuStrip.Items.Add(cadastrarMenuPrincipal);
+            menuStrip.Items.Add(listarMenuPrincipal);
+            menuStrip.Items.Add(windowsMenuPrincipal);
+            menuStrip.Dock = DockStyle.Top;
+            this.MainMenuStrip = menuStrip;
 
             this.SetBounds(
                 0,
@@ -145,13 +164,16 @@ namespace pig202101_hotel
                 Screen.PrimaryScreen.WorkingArea.Width,
                 Screen.PrimaryScreen.WorkingArea.Height
             );
-            ms.BackColor = ColorTranslator.FromHtml("#C0CCDA");
+            menuStrip.BackColor = ColorTranslator.FromHtml("#C0CCDA");
             this.WindowState = FormWindowState.Maximized;
             this.AutoScaleMode = AutoScaleMode.Font;
-            ms.Font = new Font(FontFamily.GenericSansSerif, 8F, FontStyle.Bold);
-            ms.Renderer = new MyRenderer();
-            this.Controls.Add(ms);
+            menuStrip.Font = new Font("Roboto", 8F, FontStyle.Bold, GraphicsUnit.Point);
+            menuStrip.Renderer = new MyRenderer();
+            this.Controls.Add(menuStrip);
             this.Controls.Add(this.menu_side);
+            this.Controls.Add(this.hotel_front2);
+            this.Controls.Add(this.hotel_wp);
+            this.Controls.Add(this.lblWelcome);
             this.IsMdiContainer = true;
             this.SetBackGroundColorOfMDIForm();
 
