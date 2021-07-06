@@ -1,6 +1,6 @@
-/bin
 /.vscode
 /obj
 /Projeto_Hotelaria.csproj.user
 /Migrations
 /.gitignore
+/bin/Debug/net5.0-windows

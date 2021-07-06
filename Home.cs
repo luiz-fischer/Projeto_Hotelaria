@@ -138,7 +138,7 @@ namespace pig202101_hotel
             this.btnCreateRoom.Location = new Point(34, 430);
             this.btnCreateRoom.Text = "Cadastro de Quartos";
             this.btnCreateRoom.Click += new EventHandler(this.quartoCadastrarMenuPrincipal_Click);
-           
+            //
             // Home
             homeMenuPrincipal.DropDownItems.Add(homeMenuDropItem);
             homeMenuPrincipal.DropDownItems.Add(exitMenuDropItem);
